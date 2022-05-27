@@ -23,7 +23,8 @@ public class RegisterService
 
     public static void main(String[] args)
     {
-        new RegisterService().senEmail("123123");
+        RegisterService.senEmail("1948976547@qq.com", "123123");
+        // new RegisterService().senEmail("123123");
     }
 
     /**
@@ -31,7 +32,7 @@ public class RegisterService
      *
      * @param emailContent
      */
-    public void senEmail(String emailContent) {
+    public static void senEmail(String targetEmail, String emailContent) {
         try {
             // 1. 创建参数配置, 用于连接邮件服务器的参数配置
             Properties props = new Properties();
@@ -48,7 +49,7 @@ public class RegisterService
             session.setDebug(true);
 
             // 3. 创建一封邮件    session、发件人、收件人、邮件内容
-            MimeMessage message = createMimeMessage(session, myEmailAccount, receiveMailAccount, emailContent);
+            MimeMessage message = createMimeMessage(session, myEmailAccount, targetEmail, emailContent);
             // 4. 根据 Session 获取邮件传输对象
             Transport transport = session.getTransport();
 
@@ -73,7 +74,7 @@ public class RegisterService
      * @param message
      * @return
      */
-    private MimeMessage createMimeMessage(Session session, String myEmailAccount, String receiveMailAccount, String message)
+    private static MimeMessage createMimeMessage(Session session, String myEmailAccount, String receiveMailAccount, String message)
     {
         try {
             // 1. 创建一封邮件
