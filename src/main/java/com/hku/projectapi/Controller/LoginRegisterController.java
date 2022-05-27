@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hku.projectapi.Beans.NormalResponse;
+import com.hku.projectapi.Beans.ResponseWithData;
 import com.hku.projectapi.Beans.Users;
 import com.hku.projectapi.Service.RegisterService;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -110,7 +111,11 @@ public class LoginRegisterController
                     }
                 }
             }
-            return user;
+            ResponseWithData response = new ResponseWithData();
+            response.setCode("00");
+            response.setDescription("Login success.");
+            response.setData(user);
+            return response;
         }
     }
 
@@ -160,9 +165,10 @@ public class LoginRegisterController
         int code = (int) (Math.random() * (99999 - 10000) + 10000);
         try {
             RegisterService.senEmail(targetEmail, String.valueOf(code));
-            NormalResponse response = new NormalResponse();
+            ResponseWithData response = new ResponseWithData();
             response.setCode("00");
             response.setDescription("Success.");
+            response.setData(String.valueOf(code));
             return response;
         }catch (Exception e)
         {
