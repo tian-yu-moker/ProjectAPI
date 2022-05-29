@@ -41,8 +41,8 @@ public class Graduate_timeController {
             response.setCode("00");
             response.setDescription("Success.");
         } else {
-            response.setCode("");
-            response.setDescription("Account not exist");
+            response.setCode("02");
+            response.setDescription("Account not exist, please register one first");
         }
         return response;
 
