@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @CrossOrigin(origins = {"*","null"})
 @RestController
 
@@ -25,8 +27,8 @@ public class CompanyController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @RequestMapping(value="/login_register/Company",method= RequestMethod.POST)
-    public Object School(@RequestBody String request) {
+    @RequestMapping(value="/login_register/Companies",method= RequestMethod.POST)
+    public Object School_detail(@RequestBody String request) {
         JsonObject obj = new JsonParser().parse(request).getAsJsonObject();
         String email=obj.get("email").toString();
         String company=obj.get("company").toString();
@@ -49,6 +51,28 @@ public class CompanyController {
             response.setDescription("Account already exists.");
         }
 
+        return response;
+    }
+
+    @RequestMapping(value="/login_register/company",method= RequestMethod.POST)
+    public Object School(@RequestBody String request) {
+        JsonObject obj = new JsonParser().parse(request).getAsJsonObject();
+        String email=obj.get("email").toString();
+        String company = obj.get("company").toString();
+        NormalResponse response = new NormalResponse();
+        String querySQL="SELECT count(*) FROM users WHERE email="+email;
+        int number=jdbcTemplate.queryForObject(querySQL, Integer.class);
+        System.out.println(number);
+        if(number>0) {
+            String insertSQL="UPDATE users SET company="+company+" " +" where email="+email;
+            System.out.println(insertSQL);
+            jdbcTemplate.execute(insertSQL);
+            response.setCode("00");
+            response.setDescription("Success.");
+        }else{
+            response.setCode("");
+            response.setDescription("Account not exist");
+        }
         return response;
     }
 
