@@ -4,6 +4,7 @@ URL: http://120.77.98.16:8080
 ## 0.2 Status Code
 |   Code   |      Description      |      API      |
 |----------|:-------------:|:-------------:|
+| 99 | Update Internal server error. |All|
 | 00 |  Success. |All|
 | 01 |    Incorrect password.   |Login|
 | 02 | No such account, need to register one first. |Login|
@@ -151,7 +152,7 @@ Request Body:
 ```
 Response Code:  
 00 Success  
-99 Internal server error  
+99 Internal server error.  
 ```
 {
     "code": "00",
