@@ -1,6 +1,15 @@
 # ProjectAPI
-## 0. Overview
+## 0.1 Overview
 URL: http://120.77.98.16:8080  
+## 0.2 Status Code
+|   Code   |      Description      |      API      |
+|----------|:-------------:|:-------------:|
+| 00 |  Success. |All|
+| 01 |    Incorrect password.   |Login|
+| 02 | No such account, need to register one first. |Login|
+| 03 | Account already exists. |Register|
+| 04 | Something wrong, please check the email address. (send email fail) |Email Verification|
+| 05 | No such knowledge question. |Delete knowledge question with ID|
 ## 1. Login & Register
 ### 1.1 Login
 URL: /login_register/login  
