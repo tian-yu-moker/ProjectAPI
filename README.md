@@ -70,3 +70,57 @@ Response Code:
     "data": "16970"
 }
 ```
+### 1.4 School declaration
+URL:/login_register/school
+Ttpe:POST
+```
+Request Body:
+{
+    "email": "1948976547@qq.com",
+    "school":"HKU"
+}
+```
+Response Code:  
+00 success  
+02 no such account, need to register one first  
+### 1.5 Company declaration
+URL:/login_register/company
+Ttpe:POST
+```
+Request Body:
+{
+    "email": "1948976547@qq.com",
+    "company":"facebook"
+}
+```
+Response Code:  
+00 success  
+02 no such account, need to register one first  
+### 1.6 Type declaration
+URL:/login_register/type
+Ttpe:POST
+```
+Request Body:
+{
+    "email": "1948976547@qq.com",
+    "type":"student"
+}
+
+```
+Response Code:  
+00 success  
+02 no such account, need to register one first  
+### 1.7 graduate time declaration
+URL:/login_register/graduate_time
+Ttpe:POST
+```
+Request Body:
+{
+    "email": "1948976547@qq.com",
+    "year":2022,
+    "month":7
+}
+```
+Response Code:  
+00 success  
+02 no such account, need to register one first  
