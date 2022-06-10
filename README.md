@@ -10,6 +10,7 @@ URL: http://120.77.98.16:8080
 | 03 | Account already exists. |Register|
 | 04 | Something wrong, please check the email address. (send email fail) |Email Verification|
 | 05 | No such knowledge question. |Delete knowledge question with ID|
+| 06 | Update knowledge field error. |Update knowledge question with ID, field, value and type|
 ## 1. Login & Register
 ### 1.1 Login
 URL: /login_register/login  
@@ -121,7 +122,7 @@ Response Code:
 02 no such account, need to register one first  
 ### 1.7 graduate time declaration
 URL:/login_register/graduate_time
-Ttpe:POST
+Type:POST
 ```
 Request Body:
 {
@@ -133,3 +134,79 @@ Request Body:
 Response Code:  
 00 success  
 02 no such account, need to register one first  
+## 2. Knowledge Service
+### URL /knowledge_service
+### 2.1 Create a knowledge question
+Type: POST  
+```
+Request Body:
+{
+    "question_content": "What is operating system?",
+    "answer_list": "answerid1;answerid2", (can be empty)
+    "userid": "12345@qq.com",
+    "comment": "commentid1;commentid2", (can be empty)
+    "company": "Apple",
+    "tag": "OS"
+}
+```
+Response Code:  
+00 Success  
+99 Internal server error  
+```
+{
+    "code": "00",
+    "description": "Upload success."
+}
+```
+### 2.2 Query a knwoledge by id
+Type: GET  
+URL: /knowledge_service?uuid=4186f6f46bb94450ae1b3abe54517229  
+Response Code:
+00 Success  
+05 No such knowledge question.  
+```
+{
+    "code": "00",
+    "description": "Success.",
+    "data": {
+        "knowledge_id": "4186f6f46bb94450ae1b3abe54517229",
+        "question_content": "What is operating system?",
+        "answer_list": "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs. ",
+        "userid": "123@qq.com",
+        "comment_list": "null",
+        "company": "Apple",
+        "tag": "Os",
+        "upload_time": "2022-06-10 16:25:38"
+    }
+}
+```
+### 2.3 Delete a knwoledge by id
+Type: DELETE  
+URL: /knowledge_service?uuid=4186f6f46bb94450ae1b3abe54517229  
+Response Code:
+00 Success  
+05 No such knowledge question.  
+```
+{
+    "code": "00",
+    "description": "Success."
+}
+```
+### 2.4 Update a knowledge question
+Type: PUT  
+URL: /knowledge_service  
+```
+Request Body
+{
+    "uuid": "4186f6f46bb94450ae1b3abe54517229",
+    "field": "company",
+    "value": "BoC",
+    "type": 0
+}
+
+where field is the column you want to update, value is the update content of that column
+For type:
+     * Type: 0 OR 1
+     * 0: append behind (only for comment, and answer update)
+     * 1: replace (for question content update)
+```
