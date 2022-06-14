@@ -85,7 +85,6 @@ public class KnowledgeController
     }
 
     // Update: PUT
-
     /**
      * Type: 0 OR 1
      * 0: append behind (only for comment, and answer update)

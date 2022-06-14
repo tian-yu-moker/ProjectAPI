@@ -5,6 +5,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hku.projectapi.Beans.NormalResponse;
 import com.hku.projectapi.Beans.ResponseWithData;
+import com.hku.projectapi.Beans.UserBean;
 import com.hku.projectapi.Beans.Users;
 import com.hku.projectapi.Service.RegisterService;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -177,6 +178,12 @@ public class LoginRegisterController
             response.setDescription("Something wrong, please check the email address.");
             return response;
         }
+    }
+
+    @RequestMapping(value = "/login_register/email_verification", method = RequestMethod.POST)
+    public Object queryUserById(@RequestBody UserBean user)
+    {
+
     }
 
 }
