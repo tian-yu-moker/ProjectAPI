@@ -14,11 +14,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Locale;
 
 @Configuration
-public class MvcConfig implements WebMvcConfigurer {
+public class MvcConfig implements WebMvcConfigurer
+{
 
-    /**
-     * 添加jwt拦截器，并指定拦截路径
-     * */
     @Override
     public void addInterceptors(InterceptorRegistry registry)
     {
