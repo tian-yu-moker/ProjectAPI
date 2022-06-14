@@ -24,9 +24,6 @@ public class MvcConfig implements WebMvcConfigurer
                 .addPathPatterns("/author/**");
     }
 
-    /**
-     * jwt拦截器
-     * */
     @Bean
     public JwtInterceptor jwtInterceptor() {
         return new JwtInterceptor();
