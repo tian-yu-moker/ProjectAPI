@@ -220,7 +220,7 @@ Response Code:
 ```
 ### 2.2 Check whether user input and generated code are matech
 Type: GET  
-URL: email_verification?email=1948976547@qq.com&code=28423  
+URL: /email_verification?email=1948976547@qq.com&code=28423  
 Response Code:  
 00 success 
 07 Two codes do not match.  
