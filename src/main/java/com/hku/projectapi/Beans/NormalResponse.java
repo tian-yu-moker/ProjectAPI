@@ -5,6 +5,17 @@ public class NormalResponse
     private String code;
     private String description;
 
+    public NormalResponse()
+    {
+
+    }
+
+    public NormalResponse(String code, String description)
+    {
+        this.code = code;
+        this.description = description;
+    }
+
     public String getCode() {
         return code;
     }

@@ -180,10 +180,5 @@ public class LoginRegisterController
         }
     }
 
-    @RequestMapping(value = "/login_register/email_verification", method = RequestMethod.POST)
-    public Object queryUserById(@RequestBody UserBean user)
-    {
-
-    }
 
 }
