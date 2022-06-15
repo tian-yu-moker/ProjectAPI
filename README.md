@@ -194,13 +194,13 @@ For type:
      * 0: append behind (only for comment, and answer update)
      * 1: replace (for question content update)
 ```
-##3. Email Verification Code
+## 3. Email Verification Code
 ### URL: /email_verification  
 ### Note
 The verification code can be expiried in 3 minutes.  
 After 3 minutes, a new code will be generated and sent to the target email.  
 Within 2 mins 30sec, the code will not be a new one. After 2 mins 30 sec, a new code will be generated.  
-### 2.1 Send verification code
+### 3.1 Send verification code
 Type: POST  
 ```
 Request Body:
@@ -218,7 +218,7 @@ Response Code:
     "data": "16970"
 }
 ```
-### 2.2 Check whether user input and generated code are matech
+### 3.2 Check whether user input and generated code are matech
 Type: GET  
 URL: /email_verification?email=1948976547@qq.com&code=28423  
 Response Code:  
