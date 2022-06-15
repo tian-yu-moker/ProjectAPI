@@ -214,8 +214,7 @@ Response Code:
 ```
 {
     "code": "00",
-    "description": "Success.",
-    "data": "16970"
+    "description": "Success."
 }
 ```
 ### 3.2 Check whether user input and generated code are matech
