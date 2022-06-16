@@ -16,9 +16,6 @@ public class JwtUtil {
     private static final long EXPIRE_TIME = 30 * 60 * 1000;
 //    private static final long EXPIRE_TIME = 60 * 1000 * 100000;
 
-    /**
-     * jwt密钥
-     * */
     private static final String SECRET = "ace_coder_token_key";
 
     /**
