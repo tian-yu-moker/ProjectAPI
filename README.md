@@ -5,6 +5,8 @@ URL: http://120.77.98.16:8080
 |   Code   |      Description      |      API      |
 |----------|:-------------:|:-------------:|
 | 99 | Update Internal server error. |All|
+|98| No token, need to login first. |All|
+|97| Token invalid, permission denied. |All|
 | 00 |  Success. |All|
 | 01 |    Incorrect password.   |Login|
 | 02 | No such account, need to register one first. |Login|
