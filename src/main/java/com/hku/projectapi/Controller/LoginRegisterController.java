@@ -8,6 +8,7 @@ import com.hku.projectapi.Beans.ResponseWithData;
 import com.hku.projectapi.Beans.UserBean;
 import com.hku.projectapi.Beans.Users;
 import com.hku.projectapi.Service.RegisterService;
+import com.hku.projectapi.Tools.JwtUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +34,11 @@ public class LoginRegisterController
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    /**
+     * Login and assign a token.
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/login_register/login", method = RequestMethod.POST)
     public Object doLogin(@RequestBody String request)
     {
@@ -112,10 +118,13 @@ public class LoginRegisterController
                     }
                 }
             }
-            ResponseWithData response = new ResponseWithData();
-            response.setCode("00");
-            response.setDescription("Login success.");
-            response.setData(user);
+            String userId = user.getEmail();
+            Map<String, Object> info = new HashMap<>();
+            info.put("username", user.getName());
+            info.put("admin", user.getIsAdmin());
+            //生成JWT字符串
+            String token = JwtUtil.sign(userId, info);
+            NormalResponse response = new NormalResponse("00", "Login success.", token);
             return response;
         }
     }

@@ -101,10 +101,9 @@ public class JwtUtil {
                     .build();
             verifier.verify(token);
             return true;
-        }catch (JWTVerificationException e)
-        {
-//            throw new RuntimeException("Invalid token, please re-obtain.");
+        }catch (JWTVerificationException e) {
             return false;
+//            throw new RuntimeException("Invalid token, please re-obtain.");
         }
     }
 }

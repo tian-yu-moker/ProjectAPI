@@ -4,6 +4,7 @@ public class NormalResponse
 {
     private String code;
     private String description;
+    private String token;
 
     public NormalResponse()
     {
@@ -14,6 +15,13 @@ public class NormalResponse
     {
         this.code = code;
         this.description = description;
+    }
+
+    public NormalResponse(String code, String description, String token)
+    {
+        this.code = code;
+        this.description = description;
+        this.token = token;
     }
 
     public String getCode() {
@@ -30,5 +38,13 @@ public class NormalResponse
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
