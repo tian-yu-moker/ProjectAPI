@@ -46,11 +46,6 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * 根据token获取userId
-     * @param token
-     * @return
-     * */
     public static String getUserId(String token) {
         try {
             String userId = JWT.decode(token).getAudience().get(0);
@@ -60,11 +55,6 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * 根据token获取自定义数据info
-     * @param token
-     * @return
-     * */
     public static Map<String, Object> getInfo(String token) {
         try {
             return JWT.decode(token).getClaim("info").asMap();
