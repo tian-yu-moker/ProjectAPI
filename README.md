@@ -16,6 +16,21 @@ URL: http://120.77.98.16:8080
 | 06 | Update knowledge field error. |Update knowledge question with ID, field, value and type|
 |07| Two email verification codes do not match. |Email Verification|
 |08| No verification code generated. Please send one first. |Email Verification|
+## 0.3 Token
+Put into request header, name is token, value is the String obtained when login.  
+Error response code.  
+98: No token, need to login first.  
+97: Token invalid, permission denied. (Incorrect token)  
+```
+{
+    "code": "98",
+    "description": "No valid token detected, please login first.",
+    "token": "",
+    "data": null
+}
+```
+
+
 ## 1. Login & Register
 ### 1.1 Login
 URL: /login_register/login  
