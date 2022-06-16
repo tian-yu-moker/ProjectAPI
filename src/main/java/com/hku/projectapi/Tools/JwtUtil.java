@@ -16,9 +16,6 @@ public class JwtUtil {
     private static final long EXPIRE_TIME = 30 * 60 * 1000;
 //    private static final long EXPIRE_TIME = 60 * 1000 * 100000;
 
-    /**
-     * jwt密钥
-     * */
     private static final String SECRET = "ace_coder_token_key";
 
     /**
@@ -46,11 +43,6 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * 根据token获取userId
-     * @param token
-     * @return
-     * */
     public static String getUserId(String token) {
         try {
             String userId = JWT.decode(token).getAudience().get(0);
@@ -60,11 +52,6 @@ public class JwtUtil {
         }
     }
 
-    /**
-     * 根据token获取自定义数据info
-     * @param token
-     * @return
-     * */
     public static Map<String, Object> getInfo(String token) {
         try {
             return JWT.decode(token).getClaim("info").asMap();
