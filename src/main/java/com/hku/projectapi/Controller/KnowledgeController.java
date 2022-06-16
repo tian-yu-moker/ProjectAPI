@@ -2,6 +2,7 @@ package com.hku.projectapi.Controller;
 
 
 import com.hku.projectapi.Beans.*;
+import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,7 +32,7 @@ public class KnowledgeController
     // Create: post
     @PostMapping("/knowledge_service")
     @ResponseBody
-    public Object createQuestion(@RequestBody KnowledgeQuestion question)
+    public Object createQuestion(@RequestBody KnowledgeQuestion question, @RequestHeader("token") String token)
     {
         String uuid = UUidGenerator.getUUID32();
         String question_content = question.getQuestion_content();
@@ -51,6 +52,7 @@ public class KnowledgeController
             NormalResponse response = new NormalResponse();
             response.setCode("00");
             response.setDescription("Upload success.");
+            response.setToken(JwtUtil.updateToken(token));
             return response;
         }catch (Exception e)
         {
@@ -63,7 +65,7 @@ public class KnowledgeController
 
     // Search: GET
     @GetMapping("/knowledge_service")
-    public Object searchQuestionById(@RequestParam String uuid)
+    public Object searchQuestionById(@RequestParam String uuid, @RequestHeader("token") String token)
     {
         String sql = "SELECT * FROM knowledge_questions WHERE knowledge_id=?";
         try
@@ -72,14 +74,14 @@ public class KnowledgeController
             ResponseWithData response = new ResponseWithData();
             response.setCode("00");
             response.setDescription("Success.");
+            response.setToken(JwtUtil.updateToken(token));
             response.setData(data);
             return response;
 
         }catch(Exception e)
         {
-            NormalResponse response = new NormalResponse();
-            response.setCode("05");
-            response.setDescription("No such knowledge question.");
+            NormalResponse response = new NormalResponse("05", "No such knowledge question.",
+                    JwtUtil.updateToken(token));
             return response;
         }
     }
@@ -91,7 +93,7 @@ public class KnowledgeController
      * 1: replace (for question content update)
      */
     @PutMapping("/knowledge_service")
-    public Object updateKnowledge(@RequestBody KnowledgeUpdateBean params)
+    public Object updateKnowledge(@RequestBody KnowledgeUpdateBean params, @RequestHeader("token") String token)
     {
         String sql = "UPDATE knowledge_questions SET " + params.getField() + " = ? WHERE knowledge_id = ?";
         try
@@ -116,9 +118,8 @@ public class KnowledgeController
                 }
             }
             jdbcTemplate.update(sql, new Object[]{params.getValue(), params.getUuid()});
-            NormalResponse response = new NormalResponse();
-            response.setCode("00");
-            response.setDescription("Success.");
+            NormalResponse response = new NormalResponse("05", "No such knowledge question.",
+                    JwtUtil.updateToken(token));
             return response;
         }catch (Exception e)
         {
@@ -132,15 +133,14 @@ public class KnowledgeController
 
     // Delete
     @DeleteMapping("/knowledge_service")
-    public Object deleteQuestion(String uuid)
+    public Object deleteQuestion(String uuid, @RequestHeader("token") String token)
     {
         String sql = "DELETE FROM knowledge_questions WHERE knowledge_id=\"" + uuid + "\"";
         try
         {
             jdbcTemplate.execute(sql);
-            NormalResponse response = new NormalResponse();
-            response.setCode("00");
-            response.setDescription("Success.");
+            NormalResponse response = new NormalResponse("05", "No such knowledge question.",
+                    JwtUtil.updateToken(token));
             return response;
         }catch (Exception e)
         {
