@@ -22,8 +22,10 @@ public class JwtInterceptor implements HandlerInterceptor
         String token = request.getHeader("token");
 //        System.out.println("此处测试是否拿到了token：" + token);
 
-        if (token == null) {
-            throw new RuntimeException("No valid token detected, please login first.");
+        if (token == null)
+        {
+            return false;
+//            throw new RuntimeException("No valid token detected, please login first.");
         }
 
         // Check the token, see whether it is valid.

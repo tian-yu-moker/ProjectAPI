@@ -4,10 +4,7 @@ package com.hku.projectapi.Controller;
 import com.hku.projectapi.Tools.JwtUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +30,12 @@ public class Controller
     public String test()
     {
         return "Tian Yu";
+    }
+
+    @RequestMapping("/getHeader")
+    public String getHeader(@RequestHeader("token") String token)
+    {
+        return token;
     }
 
     @RequestMapping("/testDB")

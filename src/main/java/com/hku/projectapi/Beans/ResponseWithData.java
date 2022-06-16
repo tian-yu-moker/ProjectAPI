@@ -6,6 +6,7 @@ public class ResponseWithData
 {
     private String code;
     private String description;
+    private String token;
     private Object data;
 
     public String getCode() {
@@ -30,5 +31,13 @@ public class ResponseWithData
 
     public void setData(Object data) {
         this.data = data;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }
