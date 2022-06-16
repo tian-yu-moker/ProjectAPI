@@ -29,7 +29,7 @@ public class Controller
         dataSource.setPassword("0611");
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
-    @RequestMapping("/test")
+    @RequestMapping("/test/inter")
     public String test()
     {
         return "Tian Yu";
@@ -53,6 +53,7 @@ public class Controller
     public String login(String username, String pass) {
         //假设数据库中查询到了该用户，这里测试先所及生成一个UUID，作为用户的id
         String userId = UUID.randomUUID().toString();
+        System.out.println(userId);
 
         //准备存放在IWT中的自定义数据
         Map<String, Object> info = new HashMap<>();
