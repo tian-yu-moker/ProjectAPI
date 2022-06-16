@@ -85,7 +85,7 @@ public class JwtUtil {
             verifier.verify(token);
             return true;
         }catch (JWTVerificationException e) {
-            throw new RuntimeException("Invalid token, please re-obtain.");
+            return false;
         }
     }
 }
