@@ -13,12 +13,13 @@ public class JwtUtil {
     /**
      * 过期5分钟
      * */
-    private static final long EXPIRE_TIME = 5 * 60 * 100000;
+    private static final long EXPIRE_TIME = 30 * 60 * 1000;
+//    private static final long EXPIRE_TIME = 60 * 1000 * 100000;
 
     /**
      * jwt密钥
      * */
-    private static final String SECRET = "jwt_secret";
+    private static final String SECRET = "ace_coder_token_key";
 
     /**
      * 生成jwt字符串，五分钟后过期  JWT(json web token)
@@ -72,6 +73,21 @@ public class JwtUtil {
         }
     }
 
+    public static String updateToken(String token)
+    {
+        long expiry = Long.valueOf(JWT.decode(token).getClaim("exp").toString());
+        long current = System.currentTimeMillis() / 1000;
+        // 3 minute left, update
+        if(expiry - current < 3 * 60)
+        {
+            String userId = JWT.decode(token).getAudience().get(0);
+            Map<String, Object> info = JWT.decode(token).getClaim("info").asMap();
+            String newToken = sign(userId, info);
+            return newToken;
+        }
+        return token;
+    }
+
     /**
      * 校验token
      * @param token
@@ -85,8 +101,10 @@ public class JwtUtil {
                     .build();
             verifier.verify(token);
             return true;
-        }catch (JWTVerificationException e) {
-            throw new RuntimeException("token 无效，请重新获取");
+        }catch (JWTVerificationException e)
+        {
+//            throw new RuntimeException("Invalid token, please re-obtain.");
+            return false;
         }
     }
 }
