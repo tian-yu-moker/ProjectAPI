@@ -88,11 +88,7 @@ public class JwtUtil {
         return token;
     }
 
-    /**
-     * 校验token
-     * @param token
-     * @return
-     * */
+
     public static boolean checkSign(String token) {
         try {
             Algorithm algorithm  = Algorithm.HMAC256(SECRET);
