@@ -19,14 +19,13 @@ public class JwtInterceptor implements HandlerInterceptor
         if (!(handler instanceof HandlerMethod)) {
             return true;
         }
-
-        //从 http 请求头中取出 token
+        // Get token from header
         String token = request.getHeader("token");
-//        System.out.println("此处测试是否拿到了token：" + token);
+        // Set HTTP response
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         httpResponse.setHeader("Access-Control-Allow-Credentials", "true");
         httpResponse.setHeader("Access-Control-Allow-Origin", HttpContextUtil.getOrigin());
-        //UTF-8编码
+        // Set encode to UTF-8
         httpResponse.setCharacterEncoding("UTF-8");
         response.setContentType("application/json;charset=utf-8");
 
