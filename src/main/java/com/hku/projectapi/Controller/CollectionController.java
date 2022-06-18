@@ -52,39 +52,18 @@ public class CollectionController
     /**
      *
      * @param email users' email
-     * @param knowledge_id optional, knowledge id
-     * @param inter_ques_id optional, interview question id
-     * @param interview_id optional, interview id
+     * @param field optional, knowledge id
+     * @param id optional, interview question id
      * @return
      */
     @GetMapping("/users_like")
     public Object getAllLike(// @RequestHeader("token") String token,
                              @RequestParam(value = "email", required = false) String email,
-                             @RequestParam(value = "knowledge_id", required = false) String knowledge_id,
-                             @RequestParam(value = "inter_ques_id", required = false) String inter_ques_id,
-                             @RequestParam(value = "interview_id", required = false) String interview_id)
+                             @RequestParam(value = "field", required = false) String field,
+                             @RequestParam(value = "id", required = false) String id)
     {
-        System.out.println(email + " " + knowledge_id + " " + inter_ques_id);
         // If search all collections for one user
-        if(knowledge_id.equals(null) && inter_ques_id.equals(null) && interview_id.equals(null))
-        {
-            System.out.println("all");
-        }
-        // Search for knowledge
-        else if(!knowledge_id.equals(null) && inter_ques_id.equals(null) && interview_id.equals(null))
-        {
-            System.out.println("knowledge");
-        }
-        // Search for interview question
-        else if(knowledge_id.equals(null) && !inter_ques_id.equals(null) && interview_id.equals(null))
-        {
-            System.out.println("interview question");
-        }
-        // Search for whole interview
-        else if(knowledge_id.equals(null) && inter_ques_id.equals(null) && !interview_id.equals(null))
-        {
-            System.out.println("interview");
-        }
+
         String result = "Get request.";
         return result;
     }
