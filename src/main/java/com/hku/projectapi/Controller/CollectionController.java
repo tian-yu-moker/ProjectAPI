@@ -52,18 +52,36 @@ public class CollectionController
     /**
      *
      * @param email users' email
-     * @param field optional, knowledge id
-     * @param id optional, interview question id
+     * @param type optional, knowledge, interview questions or whole interview
+     * @param id optional, id of three of them
      * @return
      */
     @GetMapping("/users_like")
     public Object getAllLike(// @RequestHeader("token") String token,
-                             @RequestParam(value = "email", required = false) String email,
-                             @RequestParam(value = "field", required = false) String field,
+                             @RequestParam(value = "email", required = true) String email,
+                             @RequestParam(value = "type", required = true) int type,
                              @RequestParam(value = "id", required = false) String id)
     {
         // If search all collections for one user
-
+        if(type == 0)
+        {
+            System.out.println("whole");
+        }
+        else
+        {
+            if(type == 1)
+            {
+                System.out.println("Knowledge");
+            }
+            else if(type == 2)
+            {
+                System.out.println("interview questions");
+            }
+            else
+            {
+                System.out.println("Whole interview");
+            }
+        }
         String result = "Get request.";
         return result;
     }
