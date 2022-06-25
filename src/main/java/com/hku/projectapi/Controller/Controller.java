@@ -44,7 +44,6 @@ public class Controller
     {
         String sql = "Select * from test";
         List<Map<String, Object>> info = jdbcTemplate.queryForList(sql);
-        System.out.println(info + "Test");
         return "Tian Yu";
     }
 

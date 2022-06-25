@@ -83,6 +83,11 @@ public class CollectionLikeService
 
     }
 
+    public void tests()
+    {
+        // For test
+    }
+
 //    public static void main(String[] args)
 //    {
 //        new CollectionLikeService().test();
