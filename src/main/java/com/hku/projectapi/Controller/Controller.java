@@ -14,6 +14,7 @@ import java.util.UUID;
 
 @CrossOrigin(origins = {"*","null"})
 @RestController
+@RequestMapping("/cicctest")
 public class Controller
 {
     private JdbcTemplate jdbcTemplate;
@@ -50,6 +51,11 @@ public class Controller
     @GetMapping("/author/hello")
     public String hello() {
         return "hello world";
+    }
+
+    @RequestMapping(method = RequestMethod.POST, value = "/my")
+    public String hellos() {
+        return "hello world, cicc123";
     }
 
     @GetMapping("/auth/login")
