@@ -30,7 +30,7 @@ public class Controller
     @RequestMapping("/test/inter")
     public String test()
     {
-        return "Tian Yu";
+        return "Tian Yu0611";
     }
 
     @RequestMapping("/getHeader")
