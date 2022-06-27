@@ -19,12 +19,16 @@ import com.hku.projectapi.Mapper.KnowledgeLikeMapper;
 
 import com.hku.projectapi.Beans.Result;
 
+import javax.naming.ldap.PagedResultsControl;
+
 @Service
 @SpringBootTest
 public class CollectionLikeService 
 {
     @Autowired
     private KnowledgeCollectionMapper knowledgeMapper;
+    @Autowired
+    private KnowledgeLikeMapper knowledgeLikeMapper;
 
     /**
      * Get all collections of liked interviews and knowledge questions
@@ -40,9 +44,34 @@ public class CollectionLikeService
 
     }
 
-    public void getKnowledge()
+    /**
+     * Query knowledge collection
+     * @param email
+     * @param id: optional, if empty, get all
+     */
+    public void getKnowledge(String email, String id)
     {
+        System.out.println(email + " " + id);
+        QueryWrapper<knowledge_like> oneQuery = new QueryWrapper<>();
+//        oneQuery.select("knowledge_id", "add_date");
+//        oneQuery.eq("email", email);
+        if(id != null)
+        {
+//            System.out.println("12345");
+            oneQuery.eq("knowledge_id", id);
+        }
+//        QueryWrapper<knowledge_like> oneQuery = new QueryWrapper<>();
+//        oneQuery.eq(!email.equals(null), "email", email);
+        List<knowledge_like> res = knowledgeMapper.selectList(oneQuery);
+        // List<knowledge_like> res = knowledgeMapper.selectList(oneQuery);
 
+        String emails = "123@qq.com";
+        String knowledgeId = "4186f6f46bb94450ae1b3abe54517228";
+        QueryWrapper<knowledge_like> oneQuerys = new QueryWrapper<>();
+        oneQuery.eq("email", emails).
+                eq("knowledge_id", knowledgeId);
+        List<knowledge_like> ress = knowledgeMapper.selectList(oneQuerys);
+        System.out.println(ress + " aaa");
     }
 
     /**
@@ -75,11 +104,12 @@ public class CollectionLikeService
         oneQuery.eq("email", email).
                 eq("knowledge_id", knowledgeId);
         List<knowledge_like> res = knowledgeMapper.selectList(oneQuery);
-        if(res.size() == 0)
-        {
-            knowledge_like likeBean = new knowledge_like(email, knowledgeId, new Timestamp(new Date().getTime()));
-            knowledgeMapper.insert(likeBean);
-        }
+//        if(res.size() == 0)
+//        {
+//            knowledge_like likeBean = new knowledge_like(email, knowledgeId, new Timestamp(new Date().getTime()));
+//            knowledgeMapper.insert(likeBean);
+//        }
+        System.out.println(res + "AAA");
 
     }
 

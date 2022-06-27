@@ -72,6 +72,7 @@ public class CollectionController
             if(type == 1)
             {
                 System.out.println("Knowledge");
+                collectionService.getKnowledge(email, id);
             }
             else if(type == 2)
             {
