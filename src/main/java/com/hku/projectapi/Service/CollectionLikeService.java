@@ -1,5 +1,6 @@
 package com.hku.projectapi.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.mockito.Mockito.description;
@@ -7,7 +8,10 @@ import static org.mockito.Mockito.description;
 import java.sql.Timestamp;
 import java.util.List;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hku.projectapi.Beans.KnowledgeQuestion;
 import com.hku.projectapi.Mapper.KnowledgeCollectionMapper;
+import com.hku.projectapi.Mapper.KnowledgeQuestionMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,12 +27,19 @@ import javax.naming.ldap.PagedResultsControl;
 
 @Service
 @SpringBootTest
-public class CollectionLikeService 
+public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper, knowledge_like>
 {
     @Autowired
     private KnowledgeCollectionMapper knowledgeMapper;
     @Autowired
-    private KnowledgeLikeMapper knowledgeLikeMapper;
+    private KnowledgeQuestion knowledgeQuestion;
+    @Autowired
+    private KnowledgeQuestionMapper knowledgeQuestionMapper;
+
+
+
+    public CollectionLikeService() {
+    }
 
     /**
      * Get all collections of liked interviews and knowledge questions
@@ -53,25 +64,26 @@ public class CollectionLikeService
     {
         System.out.println(email + " " + id);
         QueryWrapper<knowledge_like> oneQuery = new QueryWrapper<>();
-//        oneQuery.select("knowledge_id", "add_date");
-//        oneQuery.eq("email", email);
+        oneQuery.select("knowledge_id", "add_date");
+        oneQuery.eq("email", email);
         if(id != null)
         {
 //            System.out.println("12345");
             oneQuery.eq("knowledge_id", id);
         }
-//        QueryWrapper<knowledge_like> oneQuery = new QueryWrapper<>();
-//        oneQuery.eq(!email.equals(null), "email", email);
-        List<knowledge_like> res = knowledgeMapper.selectList(oneQuery);
-        // List<knowledge_like> res = knowledgeMapper.selectList(oneQuery);
+        // 再去查表
+        List<knowledge_like> id_date = knowledgeMapper.selectList(oneQuery);
+        // 查knowledge的表
+        List<String> knowledge_ids = new ArrayList<String>();
+        for(knowledge_like record : id_date)
+        {
+            knowledge_ids.add(record.getKnowledge_id());
+        }
+        QueryWrapper<KnowledgeQuestion> userLikeKnowledgeQuery = new QueryWrapper<>();
+        List<KnowledgeQuestion> userLikedKnowledge = knowledgeQuestionMapper.selectList(userLikeKnowledgeQuery);
+        System.out.println(userLikedKnowledge);
 
-        String emails = "123@qq.com";
-        String knowledgeId = "4186f6f46bb94450ae1b3abe54517228";
-        QueryWrapper<knowledge_like> oneQuerys = new QueryWrapper<>();
-        oneQuery.eq("email", emails).
-                eq("knowledge_id", knowledgeId);
-        List<knowledge_like> ress = knowledgeMapper.selectList(oneQuerys);
-        System.out.println(ress + " aaa");
+//        System.out.println(res);
     }
 
     /**
@@ -95,14 +107,14 @@ public class CollectionLikeService
         return -1;
     }
 
-    @Test
+//    @Test/\
     public void test()
     {
         String email = "123@qq.com";
         String knowledgeId = "4186f6f46bb94450ae1b3abe54517228";
         QueryWrapper<knowledge_like> oneQuery = new QueryWrapper<>();
-        oneQuery.eq("email", email).
-                eq("knowledge_id", knowledgeId);
+//        oneQuery.eq("email", email).
+//                eq("knowledge_id", knowledgeId);
         List<knowledge_like> res = knowledgeMapper.selectList(oneQuery);
 //        if(res.size() == 0)
 //        {
