@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.KnowledgeQuestion;
+import com.hku.projectapi.Beans.KnowledgeQuestionBean;
 import com.hku.projectapi.Mapper.KnowledgeCollectionMapper;
 import com.hku.projectapi.Mapper.KnowledgeQuestionMapper;
 import org.junit.jupiter.api.Test;
@@ -31,8 +32,6 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
 {
     @Autowired
     private KnowledgeCollectionMapper knowledgeMapper;
-    @Autowired
-    private KnowledgeQuestion knowledgeQuestion;
     @Autowired
     private KnowledgeQuestionMapper knowledgeQuestionMapper;
 
@@ -79,8 +78,8 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
         {
             knowledge_ids.add(record.getKnowledge_id());
         }
-        QueryWrapper<KnowledgeQuestion> userLikeKnowledgeQuery = new QueryWrapper<>();
-        List<KnowledgeQuestion> userLikedKnowledge = knowledgeQuestionMapper.selectList(userLikeKnowledgeQuery);
+        QueryWrapper<KnowledgeQuestionBean> userLikeKnowledgeQuery = new QueryWrapper<>();
+        List<KnowledgeQuestionBean> userLikedKnowledge = knowledgeQuestionMapper.selectList(userLikeKnowledgeQuery);
         System.out.println(userLikedKnowledge);
 
 //        System.out.println(res);
