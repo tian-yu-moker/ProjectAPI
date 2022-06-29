@@ -2,8 +2,10 @@ package com.hku.projectapi.Controller;
 
 
 import com.hku.projectapi.Beans.*;
+import com.hku.projectapi.Service.KnowledgeService;
 import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -17,6 +19,8 @@ import java.util.Date;
 public class KnowledgeController
 {
     private JdbcTemplate jdbcTemplate;
+    @Autowired
+    private KnowledgeService knowledgeService;
 
     public KnowledgeController()
     {
@@ -128,6 +132,22 @@ public class KnowledgeController
             response.setDescription("Update knowledge field error.");
             return response;
         }
+    }
+
+    @PostMapping("/knowledge_load")
+    public Result load(@RequestBody PageRequestDTO pageRequestDTO)
+    {
+        Result res = knowledgeService.searchByPage(pageRequestDTO.getPage(), pageRequestDTO.getPageSize(), pageRequestDTO.getType());
+        if(res.getCode().equals("00"))
+        {
+            // Set token
+            return res;
+        }
+        else
+        {
+            return res;
+        }
+//        knowledgeService.searchByPage(1, 2, 0);
     }
 
 

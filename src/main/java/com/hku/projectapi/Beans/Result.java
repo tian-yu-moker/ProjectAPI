@@ -29,4 +29,9 @@ public class Result<T>
         this.description = description;
         this.token = token;
     }
+
+    public Result(String code)
+    {
+        this.code = code;
+    }
 }
