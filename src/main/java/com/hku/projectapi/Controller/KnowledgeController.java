@@ -135,11 +135,13 @@ public class KnowledgeController
     }
 
     @PostMapping("/knowledge_load")
-    public Result load(@RequestBody PageRequestDTO pageRequestDTO)
+    public Result load(@RequestHeader String token,
+            @RequestBody PageRequestDTO pageRequestDTO)
     {
         Result res = knowledgeService.searchByPage(pageRequestDTO.getPage(), pageRequestDTO.getPageSize(), pageRequestDTO.getType());
         if(res.getCode().equals("00"))
         {
+//            res.setToken(JwtUtil.updateToken(token));
             // Set token
             return res;
         }
