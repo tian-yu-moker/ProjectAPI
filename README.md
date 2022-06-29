@@ -211,6 +211,60 @@ For type:
      * 0: append behind (only for comment, and answer update)
      * 1: replace (for question content update)
 ```
+### 2.5 Query knowledges by oage
+Type: POST  
+URL: /knowledge_load
+```
+Request Body
+{
+    "page": 2,
+    "pageSize": 18,
+    "type": 0
+}
+type: 0, 1 (current only support 0)  
+0: by time, the latest records  
+1: by hot level
+```
+Response code:  
+00: success  
+99: internal server error  
+```
+Response Body:  
+{
+    "code": "00",
+    "description": "Success.",
+    "token": null,
+    "data": {
+        "queryInfo": {
+            "currentPage": 1,
+            "pageSize": 2,
+            "totalRecord": 22
+        },
+        "entities": [
+            {
+                "knowledgeId": "9e0239a4b4d542a582420a62eb9992a0",
+                "question_content": "**type your question here**",
+                "answer_list": "null",
+                "userid": "12345@qq.com",
+                "comment_list": "null",
+                "company": "Google",
+                "tag": "Database",
+                "uploadTime": "2022-06-28T13:32:36.000+00:00"
+            },
+            {
+                "knowledgeId": "fbed7f5d692146e494ae72387d575f35",
+                "question_content": "**type your question here**",
+                "answer_list": "null",
+                "userid": "12345@qq.com",
+                "comment_list": "null",
+                "company": "Alibaba",
+                "tag": "Data Structures",
+                "uploadTime": "2022-06-28T12:23:22.000+00:00"
+            }
+        ]
+    }
+}
+```
 ## 3. Email Verification Code
 ### URL: /email_verification  
 ### Note
