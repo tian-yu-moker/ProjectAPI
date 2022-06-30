@@ -2,7 +2,8 @@ package com.hku.projectapi.Controller;
 
 
 import com.hku.projectapi.Beans.*;
-import com.hku.projectapi.Service.KnowledgeService;
+import com.hku.projectapi.Service.Knowledge.KnowledgeCommentService;
+import com.hku.projectapi.Service.Knowledge.KnowledgeService;
 import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class KnowledgeController
     private JdbcTemplate jdbcTemplate;
     @Autowired
     private KnowledgeService knowledgeService;
+    @Autowired
+    private KnowledgeCommentService knowledgeCommentService;
 
     public KnowledgeController()
     {
@@ -138,7 +141,7 @@ public class KnowledgeController
     public Result load(@RequestHeader String token,
             @RequestBody PageRequestDTO pageRequestDTO)
     {
-        Result res = knowledgeService.searchByPage(pageRequestDTO.getPage(), pageRequestDTO.getPageSize(), pageRequestDTO.getType());
+        Result res = knowledgeService.searchByPage(pageRequestDTO);
         if(res.getCode().equals("00"))
         {
 //            res.setToken(JwtUtil.updateToken(token));

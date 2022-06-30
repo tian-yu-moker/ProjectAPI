@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -28,7 +29,10 @@ public class KnowledgeQuestionBean
     private String company;
     @TableField("tag")
     private String tag;
-
     @TableField("upload_time")
     private Timestamp uploadTime;
+    @TableField(exist = false)
+    private QueryByPageDTO answers;
+    @TableField(exist = false)
+    private QueryByPageDTO comments;
 }

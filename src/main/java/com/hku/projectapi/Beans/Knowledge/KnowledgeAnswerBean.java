@@ -1,4 +1,4 @@
-package com.hku.projectapi.Beans;
+package com.hku.projectapi.Beans.Knowledge;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -21,7 +21,7 @@ public class KnowledgeAnswerBean
     private String knowledgeId;
 
     @TableField("answer_provider_id")
-    private String answerProviderId;
+    private String providerId;
 
     @TableField("content")
     private String content;
