@@ -17,7 +17,7 @@ URL: http://120.77.98.16:8080
 |07| Two email verification codes do not match. |Email Verification|
 |08| No verification code generated. Please send one first. |Email Verification|
 |09| Delete error| All delete functions|
-|10| You are only allowed to delte your assets. |All delete functions |
+|10| You are only allowed to delte your own assets. |All delete functions |
 ## 0.3 Token
 Put into request header, name is token, value is the String obtained when login.  
 Error response code.  
