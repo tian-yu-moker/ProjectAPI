@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.*;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeAnswerMapper;
+import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 @SpringBootTest
@@ -49,8 +51,22 @@ public class KnowledgeAnswerService extends ServiceImpl<KnowledgeAnswerMapper, K
 
     }
 
-    public Result delete(String id)
+    public Result delete(String id, String token)
     {
+
+        try{
+            String userId = JwtUtil.getUserId(token);
+            QueryWrapper<KnowledgeAnswerBean> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("answer_provider_id", userId).eq("knowledge_id", id);
+            KnowledgeAnswerBean res = knowledgeAnswerMapper.selectOne(queryWrapper);
+            if(res == null)
+            {
+                return new Result("10", "You are only allowed to delete your one assets.", null);
+            }
+        }catch(Exception e)
+        {
+            return new Result("99", "Internal server error.", null);
+        }
         try{
             HashMap<String, Object> map = new HashMap<>();
             map.put("knowledge_answer_id", id);

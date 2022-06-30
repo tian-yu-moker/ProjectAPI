@@ -24,14 +24,16 @@ public class KnowledgeAnswerController
         return res;
     }
 
+    // Should verify whether this answer is provided by user
     @DeleteMapping("answer")
     public Result delete(@RequestHeader String token, @RequestParam(value = "id", required = true) String id)
     {
+
         try{
-            Result result = knowledgeAnswerService.delete(id);
-//            token = JwtUtil.updateToken(token);
+            Result result = knowledgeAnswerService.delete(id, token);
+            token = JwtUtil.updateToken(token);
             result.setToken(token);
-            return knowledgeAnswerService.delete(id);
+            return result;
         } catch (Exception e)
         {
             return new Result("97", "Token invalid, permission denied.", null);
