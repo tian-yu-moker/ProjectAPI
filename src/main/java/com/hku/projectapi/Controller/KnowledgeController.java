@@ -141,7 +141,7 @@ public class KnowledgeController
         Result res = knowledgeService.searchByPage(pageRequestDTO.getPage(), pageRequestDTO.getPageSize(), pageRequestDTO.getType());
         if(res.getCode().equals("00"))
         {
-            res.setToken(JwtUtil.updateToken(token));
+//            res.setToken(JwtUtil.updateToken(token));
             // Set token
             return res;
         }
