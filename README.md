@@ -244,7 +244,7 @@ Response Body:
     "data": {
         "queryInfo": {
             "currentPage": 1,
-            "pageSize": 2,
+            "pageSize": 1,
             "totalRecord": 22
         },
         "entities": [
@@ -256,17 +256,57 @@ Response Body:
                 "comment_list": "null",
                 "company": "Google",
                 "tag": "Database",
-                "uploadTime": "2022-06-28T13:32:36.000+00:00"
-            },
-            {
-                "knowledgeId": "fbed7f5d692146e494ae72387d575f35",
-                "question_content": "**type your question here**",
-                "answer_list": "null",
-                "userid": "12345@qq.com",
-                "comment_list": "null",
-                "company": "Alibaba",
-                "tag": "Data Structures",
-                "uploadTime": "2022-06-28T12:23:22.000+00:00"
+                "uploadTime": "2022-06-28T13:32:36.000+00:00",
+                "answers": {
+                    "queryInfo": {
+                        "currentPage": 1,
+                        "pageSize": 2,
+                        "totalRecord": 4
+                    },
+                    "entities": [
+                        {
+                            "knowledgeAnswerId": "4b8bd4752a9e4207a19eee6e84f37d94",
+                            "knowledgeId": "9e0239a4b4d542a582420a62eb9992a0",
+                            "providerId": "12345@qq.com",
+                            "content": "Tian Yu is handsome.",
+                            "uploadTime": "2022-06-30T08:24:10.000+00:00",
+                            "lastModifiedTime": "2022-06-30T08:24:10.000+00:00"
+                        },
+                        {
+                            "knowledgeAnswerId": "6c6c6143af654042b963344247d0681d",
+                            "knowledgeId": "9e0239a4b4d542a582420a62eb9992a0",
+                            "providerId": "12345@qq.com",
+                            "content": "Tian Yu is handsome.",
+                            "uploadTime": "2022-06-30T08:24:11.000+00:00",
+                            "lastModifiedTime": "2022-06-30T08:24:11.000+00:00"
+                        }
+                    ]
+                },
+                "comments": {
+                    "queryInfo": {
+                        "currentPage": 1,
+                        "pageSize": 2,
+                        "totalRecord": 5
+                    },
+                    "entities": [
+                        {
+                            "knowledgeCommentId": "1647e8bd900a4c6c832dbfaa40eea8ae",
+                            "knowledgeId": "9e0239a4b4d542a582420a62eb9992a0",
+                            "providerId": "12345@qq.com",
+                            "content": "T.W. Chim is handsome.",
+                            "uploadTime": "2022-06-30T09:02:19.000+00:00",
+                            "lastModifiedTime": "2022-06-30T09:02:19.000+00:00"
+                        },
+                        {
+                            "knowledgeCommentId": "30458469901b4c40ab7bc476da75b0cd",
+                            "knowledgeId": "9e0239a4b4d542a582420a62eb9992a0",
+                            "providerId": "12345@qq.com",
+                            "content": "T.W. Chim is handsome.",
+                            "uploadTime": "2022-06-30T09:02:18.000+00:00",
+                            "lastModifiedTime": "2022-06-30T09:02:18.000+00:00"
+                        }
+                    ]
+                }
             }
         ]
     }
