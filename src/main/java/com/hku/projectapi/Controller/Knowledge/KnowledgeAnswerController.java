@@ -1,6 +1,6 @@
 package com.hku.projectapi.Controller.Knowledge;
 
-import com.hku.projectapi.Beans.KnowledgeAnswerCommentRequestDTO;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerCommentRequestDTO;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Service.Knowledge.KnowledgeAnswerService;
 import com.hku.projectapi.Tools.JwtUtil;

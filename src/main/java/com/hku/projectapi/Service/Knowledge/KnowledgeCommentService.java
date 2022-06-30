@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeCommentsBean;
-import com.hku.projectapi.Beans.KnowledgeAnswerCommentRequestDTO;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerCommentRequestDTO;
 import com.hku.projectapi.Beans.QueryByPageDTO;
 import com.hku.projectapi.Beans.QueryInfo;
 import com.hku.projectapi.Beans.Result;

@@ -3,28 +3,19 @@ package com.hku.projectapi.Service;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static org.mockito.Mockito.description;
-
 import java.sql.Timestamp;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.hku.projectapi.Beans.KnowledgeQuestion;
-import com.hku.projectapi.Beans.KnowledgeQuestionBean;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import com.hku.projectapi.Mapper.KnowledgeCollectionMapper;
-import com.hku.projectapi.Mapper.KnowledgeQuestionMapper;
-import org.junit.jupiter.api.Test;
+import com.hku.projectapi.Mapper.Knowledge.KnowledgeQuestionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.hku.projectapi.Beans.knowledge_like;
-import com.hku.projectapi.Mapper.KnowledgeLikeMapper;
-
-import com.hku.projectapi.Beans.Result;
-
-import javax.naming.ldap.PagedResultsControl;
 
 @Service
 @SpringBootTest

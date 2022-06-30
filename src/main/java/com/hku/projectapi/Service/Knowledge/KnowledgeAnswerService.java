@@ -5,10 +5,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.*;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerCommentRequestDTO;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeAnswerMapper;
 import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,6 @@ import java.util.Date;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.List;
-import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 @SpringBootTest

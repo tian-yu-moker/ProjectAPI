@@ -1,7 +1,9 @@
-package com.hku.projectapi.Controller;
+package com.hku.projectapi.Controller.Knowledge;
 
 
 import com.hku.projectapi.Beans.*;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestion;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeUpdateBean;
 import com.hku.projectapi.Service.Knowledge.KnowledgeCommentService;
 import com.hku.projectapi.Service.Knowledge.KnowledgeService;
 import com.hku.projectapi.Tools.JwtUtil;

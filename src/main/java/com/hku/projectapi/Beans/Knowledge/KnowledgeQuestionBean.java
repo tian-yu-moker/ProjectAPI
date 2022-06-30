@@ -1,7 +1,8 @@
-package com.hku.projectapi.Beans;
+package com.hku.projectapi.Beans.Knowledge;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.hku.projectapi.Beans.QueryByPageDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

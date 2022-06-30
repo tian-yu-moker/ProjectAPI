@@ -1,4 +1,4 @@
-package com.hku.projectapi.Beans;
+package com.hku.projectapi.Beans.Knowledge;
 
 public class KnowledgeQuestion
 {

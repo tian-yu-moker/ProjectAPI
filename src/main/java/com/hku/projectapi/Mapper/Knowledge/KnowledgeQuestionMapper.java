@@ -1,8 +1,7 @@
-package com.hku.projectapi.Mapper;
+package com.hku.projectapi.Mapper.Knowledge;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.hku.projectapi.Beans.KnowledgeQuestion;
-import com.hku.projectapi.Beans.KnowledgeQuestionBean;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
