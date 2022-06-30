@@ -211,7 +211,7 @@ For type:
      * 0: append behind (only for comment, and answer update)
      * 1: replace (for question content update)
 ```
-### 2.5 Query knowledges by oage
+### 2.5 Query knowledges by page
 Type: POST  
 URL: /knowledge_load
 ```
@@ -265,6 +265,20 @@ Response Body:
     }
 }
 ```
+### 2.6 Post knowledge answers
+URL: /knowledge_answer_service  
+Type: POST
+```
+Request Body: 
+{
+    "knowledgeId": "01fca8088ae6426b80dc252e32730fab",
+    "answerProvider": "123@qq.com",
+    "content": "WANG Zhao is handsome."
+}
+```
+Response Code:  
+00 Success.  
+99 Internal server error.  
 ## 3. Email Verification Code
 ### URL: /email_verification  
 ### Note
