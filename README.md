@@ -217,13 +217,20 @@ URL: /knowledge_load
 ```
 Request Body
 {
-    "page": 2,
-    "pageSize": 18,
+    "pageFirst": 1,
+    "pageSizeFirst": 22,
+    "pageSecond": 1,
+    "pageSizeSecond": 2,
+    "pageThird": 1,
+    "pageSizeThird": 2,
     "type": 0
 }
 type: 0, 1 (current only support 0)  
 0: by time, the latest records  
 1: by hot level
+pageFirst: the page of knowledge questions
+pageSecond: the page of answers of each question  
+pageThird: the page of comments of each question  
 ```
 Response code:  
 00: success  
@@ -266,19 +273,33 @@ Response Body:
 }
 ```
 ### 2.6 Post knowledge answers
-URL: /knowledge_answer_service  
+URL: /knowledge_service/answer  
 Type: POST
 ```
 Request Body: 
 {
     "knowledgeId": "01fca8088ae6426b80dc252e32730fab",
-    "answerProvider": "123@qq.com",
+    "provider": "123@qq.com",
     "content": "WANG Zhao is handsome."
 }
 ```
 Response Code:  
 00 Success.  
-99 Internal server error.  
+99 Internal server error. 
+### 2.7 Post knowledge comments
+URL: /knowledge_service/comment  
+Type: POST  
+```
+Request Body:
+{
+    "knowledgeId": "9e0239a4b4d542a582420a62eb9992a0",
+    "provider": "12345@qq.com",
+    "content": "T.W. Chim is handsome."
+}
+```
+Response Code:  
+00 Success.  
+99 Internal server error. 
 ## 3. Email Verification Code
 ### URL: /email_verification  
 ### Note
