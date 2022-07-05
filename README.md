@@ -382,4 +382,75 @@ Response Code:
     "description": "Pass verification."
 }
 ```
-## 4.
+## 4. Dictionary
+### 4.1 Company and Question Type
+URL: /dictionary/getCompanyAndType  
+Type: GET  
+Response code: 
+00: Success.  
+98: Token invalid.  
+``
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "companies": [
+        {
+            "id": 1,
+            "label": "Alibaba"
+        },
+        {
+            "id": 2,
+            "label": "Amzon"
+        },
+        {
+            "id": 3,
+            "label": "Tencent"
+        },
+        {
+            "id": 4,
+            "label": "Google"
+        },
+        {
+            "id": 5,
+            "label": "Facebook"
+        },
+        {
+            "id": 6,
+            "label": "Microsoft"
+        }
+    ],
+    "questionTagBeans": [
+        {
+            "id": 1,
+            "label": "Network"
+        },
+        {
+            "id": 2,
+            "label": "Operation System"
+        },
+        {
+            "id": 3,
+            "label": "Database"
+        },
+        {
+            "id": 4,
+            "label": "Data Structure"
+        },
+        {
+            "id": 5,
+            "label": "Design Pattern"
+        },
+        {
+            "id": 6,
+            "label": "Algorithm"
+        },
+        {
+            "id": 7,
+            "label": "Others"
+        }
+        ]
+    }
+}
+``
