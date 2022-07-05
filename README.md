@@ -235,6 +235,8 @@ type: 0, 1 (current only support 0)
 pageFirst: the page of knowledge questions
 pageSecond: the page of answers of each question  
 pageThird: the page of comments of each question  
+tag1: company  
+tag2: question type  
 ```
 Response code:  
 00: success  
