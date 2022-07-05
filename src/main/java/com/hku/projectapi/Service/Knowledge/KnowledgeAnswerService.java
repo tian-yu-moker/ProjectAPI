@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.*;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerCommentRequestDTO;
+import com.hku.projectapi.Beans.User.UserBean;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeAnswerMapper;
+import com.hku.projectapi.Mapper.Users.UserMapper;
 import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,10 @@ public class KnowledgeAnswerService extends ServiceImpl<KnowledgeAnswerMapper, K
 {
     @Autowired
     private KnowledgeAnswerMapper knowledgeAnswerMapper;
+    @Autowired
+    private UserMapper userMapper;
+
+
     // Insert an answer
     public Result create(KnowledgeAnswerCommentRequestDTO requestDTO)
     {
@@ -92,6 +98,12 @@ public class KnowledgeAnswerService extends ServiceImpl<KnowledgeAnswerMapper, K
         queryWrapper.eq("knowledge_id", id);
         Page<KnowledgeAnswerBean> resPage = knowledgeAnswerMapper.selectPage(new Page<>(answerCurPage, answerCurPageSize), queryWrapper);
         List<KnowledgeAnswerBean> records = resPage.getRecords();
+        for(KnowledgeAnswerBean answers:records){
+            QueryWrapper<com.hku.projectapi.Beans.User.UserBean> query = new QueryWrapper<>();
+            query.eq("email", answers.getProviderId());
+            UserBean oneUser = userMapper.selectOne(query);
+            answers.setUserName(oneUser.getName());
+        }
         QueryByPageDTO queryDTO = new QueryByPageDTO();
         QueryInfo queryInfo = new QueryInfo();
         queryInfo.setCurrentPage(answerCurPage);

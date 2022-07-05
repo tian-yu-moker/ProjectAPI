@@ -12,7 +12,7 @@ import java.util.Properties;
 public class RegisterService
 {
     private static String myEmailAccount = "acer_interviewer@163.com";
-    private static String myEmailPassword = "VCQIAYTYUCMZNYPR";
+    private static String myEmailPassword = "KGALPAFLPTLRZQSW";
 
     // 发件人邮箱的 SMTP 服务器地址, 可在邮箱设置中查找，需要开启smtp服务
     // 网易163邮箱的 SMTP 服务器地址为: smtp.163.com

@@ -19,9 +19,13 @@ public class KnowledgeAnswerController
     public Result create(@RequestHeader String token, @RequestBody KnowledgeAnswerCommentRequestDTO requestDTO)
     {
         Result res = knowledgeAnswerService.create(requestDTO);
-//        token = JwtUtil.updateToken(token);
-        res.setToken(token);
-        return res;
+        try{
+            token = JwtUtil.updateToken(token);
+            res.setToken(token);
+            return res;
+        } catch (Exception e){
+            return new Result("98", "Invalid token, please login.", null);
+        }
     }
 
     // Should verify whether this answer is provided by user

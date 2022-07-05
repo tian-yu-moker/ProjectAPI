@@ -23,6 +23,9 @@ public class KnowledgeAnswerBean
     @TableField("answer_provider_id")
     private String providerId;
 
+    @TableField(exist = false)
+    private String userName;
+
     @TableField("content")
     private String content;
 

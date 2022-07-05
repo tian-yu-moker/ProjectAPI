@@ -23,6 +23,9 @@ public class KnowledgeCommentsBean
     @TableField("comment_provider_id")
     private String providerId;
 
+    @TableField(exist = false)
+    private String userName;
+
     @TableField("content")
     private String content;
 

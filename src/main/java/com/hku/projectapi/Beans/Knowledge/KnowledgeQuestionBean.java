@@ -24,6 +24,8 @@ public class KnowledgeQuestionBean
     private String answer_list;
     @TableField("userid")
     private String userid;
+    @TableField(exist = false)
+    private String userName;
     @TableField("comment_list")
     private String comment_list;
     @TableField("company")

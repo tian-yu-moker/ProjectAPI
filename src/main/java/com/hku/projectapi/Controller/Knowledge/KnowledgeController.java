@@ -146,15 +146,17 @@ public class KnowledgeController
         Result res = knowledgeService.searchByPage(pageRequestDTO);
         if(res.getCode().equals("00"))
         {
-//            res.setToken(JwtUtil.updateToken(token));
-            // Set token
-            return res;
+            try{
+                res.setToken(JwtUtil.updateToken(token));
+                return res;
+            } catch (Exception e){
+                return new Result("98", "Invalid token, please login.", null);
+            }
         }
         else
         {
             return res;
         }
-//        knowledgeService.searchByPage(1, 2, 0);
     }
 
 

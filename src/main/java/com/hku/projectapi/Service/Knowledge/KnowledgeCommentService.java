@@ -8,7 +8,9 @@ import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerCommentRequestDTO;
 import com.hku.projectapi.Beans.QueryByPageDTO;
 import com.hku.projectapi.Beans.QueryInfo;
 import com.hku.projectapi.Beans.Result;
+import com.hku.projectapi.Beans.User.UserBean;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeCommentMapper;
+import com.hku.projectapi.Mapper.Users.UserMapper;
 import com.hku.projectapi.Tools.UUidGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,8 @@ public class KnowledgeCommentService extends ServiceImpl<KnowledgeCommentMapper,
 {
     @Autowired
     private KnowledgeCommentMapper knowledgeCommentMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     public Result create(KnowledgeAnswerCommentRequestDTO requestDTO)
     {
@@ -56,6 +60,12 @@ public class KnowledgeCommentService extends ServiceImpl<KnowledgeCommentMapper,
         Page<KnowledgeCommentsBean> resPage = knowledgeCommentMapper.selectPage(new Page<>(commentCurPage, commentCurPageSize),
                 queryWrapper);
         List<KnowledgeCommentsBean> records = resPage.getRecords();
+        for(KnowledgeCommentsBean comments:records){
+            QueryWrapper<UserBean> query = new QueryWrapper<>();
+            query.eq("email", comments.getProviderId());
+            UserBean oneUser = userMapper.selectOne(query);
+            comments.setUserName(oneUser.getName());
+        }
         QueryByPageDTO queryDTO = new QueryByPageDTO();
         QueryInfo queryInfo = new QueryInfo();
         queryInfo.setCurrentPage(commentCurPage);
