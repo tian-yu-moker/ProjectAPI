@@ -46,6 +46,7 @@ public class KnowledgeController
         String uuid = UUidGenerator.getUUID32();
         String question_content = question.getQuestion_content();
         String answer_list = question.getAnswer_list();
+        String interviewId = question.getInterview_id();
         String userid = question.getUserid();
         String comment = question.getComment_list();
         String company = question.getCompany();
@@ -54,8 +55,8 @@ public class KnowledgeController
         Timestamp time = new Timestamp(date.getTime());
         try
         {
-            String sql = "INSERT INTO knowledge_questions(knowledge_id, question_content, answer_list, userid, comment_list, company, tag, upload_time)" +
-                    "VALUES (\"" + uuid + "\", \"" + question_content + "\", \"" + answer_list + "\", \"" + userid + "\", " +
+            String sql = "INSERT INTO knowledge_questions(knowledge_id, question_content, answer_list, interview_id, userid, comment_list, company, tag, upload_time)" +
+                    "VALUES (\"" + uuid + "\", \"" + question_content + "\", \"" + answer_list +  "\", \"" + interviewId + "\", \"" + userid + "\", " +
                     "\"" + comment +  "\", \"" + company + "\", + \"" + tag + "\", + \"" + time + "\")";
             jdbcTemplate.execute(sql);
             NormalResponse response = new NormalResponse();
