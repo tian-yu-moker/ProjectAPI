@@ -389,7 +389,7 @@ Type: GET
 Response code: 
 00: Success.  
 98: Token invalid.  
-``
+```
 {
     "code": "00",
     "description": "Success.",
@@ -453,4 +453,4 @@ Response code:
         ]
     }
 }
-``
+```
