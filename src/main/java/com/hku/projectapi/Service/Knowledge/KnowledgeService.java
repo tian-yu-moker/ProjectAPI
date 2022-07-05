@@ -37,7 +37,7 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
 
     /**
      * Get all the records of the knowledge question
-     * type: by time or by hot level, default by time (0)
+     * type: by time or by hot level (like), default by time (0)
      */
     public Result searchByPage(PageRequestDTO pageRequestDTO)
     {
