@@ -225,7 +225,9 @@ Request Body
     "pageSizeSecond": 2,
     "pageThird": 1,
     "pageSizeThird": 2,
-    "type": 0
+    "type": 0,
+    "tag1": 0,
+    "tag2": 0    
 }
 type: 0, 1 (current only support 0)  
 0: by time, the latest records  
