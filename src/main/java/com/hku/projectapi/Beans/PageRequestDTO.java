@@ -15,4 +15,7 @@ public class PageRequestDTO
     private int pageThird;
     private int pageSizeThird;
     private int type;
+    // Two tags
+    private int tag1;
+    private int tag2;
 }
