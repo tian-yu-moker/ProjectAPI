@@ -147,6 +147,7 @@ Request Body:
     "question_content": "What is operating system?",
     "answer_list": "answerid1;answerid2", (can be empty)
     "userid": "12345@qq.com",
+    “interview_id”: "123",
     "comment": "commentid1;commentid2", (can be empty)
     "company": "Apple",
     "tag": "OS"
@@ -259,6 +260,7 @@ Response Body:
                 "question_content": "**type your question here**",
                 "answer_list": "null",
                 "userid": "12345@qq.com",
+                "interviewId": "1232131",
                 "comment_list": "null",
                 "company": "Google",
                 "tag": "Database",
