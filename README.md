@@ -18,6 +18,8 @@ URL: http://120.77.98.16:8080
 |08| No verification code generated. Please send one first. |Email Verification|
 |09| Delete error| All delete functions|
 |10| You are only allowed to delte your own assets. |All delete functions |
+|11| Cancel collection successfully. | Collection like.|
+|12| No such record.| Collection like. |
 ## 0.3 Token
 Put into request header, name is token, value is the String obtained when login.  
 Error response code.  
@@ -455,4 +457,27 @@ Response code:
         ]
     }
 }
+```
+## 5. Collection Service
+### 5.1 Add / delete a collection (knowledge or interview)
+URL: /users_like  
+Type:  POST  
+```
+Request Body:
+{
+    "id": "4186f6f46bb94450ae1b3abe54517228",
+    "type": 0
+}
+type: 0 knowledge
+1: interview
+```
+Response Code:  
+00 Success.  
+11 Delete success.  
+12 No such record.  
+### 5.2 Query collections
+URL: /users_like  
+Type: GET
+```
+Response Body:
 ```
