@@ -83,7 +83,14 @@ public class KnowledgeController
     @GetMapping("/knowledge_service")
     public Result searchQuestionById(@RequestParam String uuid, @RequestHeader("token") String token)
     {
-        Result res = knowledgeService.getKnowledgeById(uuid);
+        String userId = "";
+        try{
+            userId = JwtUtil.getUserId(token);
+        }catch (Exception e){
+            return new Result("98", "Invalid token", null);
+        }
+        Result res = knowledgeService.getKnowledgeById(userId, uuid);
+
         try{
             token = JwtUtil.updateToken(token);
             res.setToken(token);

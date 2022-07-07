@@ -130,8 +130,9 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
         }
     }
 
-    public Result getKnowledgeById(String knowledgeId)
+    public Result getKnowledgeById(String userId, String knowledgeId)
     {
+
         QueryWrapper<KnowledgeQuestionBean> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("knowledge_id", knowledgeId);
         List<KnowledgeQuestionBean> res = knowledgeQuestionMapper.selectList(queryWrapper);
@@ -150,6 +151,7 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
             commentsDTO.setEntities(comments);
             res.get(0).setAnswers(answerDTO);
             res.get(0).setComments(commentsDTO);
+            res.get(0).setIsLiked(this.getIsLike(userId, knowledgeId));
             return new Result("00","Success.", "", res.get(0));
         }
         else
