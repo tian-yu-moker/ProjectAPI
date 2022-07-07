@@ -284,6 +284,8 @@ tag2: question type
 Response code:  
 00: success  
 99: internal server error  
+isLike: 0-no liked by current user.  
+1-liked by current user.  
 ```
 Response Body:  
 {
@@ -306,6 +308,7 @@ Response Body:
                 "comment_list": "null",
                 "company": "Google",
                 "tag": "Database",
+                isLike: 1,
                 "uploadTime": "2022-06-28T13:32:36.000+00:00",
                 "answers": {
                     "queryInfo": {
