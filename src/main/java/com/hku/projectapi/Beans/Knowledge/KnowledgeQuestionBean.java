@@ -37,6 +37,8 @@ public class KnowledgeQuestionBean
     @TableField("upload_time")
     private Timestamp uploadTime;
     @TableField(exist = false)
+    private int isLiked;
+    @TableField(exist = false)
     private QueryByPageDTO answers;
     @TableField(exist = false)
     private QueryByPageDTO comments;

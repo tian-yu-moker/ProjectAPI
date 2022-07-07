@@ -81,25 +81,33 @@ public class KnowledgeController
 
     // Search: GET
     @GetMapping("/knowledge_service")
-    public Object searchQuestionById(@RequestParam String uuid, @RequestHeader("token") String token)
+    public Result searchQuestionById(@RequestParam String uuid, @RequestHeader("token") String token)
     {
-        String sql = "SELECT * FROM knowledge_questions WHERE knowledge_id=?";
-        try
-        {
-            QuestionBean data = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<QuestionBean>(QuestionBean.class), uuid);
-            ResponseWithData response = new ResponseWithData();
-            response.setCode("00");
-            response.setDescription("Success.");
-            response.setToken(JwtUtil.updateToken(token));
-            response.setData(data);
-            return response;
-
-        }catch(Exception e)
-        {
-            NormalResponse response = new NormalResponse("05", "No such knowledge question.",
-                    JwtUtil.updateToken(token));
-            return response;
+        Result res = knowledgeService.getKnowledgeById(uuid);
+        try{
+            token = JwtUtil.updateToken(token);
+            res.setToken(token);
+            return res;
+        }catch (Exception e){
+            return new Result("98", "Invalid token", null);
         }
+//        String sql = "SELECT * FROM knowledge_questions WHERE knowledge_id=?";
+//        try
+//        {
+//            QuestionBean data = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<QuestionBean>(QuestionBean.class), uuid);
+//            ResponseWithData response = new ResponseWithData();
+//            response.setCode("00");
+//            response.setDescription("Success.");
+//            response.setToken(JwtUtil.updateToken(token));
+//            response.setData(data);
+//            return response;
+//
+//        }catch(Exception e)
+//        {
+//            NormalResponse response = new NormalResponse("05", "No such knowledge question.",
+//                    JwtUtil.updateToken(token));
+//            return response;
+//        }
     }
 
     // Update: PUT
@@ -150,7 +158,7 @@ public class KnowledgeController
     public Result load(@RequestHeader String token,
             @RequestBody PageRequestDTO pageRequestDTO)
     {
-        Result res = knowledgeService.searchByPage(pageRequestDTO);
+        Result res = knowledgeService.searchByPage(pageRequestDTO, token);
         if(res.getCode().equals("00"))
         {
             try{

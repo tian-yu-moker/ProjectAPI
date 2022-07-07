@@ -21,6 +21,9 @@ public class InterviewBean
     @TableField("providerId")
     private String providerId;
 
+    @TableField(exist = false)
+    private String providerName;
+
     @TableField("title")
     private String title;
 

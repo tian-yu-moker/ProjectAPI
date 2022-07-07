@@ -166,7 +166,7 @@ Response Code:
 ```
 ### 2.2 Query a knwoledge by id
 Type: GET  
-URL: /knowledge_service?uuid=4186f6f46bb94450ae1b3abe54517229  
+URL: /knowledge_service?uuid=2f88b7c85ce24599baa75f2ba5f69c96  
 Response Code:
 00 Success  
 05 No such knowledge question.  
@@ -174,15 +174,55 @@ Response Code:
 {
     "code": "00",
     "description": "Success.",
+    "token": "tokens",
     "data": {
-        "knowledge_id": "4186f6f46bb94450ae1b3abe54517229",
-        "question_content": "What is operating system?",
-        "answer_list": "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs. ",
+        "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+        "question_content": "What is deep learning?",
+        "answer_list": "answerid1;answerid2",
         "userid": "123@qq.com",
+        "interviewId": "",
+        "userName": null,
         "comment_list": "null",
-        "company": "Apple",
-        "tag": "Os",
-        "upload_time": "2022-06-10 16:25:38"
+        "company": "Appless",
+        "tag": "OS",
+        "uploadTime": "2022-07-07T12:50:30.000+00:00",
+        "isLiked": 0,
+        "answers": {
+            "queryInfo": null,
+            "entities": []
+        },
+        "comments": {
+            "queryInfo": null,
+            "entities": [
+                {
+                    "knowledgeCommentId": "863dded62ac746c9831d6bd50da4cdb6",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": null,
+                    "content": "se",
+                    "uploadTime": "2022-07-07T13:10:30.000+00:00",
+                    "lastModifiedTime": "2022-07-07T13:10:30.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "9827f13c34f44d689117f15f1477f3af",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": null,
+                    "content": "ads",
+                    "uploadTime": "2022-07-07T13:10:33.000+00:00",
+                    "lastModifiedTime": "2022-07-07T13:10:33.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "f5a894edd2fb4fd19cbea18af69d0b17",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": null,
+                    "content": "let us see",
+                    "uploadTime": "2022-07-07T13:10:27.000+00:00",
+                    "lastModifiedTime": "2022-07-07T13:10:27.000+00:00"
+                }
+            ]
+        }
     }
 }
 ```

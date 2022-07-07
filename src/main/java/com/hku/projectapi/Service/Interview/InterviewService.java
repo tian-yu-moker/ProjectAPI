@@ -81,4 +81,10 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
             }
         }
     }
+
+    // 加载Interview以及其Knowledge questions，以及其answer
+    public void queryById(String id)
+    {
+
+    }
 }
