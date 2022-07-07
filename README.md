@@ -19,7 +19,7 @@ URL: http://120.77.98.16:8080
 |09| Delete error| All delete functions|
 |10| You are only allowed to delte your own assets. |All delete functions |
 |11| Cancel collection successfully. | Collection like.|
-|12| No such record.| Collection like. |
+|12| No such record.| Collection like. (add) |
 ## 0.3 Token
 Put into request header, name is token, value is the String obtained when login.  
 Error response code.  
@@ -474,10 +474,60 @@ type: 0 knowledge
 Response Code:  
 00 Success.  
 11 Delete success.  
-12 No such record.  
+12 No such record.    
 ### 5.2 Query collections
 URL: /users_like  
 Type: GET
 ```
 Response Body:
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "interviews": [
+            {
+                "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                "providerId": "123@qq.com",
+                "title": "2022-01-15 Interview in Tencent.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-06T09:09:49.000+00:00"
+            }
+        ],
+        "knowledge": [
+            {
+                "knowledgeId": "25505886ee0242d08d89ab3368c66b74",
+                "question_content": "Tell me something about 3 hand shake?",
+                "answer_list": null,
+                "userid": "123@qq.com",
+                "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                "userName": null,
+                "comment_list": null,
+                "company": "Tencent",
+                "tag": "Network",
+                "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                "answers": null,
+                "comments": null
+            },
+            {
+                "knowledgeId": "4186f6f46bb94450ae1b3abe54517229",
+                "question_content": "What is operating system?",
+                "answer_list": "An operating system (OS) is system software that manages computer hardware, software resources, and provides common services for computer programs. Time-sharing operating systems schedule tasks for efficient use of the system and may also include accounting software for cost allocation of processor time, mass storage, printing, and other resources. For hardware functions such as input and output and memory allocation, the operating system acts as an intermediary between programs and the computer hardware,[1][2] although the application code is usually executed directly by the hardware and frequently makes system calls to an OS function or is interrupted by it. Operating systems are found on many devices that contain a computer – from cellular phones and video game consoles to web servers and supercomputers. The dominant general-purpose[3] personal computer operating system is Microsoft Windows with a market share of around 76.45%. macOS by Apple Inc. is in second place (17.72%),  varieties of Linux are collectively in third place (1.73%).[4] In the mobile sector (including smartphones and tablets), Android's share is up to 72% in the year 2020.[5] According to third quarter 2016 data, Android's share on smartphones is dominant with 87.5 percent with a growth rate of 10.3 percent per year, followed by Apple's iOS with 12.1 percent with per year decrease in market share of 5.2 percent, while other operating systems amount to just 0.3 percent.[6] Linux distributions are dominant in the server and supercomputing sectors. Other specialized classes of operating systems (special-purpose operating systems),[3][7] such as embedded and real-time systems, exist for many applications. Security-focused operating systems also exist. Some operating systems have low system requirements (e.g. light-weight Linux distribution). Others may have higher system requirements.",
+                "userid": "123@qq.com",
+                "interviewId": null,
+                "userName": null,
+                "comment_list": "null",
+                "company": "BoC",
+                "tag": "Os",
+                "uploadTime": "2022-06-10T08:25:38.000+00:00",
+                "answers": null,
+                "comments": null
+            }
+        ]
+    }
+}
 ```
+Response Code:  
+00 Success.  
+

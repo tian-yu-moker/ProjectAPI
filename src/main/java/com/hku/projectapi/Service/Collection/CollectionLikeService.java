@@ -54,43 +54,43 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
             log.error(e.getMessage());
             return new Result("98", "Invalid token, please login.", null);
         }
-        QueryWrapper<KnowledgeLike> knowledgeLike = new QueryWrapper<>();
-        QueryWrapper<InterviewLike> interviewLike = new QueryWrapper<>();
-        knowledgeLike.eq("email", userId);
-        interviewLike.eq("email", userId);
-        List<KnowledgeLike> knowList = knowledgeMapper.selectList(knowledgeLike);
-        List<InterviewLike> interList = interviewCollectionMapper.selectList(interviewLike);
-        CollectionQueryDTO res = new CollectionQueryDTO();
-        List<KnowledgeQuestionBean> resKnow = new ArrayList<>();
-        List<InterviewBean> resInter = new ArrayList<>();
-        // Query two tables, and obtain all related records.;
-        for(KnowledgeLike knows:knowList){
-            String id = knows.getKnowledge_id();
-            QueryWrapper<KnowledgeQuestionBean> query = new QueryWrapper<>();
-            query.eq("knowledge_id", id);
-            KnowledgeQuestionBean oneRec = knowledgeQuestionMapper.selectOne(query);
-            if(!oneRec.equals(null)){
-                resKnow.add(oneRec);
+        try{
+            QueryWrapper<KnowledgeLike> knowledgeLike = new QueryWrapper<>();
+            QueryWrapper<InterviewLike> interviewLike = new QueryWrapper<>();
+            knowledgeLike.eq("email", userId);
+            interviewLike.eq("email", userId);
+            List<KnowledgeLike> knowList = knowledgeMapper.selectList(knowledgeLike);
+            List<InterviewLike> interList = interviewCollectionMapper.selectList(interviewLike);
+            CollectionQueryDTO res = new CollectionQueryDTO();
+            List<KnowledgeQuestionBean> resKnow = new ArrayList<>();
+            List<InterviewBean> resInter = new ArrayList<>();
+            // Query two tables, and obtain all related records.;
+            for(KnowledgeLike knows:knowList){
+                String id = knows.getKnowledge_id();
+                QueryWrapper<KnowledgeQuestionBean> query = new QueryWrapper<>();
+                query.eq("knowledge_id", id);
+                System.out.println(id);
+                List<KnowledgeQuestionBean> rec = knowledgeQuestionMapper.selectList(query);
+                if(rec.size() == 1){
+                    resKnow.add(rec.get(0));
+                }
             }
-        }
-        for(InterviewLike inter:interList){
-            String id = inter.getInterviewId();
-            QueryWrapper<InterviewBean> query = new QueryWrapper<>();
-            query.eq("interview_id", id);
-            InterviewBean oneRec = interviewMapper.selectOne(query);
-            if(!oneRec.equals(null)){
-                resInter.add(oneRec);
+            for(InterviewLike inter:interList){
+                String id = inter.getInterviewId();
+                QueryWrapper<InterviewBean> query = new QueryWrapper<>();
+                query.eq("interview_id", id);
+                List<InterviewBean> rec = interviewMapper.selectList(query);
+                if(rec.size() == 1){
+                    resInter.add(rec.get(0));
+                }
             }
+            res.setInterviews(resInter);
+            res.setKnowledge(resKnow);
+            return new Result("00", "Success.", null, res);
+        } catch (Exception e){
+            log.error(e.getMessage());
+            return new Result("99", "Internal service error.", null);
         }
-        res.setInterviews(resInter);
-        res.setKnowledge(resKnow);
-        return new Result("00", "Success.", null, res);
-//        try{
-//
-//        } catch (Exception e){
-//            log.error(e.getMessage());
-//            return new Result("99", "Internal service error.", null);
-//        }
     }
 
 
