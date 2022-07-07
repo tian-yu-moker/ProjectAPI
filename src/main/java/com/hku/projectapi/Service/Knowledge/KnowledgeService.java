@@ -145,10 +145,20 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
             commentsQuery.eq("knowledge_id", res.get(0).getKnowledgeId());
             List<KnowledgeAnswerBean> answers = knowledgeAnswerMapper.selectList(answersQuery);
             List<KnowledgeCommentsBean> comments = knowledgeCommentMapper.selectList(commentsQuery);
+            for(KnowledgeAnswerBean beans:answers){
+                String email = beans.getProviderId();
+                beans.setUserName(this.getName(email));
+            }
+            for(KnowledgeCommentsBean beans:comments){
+                String email = beans.getProviderId();
+                beans.setUserName(this.getName(email));
+            }
             QueryByPageDTO answerDTO = new QueryByPageDTO();
             answerDTO.setEntities(answers);
             QueryByPageDTO commentsDTO = new QueryByPageDTO();
             commentsDTO.setEntities(comments);
+            String name = this.getName(res.get(0).getUserid());
+            res.get(0).setUserName(name);
             res.get(0).setAnswers(answerDTO);
             res.get(0).setComments(commentsDTO);
             res.get(0).setIsLiked(this.getIsLike(userId, knowledgeId));
@@ -157,6 +167,18 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
         else
         {
             return new Result("05","No such knowledge question.", null);
+        }
+    }
+
+    public String getName(String id)
+    {
+        QueryWrapper<UserBean> query = new QueryWrapper<>();
+        query.eq("email", id);
+        UserBean oneUser = userMapper.selectOne(query);
+        if(oneUser.getName().equals(null)){
+            return "Unknown user";
+        }else {
+            return oneUser.getName();
         }
     }
 }
