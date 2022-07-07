@@ -19,7 +19,7 @@ public class KnowledgeCommentController
     public Result create(@RequestHeader String token, @RequestBody KnowledgeAnswerCommentRequestDTO requestDTO)
     {
         try{
-            Result res = knowledgeCommentService.create(requestDTO);
+            Result res = knowledgeCommentService.create(requestDTO, token);
             token = JwtUtil.updateToken(token);
             res.setToken(token);
             return res;

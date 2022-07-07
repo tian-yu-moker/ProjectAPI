@@ -11,6 +11,7 @@ import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Beans.User.UserBean;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeCommentMapper;
 import com.hku.projectapi.Mapper.Users.UserMapper;
+import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,14 +28,20 @@ public class KnowledgeCommentService extends ServiceImpl<KnowledgeCommentMapper,
     @Autowired
     private UserMapper userMapper;
 
-    public Result create(KnowledgeAnswerCommentRequestDTO requestDTO)
+    public Result create(KnowledgeAnswerCommentRequestDTO requestDTO, String token)
     {
+        String userId = "";
+        try{
+            userId = JwtUtil.getUserId(token);
+        }catch (Exception e){
+            return new Result("98", "Invalid token", null);
+        }
         try{
             String uuid = UUidGenerator.getUUID32();
             KnowledgeCommentsBean newRecord = new KnowledgeCommentsBean();
             newRecord.setKnowledgeCommentId(uuid);
             newRecord.setKnowledgeId(requestDTO.getKnowledgeId());
-            newRecord.setProviderId(requestDTO.getProvider());
+            newRecord.setProviderId(userId);
             newRecord.setContent(requestDTO.getContent());
             newRecord.setUploadTime(new Timestamp(new Date().getTime()));
             newRecord.setLastModifiedTime(newRecord.getUploadTime());

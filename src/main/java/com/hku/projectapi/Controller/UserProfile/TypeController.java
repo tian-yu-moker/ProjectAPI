@@ -1,4 +1,4 @@
-package com.hku.projectapi.Controller;
+package com.hku.projectapi.Controller.UserProfile;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -7,16 +7,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 
-@CrossOrigin(origins = {"*","null"})
+@CrossOrigin(origins = {"*", "null"})
 @RestController
 
-public class ProfileSettingController {
+public class TypeController {
 
     private JdbcTemplate jdbcTemplate;
 
-    public ProfileSettingController()
-    {
+    public TypeController() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://120.77.98.16:3306/comp7705?useSSL=false&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&serverTimezone=Asia/Shanghai");
@@ -25,34 +25,28 @@ public class ProfileSettingController {
         jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    @RequestMapping(value="/login_register/profile_setting",method= RequestMethod.POST)
-    public Object School(@RequestBody String request) {
+    @RequestMapping(value = "/login_register/type", method = RequestMethod.POST)
+    public Object Type(@RequestBody String request) {
+
         JsonObject obj = new JsonParser().parse(request).getAsJsonObject();
-        String email=obj.get("email").toString();
-        String company = obj.get("company").toString();
-        String username = obj.get("username").toString();
-        String identity = obj.get("identity").toString();
-        String school = obj.get("school").toString();
-        String year = obj.get("year").toString();
-        String month=obj.get("month").toString();
-        String YoE = obj.get("YoE").toString();
+        String email = obj.get("email").toString();
+        String type = obj.get("type").toString();
         NormalResponse response = new NormalResponse();
-        String querySQL="SELECT count(*) FROM users WHERE email="+email;
-        int number=jdbcTemplate.queryForObject(querySQL, Integer.class);
+        String querySQL = "SELECT count(*) FROM users WHERE email=" + email;
+        int number = jdbcTemplate.queryForObject(querySQL, Integer.class);
         System.out.println(number);
-        if(number>0) {
-            String date=year+"-"+month+"-"+"01";
-            String insertSQL="UPDATE users SET company=" + company + ",Name="+username+",Type="+identity+",school="
-                    +school+",Graduate_Date=\"" + date +"\""+",YoE="+YoE+""+" where email="+email;
+        if (number > 0) {
+            String insertSQL = "UPDATE users SET Type=" + type + " " + " where email=" + email;
             System.out.println(insertSQL);
             jdbcTemplate.execute(insertSQL);
             response.setCode("00");
             response.setDescription("Success.");
-        }else{
+        } else {
             response.setCode("02");
             response.setDescription("Account not exist, please register one first");
         }
         return response;
     }
+
 
 }

@@ -1,4 +1,4 @@
-package com.hku.projectapi.Controller;
+package com.hku.projectapi.Controller.UserProfile;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

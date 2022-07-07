@@ -18,7 +18,7 @@ public class KnowledgeAnswerController
     @PostMapping("answer")
     public Result create(@RequestHeader String token, @RequestBody KnowledgeAnswerCommentRequestDTO requestDTO)
     {
-        Result res = knowledgeAnswerService.create(requestDTO);
+        Result res = knowledgeAnswerService.create(requestDTO, token);
         try{
             token = JwtUtil.updateToken(token);
             res.setToken(token);

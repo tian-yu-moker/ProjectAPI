@@ -3,16 +3,16 @@ package com.hku.projectapi.Controller;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.hku.projectapi.Beans.NormalResponse;
-import com.hku.projectapi.Beans.ResponseWithData;
-import com.hku.projectapi.Beans.UserBean;
-import com.hku.projectapi.Beans.Users;
+import com.hku.projectapi.Beans.*;
+import com.hku.projectapi.Beans.User.PasswordResetDTO;
 import com.hku.projectapi.Service.RegisterService;
 import com.hku.projectapi.Tools.JwtUtil;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.bind.annotation.*;
 import com.google.gson.Gson;
+import org.springframework.util.DigestUtils;
+
 
 import java.util.*;
 
@@ -158,7 +158,6 @@ public class LoginRegisterController
         {
             String insertSQL = "INSERT INTO users(email, password, name, is_admin) VALUES (\""+ email + "\",\"" + password + "\",\"" +
                     user_name + "\"," + 0 + ")";
-            System.out.println(insertSQL);
             jdbcTemplate.execute(insertSQL);
             response.setCode("00");
             response.setDescription("Success.");
@@ -189,5 +188,18 @@ public class LoginRegisterController
         }
     }
 
-
+    // Reset the password
+    @RequestMapping(value = "/login_register/password_reset", method = RequestMethod.POST)
+    public Result resetPassword(@RequestBody PasswordResetDTO dto)
+    {
+        try{
+            String email = dto.getEmail();
+            String password = dto.getPassword();
+            String sql = "UPDATE users SET password='" + password + "' WHERE email='" + email + "'";
+            jdbcTemplate.execute(sql);
+            return new Result("00", "Success.", null);
+        } catch (Exception e){
+            return new Result("99", "Internal server error.", null);
+        }
+    }
 }

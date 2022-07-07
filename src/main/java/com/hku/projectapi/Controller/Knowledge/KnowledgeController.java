@@ -47,7 +47,13 @@ public class KnowledgeController
         String question_content = question.getQuestion_content();
         String answer_list = question.getAnswer_list();
         String interviewId = question.getInterview_id();
-        String userid = question.getUserid();
+        String userId = "";
+        try{
+            userId = JwtUtil.getUserId(token);
+        }catch (Exception e){
+            return new Result("98", "Invalid token", null);
+        }
+        String userid = userId;
         String comment = question.getComment_list();
         String company = question.getCompany();
         String tag = question.getTag();

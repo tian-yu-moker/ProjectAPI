@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @CrossOrigin(origins = {"*","null"})
 @RestController
-@RequestMapping("/cicctest")
+@RequestMapping("/test")
 public class Controller
 {
     private JdbcTemplate jdbcTemplate;

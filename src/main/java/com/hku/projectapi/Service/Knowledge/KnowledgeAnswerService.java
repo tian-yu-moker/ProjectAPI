@@ -31,13 +31,19 @@ public class KnowledgeAnswerService extends ServiceImpl<KnowledgeAnswerMapper, K
 
 
     // Insert an answer
-    public Result create(KnowledgeAnswerCommentRequestDTO requestDTO)
+    public Result create(KnowledgeAnswerCommentRequestDTO requestDTO, String token)
     {
+        String userId = "";
+        try{
+            userId = JwtUtil.getUserId(token);
+        }catch (Exception e){
+            return new Result("98", "Invalid token", null);
+        }
         String uuid = UUidGenerator.getUUID32();
         KnowledgeAnswerBean newRecord = new KnowledgeAnswerBean();
         newRecord.setKnowledgeAnswerId(uuid);
         newRecord.setKnowledgeId(requestDTO.getKnowledgeId());
-        newRecord.setProviderId(requestDTO.getProvider());
+        newRecord.setProviderId(userId);
         newRecord.setContent(requestDTO.getContent());
         newRecord.setUploadTime(new Timestamp(new Date().getTime()));
         newRecord.setLastModifiedTime(newRecord.getUploadTime());
