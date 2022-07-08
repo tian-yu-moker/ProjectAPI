@@ -2,6 +2,8 @@ package com.hku.projectapi.Beans.Interview;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.hku.projectapi.Beans.PageRequestDTO;
+import com.hku.projectapi.Beans.QueryByPageDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,4 +37,7 @@ public class InterviewBean
 
     @TableField("upload_time")
     private Timestamp uploadTime;
+
+    @TableField(exist = false)
+    private QueryByPageDTO questions;
 }

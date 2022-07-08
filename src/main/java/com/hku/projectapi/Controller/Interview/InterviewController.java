@@ -31,4 +31,16 @@ public class InterviewController
             return new Result("97", "Invalid token, please login.", null);
         }
     }
+
+    @GetMapping("query")
+    public Result query(@RequestHeader String token, @RequestParam String interviewId)
+    {
+        String userId = "";
+        try {
+            userId = JwtUtil.getUserId(token);
+        } catch (Exception e){
+            return new Result("97", "Invalid token, please login.", null);
+        }
+
+    }
 }

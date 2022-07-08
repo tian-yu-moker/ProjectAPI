@@ -7,8 +7,10 @@ import com.hku.projectapi.Beans.Interview.InterviewCreateDTO;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestion;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import com.hku.projectapi.Beans.Result;
+import com.hku.projectapi.Beans.User.UserBean;
 import com.hku.projectapi.Mapper.Interview.InterviewMapper;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeQuestionMapper;
+import com.hku.projectapi.Mapper.Users.UserMapper;
 import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,8 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
     private InterviewMapper interviewMapper;
     @Autowired
     private KnowledgeQuestionMapper knowledgeQuestionMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     // Create an interview, together with a list of questions
     public Result create(InterviewCreateDTO interviewDTO, String token)
@@ -82,9 +86,27 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
         }
     }
 
-    // 加载Interview以及其Knowledge questions，以及其answer
-    public void queryById(String id)
+    // 加载Interview以及其Knowledge questions，以及其answer，格式统一
+    public void queryById(String interviewId, String userId)
     {
+        String userName = this.getName(userId);
+        try{
 
+        } catch (Exception e){
+
+        }
+    }
+
+    // Get user name by user id.
+    public String getName(String id)
+    {
+        QueryWrapper<UserBean> query = new QueryWrapper<>();
+        query.eq("email", id);
+        UserBean oneUser = userMapper.selectOne(query);
+        if(oneUser.getName().equals(null)){
+            return "Unknown user";
+        }else {
+            return oneUser.getName();
+        }
     }
 }
