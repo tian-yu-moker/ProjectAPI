@@ -38,6 +38,18 @@ public class InterviewBean
     @TableField("upload_time")
     private Timestamp uploadTime;
 
+    @TableField("level")
+    private String level;
+
+    @TableField("interview_time")
+    private Timestamp interviewTime;
+
+    @TableField("job_position")
+    private String position;
+
+    @TableField("job_location")
+    private String location;
+
     @TableField(exist = false)
     private int isLiked;
 

@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.HKU</groupId>
-    <artifactId>ProjectAPI</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>API</artifactId>
+<!--    <version>0.0.1-SNAPSHOT</version>-->
     <name>ProjectAPI</name>
     <description>ProjectAPI</description>
     <properties>
