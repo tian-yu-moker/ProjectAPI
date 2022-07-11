@@ -11,11 +11,13 @@ import com.hku.projectapi.Beans.Collection.CollectionQueryDTO;
 import com.hku.projectapi.Beans.Collection.InterviewLike;
 import com.hku.projectapi.Beans.Interview.InterviewBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
+import com.hku.projectapi.Beans.QueryByPageDTO;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Mapper.Collection.InterviewCollectionMapper;
 import com.hku.projectapi.Mapper.Collection.KnowledgeCollectionMapper;
 import com.hku.projectapi.Mapper.Interview.InterviewMapper;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeQuestionMapper;
+import com.hku.projectapi.Service.Interview.InterviewService;
 import com.hku.projectapi.Tools.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -36,6 +38,8 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
     private InterviewCollectionMapper interviewCollectionMapper;
     @Autowired
     private InterviewMapper interviewMapper;
+    @Autowired
+    private InterviewService interviewService;
 
 
 
@@ -69,9 +73,10 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
                 String id = knows.getKnowledge_id();
                 QueryWrapper<KnowledgeQuestionBean> query = new QueryWrapper<>();
                 query.eq("knowledge_id", id);
-                System.out.println(id);
+
                 List<KnowledgeQuestionBean> rec = knowledgeQuestionMapper.selectList(query);
                 if(rec.size() == 1){
+                    rec.get(0).setUserName(interviewService.getName(userId));
                     resKnow.add(rec.get(0));
                 }
             }
@@ -86,18 +91,15 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
             }
             res.setInterviews(resInter);
             res.setKnowledge(resKnow);
-            return new Result("00", "Success.", null, res);
+            QueryByPageDTO result = new QueryByPageDTO();
+            result.setEntities(res);
+            return new Result("00", "Success.", null, result);
         } catch (Exception e){
             log.error(e.getMessage());
             return new Result("99", "Internal service error.", null);
         }
     }
 
-
-    public void getInterview()
-    {
-
-    }
 
     /**
      * Query knowledge collection
