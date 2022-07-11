@@ -742,7 +742,7 @@ Request Body:
     "location": "Beijing",
     "position": "Software engineer.",
     "level": "Entry",
-    "interview_time": 1657542542666,
+    "interview_time": "2022-01-01",
     "questions": [
         {
             "question_content": "What is distributed system?",

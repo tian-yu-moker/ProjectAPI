@@ -42,7 +42,7 @@ public class InterviewBean
     private String level;
 
     @TableField("interview_time")
-    private Timestamp interviewTime;
+    private Date interviewTime;
 
     @TableField("job_position")
     private String position;

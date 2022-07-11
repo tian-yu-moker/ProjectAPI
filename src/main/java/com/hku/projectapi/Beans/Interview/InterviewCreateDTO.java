@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,6 +21,6 @@ public class InterviewCreateDTO
     private String location;
     private String level;
     private String position;
-    private Timestamp interview_time;
+    private Date interview_time;
     private List<KnowledgeQuestion> questions;
 }
