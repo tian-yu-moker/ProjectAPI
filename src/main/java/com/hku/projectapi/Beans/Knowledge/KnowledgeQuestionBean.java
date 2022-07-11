@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @TableName("knowledge_questions")
-public class KnowledgeQuestionBean
+public class KnowledgeQuestionBean<T>
 {
     @TableField("knowledge_id")
     private String knowledgeId;
@@ -39,7 +39,7 @@ public class KnowledgeQuestionBean
     @TableField(exist = false)
     private int isLiked;
     @TableField(exist = false)
-    private QueryByPageDTO answers;
+    private T answers;
     @TableField(exist = false)
-    private QueryByPageDTO comments;
+    private T comments;
 }

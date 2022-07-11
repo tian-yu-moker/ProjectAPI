@@ -77,6 +77,7 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
                 List<KnowledgeQuestionBean> rec = knowledgeQuestionMapper.selectList(query);
                 if(rec.size() == 1){
                     rec.get(0).setUserName(interviewService.getName(userId));
+                    rec.get(0).setIsLiked(1);
                     resKnow.add(rec.get(0));
                 }
             }
@@ -86,6 +87,8 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
                 query.eq("interview_id", id);
                 List<InterviewBean> rec = interviewMapper.selectList(query);
                 if(rec.size() == 1){
+                    rec.get(0).setIsLiked(1);
+                    rec.get(0).setProviderName(interviewService.getName(rec.get(0).getProviderId()));
                     resInter.add(rec.get(0));
                 }
             }

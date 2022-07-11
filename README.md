@@ -20,6 +20,7 @@ URL: http://120.77.98.16:8080
 |10| You are only allowed to delte your own assets. |All delete functions |
 |11| Cancel collection successfully. | Collection like.|
 |12| No such record.| Collection like. (add) |
+|13| No such interview, please check.|Interview query.|
 ## 0.3 Token
 Put into request header, name is token, value is the String obtained when login.  
 Error response code.  
@@ -609,4 +610,144 @@ Type: GET
 ```
 Response Code:  
 00 Success.  
+## 6. Interview service
+### 6.1 Create an interview
+URL: /interview_service/create  
+TYPE: POST  
+```
+Request Body:
+{
+    "title": "Interview ay Apple",
+    "description": "",
+    "company": "Apple",
+    "questions": [
+        {
+            "question_content": "Tell me something about the JVM, the structure and their function.",
+            "tag": "Programming"
+        },
+        {
+            "question_content": "Tell me something about the JVM, the structure and their function.",
+            "tag": "Programming"
+        }
+    ]
+}
+```
+### 6.2 Get an interview by id
+URL: /interview_service/query?interviewId=6f96514800484508a147b9cc47e0d3c4  
+Type: GET  
+```
+Response Body:
 
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "interview": {
+            "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+            "providerId": "123@qq.com",
+            "providerName": "Ace Coder",
+            "title": "2022-01-15 Interview in Tencent.",
+            "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+            "company": "Tencent",
+            "uploadTime": "2022-07-06T09:09:49.000+00:00",
+            "isLiked": 1,
+            "questions": null
+        },
+        "questions": [
+            {
+                "knowledgeId": "25505886ee0242d08d89ab3368c66b74",
+                "question_content": "Tell me something about 3 hand shake?",
+                "answer_list": null,
+                "userid": "123@qq.com",
+                "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                "userName": "Ace Coder",
+                "comment_list": null,
+                "company": "Tencent",
+                "tag": "Network",
+                "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                "isLiked": 1,
+                "answers": [],
+                "comments": [
+                    {
+                        "knowledgeCommentId": "74bcd8a31caa41269d38055595188dfc",
+                        "knowledgeId": "25505886ee0242d08d89ab3368c66b74",
+                        "providerId": "123@qq.com",
+                        "userName": "Ace Coder",
+                        "content": "it is about connection ",
+                        "uploadTime": "2022-07-07T14:11:37.000+00:00",
+                        "lastModifiedTime": "2022-07-07T14:11:37.000+00:00"
+                    },
+                    {
+                        "knowledgeCommentId": "e555e4543e574748b0764e1c582fe534",
+                        "knowledgeId": "25505886ee0242d08d89ab3368c66b74",
+                        "providerId": "12345@qq.com",
+                        "userName": "Wang Zhao",
+                        "content": "I dont know",
+                        "uploadTime": "2022-07-07T12:20:16.000+00:00",
+                        "lastModifiedTime": "2022-07-07T12:20:16.000+00:00"
+                    }
+                ]
+            },
+            {
+                "knowledgeId": "a78e9b4bcca84082aa6e873cc1022b91",
+                "question_content": "Have you ever useed the token?",
+                "answer_list": null,
+                "userid": "123@qq.com",
+                "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                "userName": "Ace Coder",
+                "comment_list": null,
+                "company": "Tencent",
+                "tag": "Others",
+                "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                "isLiked": 0,
+                "answers": [],
+                "comments": []
+            },
+            {
+                "knowledgeId": "c626494803684d6baf1155456d0d6d5f",
+                "question_content": "What is distributed system?",
+                "answer_list": null,
+                "userid": "123@qq.com",
+                "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                "userName": "Ace Coder",
+                "comment_list": null,
+                "company": "Tencent",
+                "tag": "Network",
+                "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                "isLiked": 0,
+                "answers": [],
+                "comments": [
+                    {
+                        "knowledgeCommentId": "6c52b8768cdb437ab4414baa6377b16a",
+                        "knowledgeId": "c626494803684d6baf1155456d0d6d5f",
+                        "providerId": "123@qq.com",
+                        "userName": "Ace Coder",
+                        "content": "idk",
+                        "uploadTime": "2022-07-07T12:46:30.000+00:00",
+                        "lastModifiedTime": "2022-07-07T12:46:30.000+00:00"
+                    },
+                    {
+                        "knowledgeCommentId": "a6015d96d8ad4e4893644767467eb317",
+                        "knowledgeId": "c626494803684d6baf1155456d0d6d5f",
+                        "providerId": "123@qq.com",
+                        "userName": "Ace Coder",
+                        "content": "sadfasd",
+                        "uploadTime": "2022-07-07T13:05:39.000+00:00",
+                        "lastModifiedTime": "2022-07-07T13:05:39.000+00:00"
+                    },
+                    {
+                        "knowledgeCommentId": "f3eadff08391453591897c7e50c8264c",
+                        "knowledgeId": "c626494803684d6baf1155456d0d6d5f",
+                        "providerId": "123@qq.com",
+                        "userName": "Ace Coder",
+                        "content": "anyone tell me?",
+                        "uploadTime": "2022-07-07T12:54:07.000+00:00",
+                        "lastModifiedTime": "2022-07-07T12:54:07.000+00:00"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```

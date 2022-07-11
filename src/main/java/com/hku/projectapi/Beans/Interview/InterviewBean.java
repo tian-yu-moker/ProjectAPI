@@ -39,5 +39,8 @@ public class InterviewBean
     private Timestamp uploadTime;
 
     @TableField(exist = false)
+    private int isLiked;
+
+    @TableField(exist = false)
     private QueryByPageDTO questions;
 }
