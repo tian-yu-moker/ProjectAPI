@@ -736,20 +736,32 @@ TYPE: POST
 ```
 Request Body:
 {
-    "title": "Interview ay Apple",
-    "description": "",
-    "company": "Apple",
+    "title": "2022-01-15 Interview in Apple.",
+    "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+    "company": "Tencent",
+    "location": "Beijing",
+    "position": "Software engineer.",
+    "level": "Entry",
+    "interview_time": 1657542542666,
     "questions": [
         {
-            "question_content": "Tell me something about the JVM, the structure and their function.",
-            "tag": "Programming"
+            "question_content": "What is distributed system?",
+            "company": "Apple",
+            "tag": "Network"
         },
         {
-            "question_content": "Tell me something about the JVM, the structure and their function.",
-            "tag": "Programming"
+            "question_content": "Tell me something about 3 hand shake?",
+            "company": "Apple",
+            "tag": "Network"
+        },
+        {
+            "question_content": "Have you ever useed the token?",
+            "company": "Apple",
+            "tag": "Others"
         }
     ]
 }
+Note: the interview_time: should be the timestamp in "ms".
 ```
 ### 6.2 Get an interview by id
 URL: /interview_service/query?interviewId=6f96514800484508a147b9cc47e0d3c4  

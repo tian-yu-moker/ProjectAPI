@@ -3,7 +3,6 @@ package com.hku.projectapi.Service.Interview;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.Collection.InterviewLike;
-import com.hku.projectapi.Beans.Collection.KnowledgeLike;
 import com.hku.projectapi.Beans.Interview.InterviewBean;
 import com.hku.projectapi.Beans.Interview.InterviewCreateDTO;
 import com.hku.projectapi.Beans.Interview.InterviewQueryDTO;
@@ -11,10 +10,8 @@ import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeCommentsBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestion;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
-import com.hku.projectapi.Beans.QueryByPageDTO;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Beans.User.UserBean;
-import com.hku.projectapi.Controller.Interview.InterviewController;
 import com.hku.projectapi.Mapper.Collection.InterviewCollectionMapper;
 import com.hku.projectapi.Mapper.Interview.InterviewMapper;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeAnswerMapper;
@@ -24,7 +21,6 @@ import com.hku.projectapi.Mapper.Users.UserMapper;
 import com.hku.projectapi.Service.Knowledge.KnowledgeService;
 import com.hku.projectapi.Tools.JwtUtil;
 import com.hku.projectapi.Tools.UUidGenerator;
-import net.sf.jsqlparser.statement.select.KSQLWindow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -97,6 +93,12 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                 interview.setDescription(description);
                 interview.setProviderId(userId);
                 interview.setUploadTime(uploadTime);
+                // Newly added
+                interview.setLevel(interviewDTO.getLevel());
+                interview.setLocation(interviewDTO.getLocation());
+                interview.setInterviewTime(interviewDTO.getInterview_time());
+                interview.setPosition(interviewDTO.getPosition());
+                System.out.println(interview.getLevel());
                 interviewMapper.insert(interview);
                 return new Result("00", "Success.", null);
             } catch (Exception e){
