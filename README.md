@@ -1,6 +1,8 @@
 # ProjectAPI
 ## 0.1 Overview
-URL: http://120.77.98.16:8080  
+URL: http://ty19980611
+Ty19980611
+:8080  
 ## 0.2 Status Code
 |   Code   |      Description      |      API      |
 |----------|:-------------:|:-------------:|
