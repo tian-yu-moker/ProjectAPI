@@ -177,31 +177,112 @@ Response Code:
 {
     "code": "00",
     "description": "Success.",
-    "token": "tokens",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
     "data": {
         "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
         "question_content": "What is deep learning?",
         "answer_list": "answerid1;answerid2",
         "userid": "123@qq.com",
         "interviewId": "",
-        "userName": null,
+        "userName": "Ace Coder",
         "comment_list": "null",
-        "company": "Appless",
-        "tag": "OS",
+        "company": "Apple",
+        "tag": "Operating System",
         "uploadTime": "2022-07-07T12:50:30.000+00:00",
-        "isLiked": 0,
+        "isLiked": 1,
         "answers": {
-            "queryInfo": null,
-            "entities": []
+            "queryInfo": {
+                "currentPage": 0,
+                "pageSize": 0,
+                "totalRecord": 1
+            },
+            "entities": [
+                {
+                    "knowledgeAnswerId": "d44ba665798044698a61d9ccec40f688",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "tianyu98@connect.hku.hk",
+                    "userName": "Tian Yu",
+                    "content": "Deep learning is a subset of machine learning, which is essentially a neural network with three or more layers.",
+                    "uploadTime": "2022-07-07T15:14:15.000+00:00",
+                    "lastModifiedTime": "2022-07-07T15:14:15.000+00:00"
+                }
+            ]
         },
         "comments": {
-            "queryInfo": null,
+            "queryInfo": {
+                "currentPage": 0,
+                "pageSize": 0,
+                "totalRecord": 14
+            },
             "entities": [
+                {
+                    "knowledgeCommentId": "0e24eaa3a2e24d8a9aca23a2e2090b81",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "this is so interesting",
+                    "uploadTime": "2022-07-09T10:14:49.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:14:49.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "162b4df98c6f4beba3f2fb9863f1fd38",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "hello",
+                    "uploadTime": "2022-07-09T10:08:20.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:08:20.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "3231873f7d684b8f8d2f2b190a4e53a1",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+                    "uploadTime": "2022-07-09T10:41:36.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:41:36.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "46bd71532ff04a2db1628078f5bffa84",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "interesting",
+                    "uploadTime": "2022-07-09T10:16:00.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:16:00.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "491ef676a33646c3b54e7693f45f06bb",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "this is a interesting question but i don't know the answer",
+                    "uploadTime": "2022-07-09T09:54:23.000+00:00",
+                    "lastModifiedTime": "2022-07-09T09:54:23.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "7d433d7fdf924c4bb2a712312e9f5688",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "hello",
+                    "uploadTime": "2022-07-09T10:25:45.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:25:45.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "8216b38ad93343488cbdd6c1e9dde399",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "hello?",
+                    "uploadTime": "2022-07-09T10:07:21.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:07:21.000+00:00"
+                },
                 {
                     "knowledgeCommentId": "863dded62ac746c9831d6bd50da4cdb6",
                     "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
                     "providerId": "123@qq.com",
-                    "userName": null,
+                    "userName": "Ace Coder",
                     "content": "se",
                     "uploadTime": "2022-07-07T13:10:30.000+00:00",
                     "lastModifiedTime": "2022-07-07T13:10:30.000+00:00"
@@ -210,16 +291,52 @@ Response Code:
                     "knowledgeCommentId": "9827f13c34f44d689117f15f1477f3af",
                     "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
                     "providerId": "123@qq.com",
-                    "userName": null,
+                    "userName": "Ace Coder",
                     "content": "ads",
                     "uploadTime": "2022-07-07T13:10:33.000+00:00",
                     "lastModifiedTime": "2022-07-07T13:10:33.000+00:00"
                 },
                 {
+                    "knowledgeCommentId": "a698c6a966db4057b35b86d4c38e8965",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "hello",
+                    "uploadTime": "2022-07-09T10:29:43.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:29:43.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "bb1370a9520d403ea28442f1854e87cc",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "deep learning is try to make computer think like a real human",
+                    "uploadTime": "2022-07-09T09:55:51.000+00:00",
+                    "lastModifiedTime": "2022-07-09T09:55:51.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "ca96d57c4e4148de8238a528f2a55d47",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "hhhhhh",
+                    "uploadTime": "2022-07-09T10:24:26.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:24:26.000+00:00"
+                },
+                {
+                    "knowledgeCommentId": "f3e982712725403fb86164d7135a6d91",
+                    "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
+                    "providerId": "123@qq.com",
+                    "userName": "Ace Coder",
+                    "content": "hello",
+                    "uploadTime": "2022-07-09T10:26:24.000+00:00",
+                    "lastModifiedTime": "2022-07-09T10:26:24.000+00:00"
+                },
+                {
                     "knowledgeCommentId": "f5a894edd2fb4fd19cbea18af69d0b17",
                     "knowledgeId": "2f88b7c85ce24599baa75f2ba5f69c96",
                     "providerId": "123@qq.com",
-                    "userName": null,
+                    "userName": "Ace Coder",
                     "content": "let us see",
                     "uploadTime": "2022-07-07T13:10:27.000+00:00",
                     "lastModifiedTime": "2022-07-07T13:10:27.000+00:00"
