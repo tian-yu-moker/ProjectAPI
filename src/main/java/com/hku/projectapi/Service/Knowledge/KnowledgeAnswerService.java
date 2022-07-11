@@ -102,6 +102,7 @@ public class KnowledgeAnswerService extends ServiceImpl<KnowledgeAnswerMapper, K
     {
         QueryWrapper<KnowledgeAnswerBean> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("knowledge_id", id);
+        queryWrapper.select().orderByDesc("upload_time");
         Page<KnowledgeAnswerBean> resPage = knowledgeAnswerMapper.selectPage(new Page<>(answerCurPage, answerCurPageSize), queryWrapper);
         List<KnowledgeAnswerBean> records = resPage.getRecords();
         for(KnowledgeAnswerBean answers:records){

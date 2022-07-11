@@ -155,7 +155,13 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
             }
             QueryByPageDTO answerDTO = new QueryByPageDTO();
             answerDTO.setEntities(answers);
+            QueryInfo ansInfo = new QueryInfo();
+            ansInfo.setTotalRecord(answers.size());
+            answerDTO.setQueryInfo(ansInfo);
             QueryByPageDTO commentsDTO = new QueryByPageDTO();
+            QueryInfo commentInfo = new QueryInfo();
+            commentInfo.setTotalRecord(comments.size());
+            commentsDTO.setQueryInfo(commentInfo);
             commentsDTO.setEntities(comments);
             String name = this.getName(res.get(0).getUserid());
             res.get(0).setUserName(name);

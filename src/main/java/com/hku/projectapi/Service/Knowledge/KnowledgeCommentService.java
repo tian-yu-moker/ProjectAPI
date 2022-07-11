@@ -63,6 +63,7 @@ public class KnowledgeCommentService extends ServiceImpl<KnowledgeCommentMapper,
     public QueryByPageDTO searchByKnowledge(String id, int commentCurPage, int commentCurPageSize)
     {
         QueryWrapper<KnowledgeCommentsBean> queryWrapper = new QueryWrapper<>();
+        queryWrapper.select().orderByDesc("upload_time");
         queryWrapper.eq("knowledge_id", id);
         Page<KnowledgeCommentsBean> resPage = knowledgeCommentMapper.selectPage(new Page<>(commentCurPage, commentCurPageSize),
                 queryWrapper);

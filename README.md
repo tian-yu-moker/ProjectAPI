@@ -167,7 +167,7 @@ Response Code:
     "description": "Upload success."
 }
 ```
-### 2.2 Query a knwoledge by id
+### 2.2 Query knowledge by id
 Type: GET  
 URL: /knowledge_service?uuid=2f88b7c85ce24599baa75f2ba5f69c96  
 Response Code:
@@ -229,7 +229,7 @@ Response Code:
     }
 }
 ```
-### 2.3 Delete a knwoledge by id
+### 2.3 Delete knowledge by id
 Type: DELETE  
 URL: /knowledge_service?uuid=4186f6f46bb94450ae1b3abe54517229  
 Response Code:
