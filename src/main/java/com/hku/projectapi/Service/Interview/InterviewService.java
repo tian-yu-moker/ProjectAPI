@@ -1,6 +1,7 @@
 package com.hku.projectapi.Service.Interview;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.Collection.InterviewLike;
 import com.hku.projectapi.Beans.Interview.InterviewBean;
@@ -10,6 +11,9 @@ import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeCommentsBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionDTO;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
+import com.hku.projectapi.Beans.PageRequestDTO;
+import com.hku.projectapi.Beans.QueryByPageDTO;
+import com.hku.projectapi.Beans.QueryInfo;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Beans.User.UserBean;
 import com.hku.projectapi.Mapper.Collection.InterviewCollectionMapper;
@@ -155,6 +159,56 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
         } catch (Exception e){
             return new Result("99", "Internal service error.", null);
         }
+    }
+
+    public Result loadByPage(PageRequestDTO pageRequestDTO, String token)
+    {
+        String userId = "";
+        try {
+            userId = JwtUtil.getUserId(token);
+        } catch (Exception e)
+        {
+            log.error(e.getMessage());
+            return new Result("98", "Invalid token, please login.", null);
+        }
+        // Current page and page size
+        int curPage= pageRequestDTO.getPageFirst();
+        int pageSize = pageRequestDTO.getPageSizeFirst();
+        QueryWrapper<InterviewBean> interWrapper = new QueryWrapper<>();
+        interWrapper.select().orderByDesc("upload_time");
+        Page<InterviewBean> resPage = interviewMapper.selectPage(new Page<>(curPage, pageSize), interWrapper);
+        List<InterviewBean> records = resPage.getRecords();
+
+        for(InterviewBean beans:records){
+            beans.setIsLiked(this.getIsLiked(userId, beans.getInterviewId()));
+            beans.setProviderName(this.getName(userId));
+            QueryWrapper<KnowledgeQuestionBean> knowWrapper = new QueryWrapper<>();
+            knowWrapper.eq("interview_id", beans.getInterviewId());
+            List<KnowledgeQuestionBean> questions = knowledgeQuestionMapper.selectList(knowWrapper);
+            QueryByPageDTO knowledgeQuestions = new QueryByPageDTO();
+            QueryInfo knowledgeInfo = new QueryInfo();
+            knowledgeInfo.setTotalRecord(questions.size());
+            for(KnowledgeQuestionBean beansQuestion:questions){
+//                beansQuestion.setIsLiked(knowledgeService.getIsLike(userId, beansQuestion.getKnowledgeId()));
+                beansQuestion.setUserid(this.getName(userId));
+            }
+            knowledgeQuestions.setQueryInfo(knowledgeInfo);
+            knowledgeQuestions.setEntities(questions);
+            beans.setQuestions(knowledgeQuestions);
+        }
+        QueryByPageDTO result = new QueryByPageDTO();
+        QueryInfo queryInfo = new QueryInfo();
+        queryInfo.setPageSize(pageRequestDTO.getPageSizeFirst());
+        queryInfo.setCurrentPage(pageRequestDTO.getPageFirst());
+        queryInfo.setTotalRecord(resPage.getTotal());
+        result.setQueryInfo(queryInfo);
+        result.setEntities(records);
+        return new Result("00", "Success.", null, result);
+//        try{
+//
+//        }catch(Exception e){
+//            return new Result("99", "Internal service error.", null);
+//        }
     }
 
     // Get user name by user id.

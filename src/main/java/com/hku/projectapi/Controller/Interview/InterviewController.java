@@ -1,6 +1,7 @@
 package com.hku.projectapi.Controller.Interview;
 
 import com.hku.projectapi.Beans.Interview.InterviewCreateDTO;
+import com.hku.projectapi.Beans.PageRequestDTO;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Service.Interview.InterviewService;
 import com.hku.projectapi.Tools.JwtUtil;
@@ -44,6 +45,17 @@ public class InterviewController
         } catch (Exception e){
             return new Result("97", "Invalid token, please login.", null);
         }
+    }
 
+    @PostMapping("load")
+    public Result loadInterviews(@RequestHeader String token, @RequestBody PageRequestDTO pageDTO)
+    {
+        try {
+            Result res = interviewService.loadByPage(pageDTO, token);
+            res.setToken(JwtUtil.updateToken(token));
+            return res;
+        } catch (Exception e){
+            return new Result("99", "Internal service error.", null);
+        }
     }
 }

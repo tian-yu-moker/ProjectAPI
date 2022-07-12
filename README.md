@@ -763,7 +763,624 @@ Request Body:
 }
 Note: the interview_time: should be the timestamp in "ms".
 ```
-### 6.2 Get an interview by id
+### 6.2 Load interviews by page
+URL: interview_service/load  
+Type: POST  
+```
+Response Body:
+{
+    "pageFirst": 1,
+    "pageSizeFirst": 10,
+    // Following can be ignored
+    "pageSecond": 1,
+    "pageSizeSecond": 2,
+    "pageThird": 1,
+    "pageSizeThird": 2,
+    "type": 0,
+    "tag1": 0,
+    "tag2": 0
+}
+```
+The interviews with **all** of their questions will be returned.  
+```
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "queryInfo": {
+            "currentPage": 1,
+            "pageSize": 10,
+            "totalRecord": 9
+        },
+        "entities": [
+            {
+                "interviewId": "b6b985ca775442ed9c6f9539dd4739e6",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Apple.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-11T13:03:02.000+00:00",
+                "level": "Entry",
+                "interviewTime": "2022-01-01",
+                "position": "Software engineer.",
+                "location": "Beijing",
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "0e2fa8e6acc342d7ad0f6ba0c952882d",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "b6b985ca775442ed9c6f9539dd4739e6",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T13:03:02.000+00:00",
+                            "isLiked": 1,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "2f93298c8efa48db910b5bdfeb050981",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "b6b985ca775442ed9c6f9539dd4739e6",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-11T13:03:02.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "cfca2e867f4248a2bbc2e87bc5a2c869",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "b6b985ca775442ed9c6f9539dd4739e6",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T13:03:02.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "1f98d10a816447a6ade096fd263af5fc",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Apple.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-11T12:41:32.000+00:00",
+                "level": "Entry",
+                "interviewTime": "2022-07-11",
+                "position": "Software engineer.",
+                "location": "Beijing",
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "3c31b000cce24ae19804e82dfe10de5e",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "1f98d10a816447a6ade096fd263af5fc",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:41:32.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "73b33de0eea643ba9340aa8934913d6a",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "1f98d10a816447a6ade096fd263af5fc",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:41:32.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "98c549e6613e4bf59f9568c7f94b3db8",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "1f98d10a816447a6ade096fd263af5fc",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-11T12:41:32.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "495af9edc5184446b4cb147ef9a92299",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Apple.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-11T12:35:38.000+00:00",
+                "level": "Entry",
+                "interviewTime": "2022-07-11",
+                "position": "Software engineer.",
+                "location": "Beijing",
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "254c69974b0842cba3f6f0e598d7a7ce",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "495af9edc5184446b4cb147ef9a92299",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-11T12:35:38.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "6bcc196e37d14d8abee1dff3769763e8",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "495af9edc5184446b4cb147ef9a92299",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:35:38.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "d845d80cd0ac4e38a2a2722e63663fa4",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "495af9edc5184446b4cb147ef9a92299",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:35:38.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "db6a023e5efa4d13ae279835aef826b2",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Apple.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-11T12:35:18.000+00:00",
+                "level": null,
+                "interviewTime": null,
+                "position": null,
+                "location": null,
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "17f22be1b59c48b18a4f431fc15e9c4c",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "db6a023e5efa4d13ae279835aef826b2",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:35:18.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "829716d72b0d4caab97f587a3dedeb0f",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "db6a023e5efa4d13ae279835aef826b2",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:35:18.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "e150aac4da8945aea75669afed22e9ea",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "db6a023e5efa4d13ae279835aef826b2",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-11T12:35:18.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "fc5341d4fc3442bfa1c728a298da529d",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Apple.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-11T12:33:43.000+00:00",
+                "level": null,
+                "interviewTime": null,
+                "position": null,
+                "location": null,
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "4fd046d3e5fd479f95b3446815a2e87e",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "fc5341d4fc3442bfa1c728a298da529d",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:33:43.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "96b9281cd8274164874ec8d1d1959aec",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "fc5341d4fc3442bfa1c728a298da529d",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-11T12:33:43.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "bc6ad5daaeda43b78042139284738446",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "fc5341d4fc3442bfa1c728a298da529d",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:33:43.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "be8727bbdbef477a8b8ad8bb33e81c2d",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Apple.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-11T12:33:20.000+00:00",
+                "level": null,
+                "interviewTime": null,
+                "position": null,
+                "location": null,
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "8987e0280b4c496e90218bb24979ecd2",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "be8727bbdbef477a8b8ad8bb33e81c2d",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:33:20.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "b8afea4395234179b4e8eb7bdaf0bdcd",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "be8727bbdbef477a8b8ad8bb33e81c2d",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-11T12:33:20.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "ea5c32f98c3f4ee5be59e8c6b14a99da",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "be8727bbdbef477a8b8ad8bb33e81c2d",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:33:20.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "01271c8bc5d24c91a5b8695bef3a63d0",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Apple.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-11T12:30:59.000+00:00",
+                "level": null,
+                "interviewTime": null,
+                "position": null,
+                "location": null,
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "1b1483917216431aac794163e56886df",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "01271c8bc5d24c91a5b8695bef3a63d0",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-11T12:30:59.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "3c4ba346e84f47ec92a52f3b939c13eb",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "01271c8bc5d24c91a5b8695bef3a63d0",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:30:59.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "745f6b93bcd0422ab854376adf415605",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "01271c8bc5d24c91a5b8695bef3a63d0",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-11T12:30:59.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "37b704bf25db41b1b1991118ab0fe7d8",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "Interview ay Apple",
+                "description": "",
+                "company": "Apple",
+                "uploadTime": "2022-07-11T04:46:40.000+00:00",
+                "level": null,
+                "interviewTime": null,
+                "position": null,
+                "location": null,
+                "isLiked": 10,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 1
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "3743c65b31cc47109c3c5960e432a3db",
+                            "question_content": "Tell me something about the JVM, the structure and their function.",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "37b704bf25db41b1b1991118ab0fe7d8",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Apple",
+                            "tag": "Programming",
+                            "uploadTime": "2022-07-11T04:46:40.000+00:00",
+                            "isLiked": 1,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            },
+            {
+                "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                "providerId": "123@qq.com",
+                "providerName": "Ace Coder",
+                "title": "2022-01-15 Interview in Tencent.",
+                "description": "About 2 hours interview, which is quite long. The knowledeg asked includeds several aspects, suach as operation system, algorithm, network and database.",
+                "company": "Tencent",
+                "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                "level": null,
+                "interviewTime": null,
+                "position": null,
+                "location": null,
+                "isLiked": 1,
+                "questions": {
+                    "queryInfo": {
+                        "currentPage": 0,
+                        "pageSize": 0,
+                        "totalRecord": 3
+                    },
+                    "entities": [
+                        {
+                            "knowledgeId": "25505886ee0242d08d89ab3368c66b74",
+                            "question_content": "Tell me something about 3 hand shake?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                            "isLiked": 1,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "a78e9b4bcca84082aa6e873cc1022b91",
+                            "question_content": "Have you ever useed the token?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Others",
+                            "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        },
+                        {
+                            "knowledgeId": "c626494803684d6baf1155456d0d6d5f",
+                            "question_content": "What is distributed system?",
+                            "answer_list": null,
+                            "userid": "Ace Coder",
+                            "interviewId": "6f96514800484508a147b9cc47e0d3c4",
+                            "userName": null,
+                            "comment_list": null,
+                            "company": "Tencent",
+                            "tag": "Network",
+                            "uploadTime": "2022-07-06T09:09:49.000+00:00",
+                            "isLiked": 0,
+                            "answers": null,
+                            "comments": null
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+```
+### 6.3 Get an interview by id
 URL: /interview_service/query?interviewId=6f96514800484508a147b9cc47e0d3c4  
 Type: GET  
 ```
