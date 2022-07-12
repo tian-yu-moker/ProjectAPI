@@ -2,7 +2,7 @@ package com.hku.projectapi.Controller.Knowledge;
 
 
 import com.hku.projectapi.Beans.*;
-import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestion;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionDTO;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeUpdateBean;
 import com.hku.projectapi.Service.Knowledge.KnowledgeCommentService;
 import com.hku.projectapi.Service.Knowledge.KnowledgeService;
@@ -39,43 +39,63 @@ public class KnowledgeController
 
 
     // Create: post
+//    @PostMapping("/knowledge_service")
+//    @ResponseBody
+//    public Object createQuestion(@RequestBody KnowledgeQuestionDTO question, @RequestHeader("token") String token)
+//    {
+//        String uuid = UUidGenerator.getUUID32();
+//        String question_content = question.getQuestion_content();
+//        String answer_list = question.getAnswer_list();
+//        String interviewId = question.getInterview_id();
+//        String userId = "";
+//        try{
+//            userId = JwtUtil.getUserId(token);
+//        }catch (Exception e){
+//            return new Result("98", "Invalid token", null);
+//        }
+//        String userid = userId;
+//        String comment = question.getComment_list();
+//        String company = question.getCompany();
+//        String tag = question.getTag();
+//        Date date = new Date();
+//        Timestamp time = new Timestamp(date.getTime());
+//        try
+//        {
+//            String sql = "INSERT INTO knowledge_questions(knowledge_id, question_content, answer_list, interview_id, userid, comment_list, company, tag, upload_time)" +
+//                    "VALUES (\"" + uuid + "\", \"" + question_content + "\", \"" + answer_list +  "\", \"" + interviewId + "\", \"" + userid + "\", " +
+//                    "\"" + comment +  "\", \"" + company + "\", + \"" + tag + "\", + \"" + time + "\")";
+//            jdbcTemplate.execute(sql);
+//            NormalResponse response = new NormalResponse();
+//            response.setCode("00");
+//            response.setDescription("Upload success.");
+//            response.setToken(JwtUtil.updateToken(token));
+//            return response;
+//        }catch (Exception e)
+//        {
+//            NormalResponse response = new NormalResponse();
+//            response.setCode("99");
+//            response.setDescription("Internal service error.");
+//            return response;
+//        }
+//    }
+
     @PostMapping("/knowledge_service")
-    @ResponseBody
-    public Object createQuestion(@RequestBody KnowledgeQuestion question, @RequestHeader("token") String token)
+    public Result create(@RequestBody KnowledgeQuestionDTO question, @RequestHeader("token") String token)
     {
-        String uuid = UUidGenerator.getUUID32();
-        String question_content = question.getQuestion_content();
-        String answer_list = question.getAnswer_list();
-        String interviewId = question.getInterview_id();
         String userId = "";
         try{
             userId = JwtUtil.getUserId(token);
-        }catch (Exception e){
+        } catch (Exception e){
             return new Result("98", "Invalid token", null);
         }
-        String userid = userId;
-        String comment = question.getComment_list();
-        String company = question.getCompany();
-        String tag = question.getTag();
-        Date date = new Date();
-        Timestamp time = new Timestamp(date.getTime());
-        try
-        {
-            String sql = "INSERT INTO knowledge_questions(knowledge_id, question_content, answer_list, interview_id, userid, comment_list, company, tag, upload_time)" +
-                    "VALUES (\"" + uuid + "\", \"" + question_content + "\", \"" + answer_list +  "\", \"" + interviewId + "\", \"" + userid + "\", " +
-                    "\"" + comment +  "\", \"" + company + "\", + \"" + tag + "\", + \"" + time + "\")";
-            jdbcTemplate.execute(sql);
-            NormalResponse response = new NormalResponse();
-            response.setCode("00");
-            response.setDescription("Upload success.");
-            response.setToken(JwtUtil.updateToken(token));
-            return response;
-        }catch (Exception e)
-        {
-            NormalResponse response = new NormalResponse();
-            response.setCode("99");
-            response.setDescription("Internal service error.");
-            return response;
+        try{
+            Result res = knowledgeService.create(question, userId);
+            res.setToken(JwtUtil.updateToken(token));
+            return res;
+        } catch (Exception e){
+            Result res = new Result("99", "Internal server error.", null);
+            res.setToken(JwtUtil.updateToken(token));
+            return res;
         }
     }
 

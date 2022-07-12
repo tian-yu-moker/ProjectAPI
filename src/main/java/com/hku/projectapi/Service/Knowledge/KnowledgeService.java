@@ -7,6 +7,7 @@ import com.hku.projectapi.Beans.*;
 import com.hku.projectapi.Beans.Collection.KnowledgeLike;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeCommentsBean;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionDTO;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import com.hku.projectapi.Beans.User.UserBean;
 import com.hku.projectapi.Mapper.Collection.KnowledgeCollectionMapper;
@@ -15,11 +16,14 @@ import com.hku.projectapi.Mapper.Knowledge.KnowledgeCommentMapper;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeQuestionMapper;
 import com.hku.projectapi.Mapper.Users.UserMapper;
 import com.hku.projectapi.Tools.JwtUtil;
+import com.hku.projectapi.Tools.UUidGenerator;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -128,6 +132,35 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
         {
             return 0;
         }
+    }
+
+    public Result create(KnowledgeQuestionDTO question, String userId)
+    {
+        try{
+
+        }catch (Exception e){
+            log.error(e.getMessage());
+            return new Result("99", "Internal server error.", null);
+        }
+        String userName = this.getName(userId);
+        String uuid = UUidGenerator.getUUID32();
+        String questionContent = question.getQuestion_content();
+        String interviewId = question.getInterview_id();
+        String company = question.getCompany();
+        String tag = question.getTag();
+        Date date = new Date();
+        Timestamp time = new Timestamp(date.getTime());
+        KnowledgeQuestionBean oneQuestion = new KnowledgeQuestionBean();
+        oneQuestion.setKnowledgeId(uuid);
+        oneQuestion.setCompany(company);
+        oneQuestion.setTag(tag);
+        oneQuestion.setUserid(userId);
+        oneQuestion.setUploadTime(time);
+        oneQuestion.setInterviewId(interviewId);
+        oneQuestion.setUserName(userName);
+        oneQuestion.setQuestion_content(questionContent);
+        knowledgeQuestionMapper.insert(oneQuestion);
+        return new Result("00", "Success.", null);
     }
 
     public Result getKnowledgeById(String userId, String knowledgeId)

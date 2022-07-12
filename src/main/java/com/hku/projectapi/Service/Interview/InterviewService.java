@@ -8,7 +8,7 @@ import com.hku.projectapi.Beans.Interview.InterviewCreateDTO;
 import com.hku.projectapi.Beans.Interview.InterviewQueryDTO;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeCommentsBean;
-import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestion;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionDTO;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Beans.User.UserBean;
@@ -59,11 +59,11 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                 String title = interviewDTO.getTitle();
                 String description = interviewDTO.getDescription();
                 String company = interviewDTO.getCompany();
-                List<KnowledgeQuestion> questions = interviewDTO.getQuestions();
+                List<KnowledgeQuestionDTO> questions = interviewDTO.getQuestions();
                 Date date = new Date();
                 Timestamp uploadTime = new Timestamp(date.getTime());
                 // 循环插入相关问题
-                for (KnowledgeQuestion question : questions){
+                for (KnowledgeQuestionDTO question : questions){
                     QueryWrapper<KnowledgeQuestionBean> queryWrapper = new QueryWrapper<>();
                     KnowledgeQuestionBean oneQuestion = new KnowledgeQuestionBean();
                     // 设置Interview id
@@ -145,7 +145,6 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                 InterviewQueryDTO result = new InterviewQueryDTO();
                 //
                 one.setProviderName(this.getName(userId));
-                System.out.println(one.getProviderName() + " AAA");
                 one.setIsLiked(this.getIsLiked(userId, interviewId));
                 result.setInterview(one);
                 result.setQuestions(questions);

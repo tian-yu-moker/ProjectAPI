@@ -3,7 +3,7 @@ package com.hku.projectapi.Beans.Knowledge;
 import lombok.Data;
 
 @Data
-public class KnowledgeQuestion
+public class KnowledgeQuestionDTO
 {
     private String question_content;
     private String answer_list;
