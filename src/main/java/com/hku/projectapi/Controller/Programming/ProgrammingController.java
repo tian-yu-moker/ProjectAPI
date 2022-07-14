@@ -18,4 +18,11 @@ public class ProgrammingController
     {
         programmingService.create(programmingQuestions);
     }
+
+    // Upload a question to be judged
+    @PostMapping("upload")
+    public void upload()
+    {
+
+    }
 }

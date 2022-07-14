@@ -18,4 +18,10 @@ public class ProgrammingService
         QueryWrapper<ProgrammingQuestionBean> programWrapper = new QueryWrapper<>();
         programmingQuestionMapper.insert(programmingQuestions);
     }
+
+    // Do judge
+    public void upload()
+    {
+
+    }
 }
