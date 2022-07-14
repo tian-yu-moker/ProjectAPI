@@ -19,7 +19,13 @@ public class ProgrammingService
         programmingQuestionMapper.insert(programmingQuestions);
     }
 
-    // Do judge
+    /**
+     * Do judgement
+     * 1. Parse the uploaded code
+     * 2. Do compilation
+     * 3. Do execution (input test cases, get results and compare difference)
+     * 4. Determine the
+     */
     public void upload()
     {
 
