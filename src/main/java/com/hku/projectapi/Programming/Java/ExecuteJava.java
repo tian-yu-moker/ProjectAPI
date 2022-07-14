@@ -26,7 +26,13 @@ public class ExecuteJava
 
     public static void main(String args[])
     {
-//        System.out.println(WORK_DIR);
+        String filePath = System.getProperty("user.home") + "\\UserCodes\\" + "test";
+        System.out.println(filePath);
+        File file = new File(filePath);
+        if (!file.exists()) {
+            // 创建对应的目录
+            file.mkdirs();
+        }
     }
 
     public ExecuteJava()

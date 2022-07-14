@@ -1,5 +1,6 @@
 package com.hku.projectapi.Programming.Util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -28,8 +29,15 @@ public class FileUtil {
         return stringBuilder.toString();
     }
 
-    // 把 content 中的内容一次写入到 filePath 对应的文件中
-    public static void writeFile(String filePath, String content) {
+    // Save contents into the target path, if no, create one
+    public static void writeFile(String fileName, String content)
+    {
+        String filePath = System.getProperty("user.home") + "/UserCodes/" + fileName;
+        File file = new File(filePath);
+        if (!file.exists()) {
+            // 创建对应的目录
+            file.mkdirs();
+        }
         try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
             // 进行写文件操作
             fileOutputStream.write(content.getBytes());

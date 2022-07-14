@@ -26,12 +26,13 @@ public class JavaCompilers
         int compilationResult = compiler.run(null, null, null, filePath);
         if (compilationResult != 0) {
             String error = toString.toString();
-            System.out.println(error + " AAA");
+            System.setErr(oldStream);
             return new CompileResult(false, error);
         }
         else{
 //            String error = toString.toString();
 //            System.out.println(error);
+            System.setErr(oldStream);
             return new CompileResult(true, "");
         }
     }

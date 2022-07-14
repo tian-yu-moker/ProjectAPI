@@ -26,16 +26,24 @@ public class ProgrammingQuestionBean
     @TableField("level")
     private String level;
 
-    // Base, single, array, list(collection)
-    @TableField("test_case_type")
-    private Integer testCaseType;
-
     @TableField("test_cases")
     private String testCases;
 
     @TableField("prepare_code")
     private String prepareCode;
 
-    @TableField("post_code")
-    private String postCode;
+    @TableField("default_method_name")
+    private String defaultMethodName;
+
+    @TableField("return_type")
+    private Integer returnType;
+
+    @TableField("param_length")
+    private Integer paramLen;
+
+    @TableField("param_types")
+    private String paramTypes;
+
+    @TableField("test_num")
+    private Integer testNum;
 }

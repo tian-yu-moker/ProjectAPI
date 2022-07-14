@@ -16,7 +16,6 @@ public class ProgrammingController
     @PostMapping("create")
     public void create(@RequestBody ProgrammingQuestionBean programmingQuestions)
     {
-        System.out.println(programmingQuestions.getPostCode() + " AAA");
         programmingService.create(programmingQuestions);
     }
 }
