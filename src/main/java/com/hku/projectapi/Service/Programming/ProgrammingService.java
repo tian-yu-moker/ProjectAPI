@@ -7,6 +7,9 @@ import com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean;
 import com.hku.projectapi.Beans.Programming.ProgrammingUploadDTO;
 import com.hku.projectapi.Mapper.Programming.ProgrammingHistoryMapper;
 import com.hku.projectapi.Mapper.Programming.ProgrammingQuestionMapper;
+import com.hku.projectapi.Programming.ExecutionHandler;
+import com.hku.projectapi.Programming.JavaTaskThread;
+import com.hku.projectapi.Tools.UUidGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,17 +37,20 @@ public class ProgrammingService
      * 3. Do execution (input test cases, get results and compare difference)
      * 4. Determine the
      */
-    public void upload(ProgrammingUploadDTO uploadDTO, String token)
+    public void upload(ProgrammingUploadDTO uploadDTO, String userId)
     {
         int questionId = uploadDTO.getQuestionId();
         String uploadCode = uploadDTO.getCodes();
-        String language = uploadDTO.getLanguage();
+        String language = uploadDTO.getLang();
 
         QueryWrapper<ProgrammingQuestionBean> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("id", questionId);
         ProgrammingQuestionBean question = programmingQuestionMapper.selectList(queryWrapper).get(0);
-
-        System.out.println(question.getTestCases() + " AAA");
+        System.out.println(question.getId() + " AAA ");
+        // Do execution, start a thread
+        JavaTaskThread taskThread = new JavaTaskThread(question, uploadCode, UUidGenerator.getUUID32(), userId);
+        new Thread(taskThread).start();
+//        System.out.println(questionId + " AAA " + uploadCode);
     }
 
     public void writeHistory(ProgrammingHistoryBean historyBean)

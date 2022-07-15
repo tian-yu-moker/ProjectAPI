@@ -41,14 +41,15 @@ public class JavaExecutor
         URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{url});
         Class<?> cls = Class.forName(filePath, true, classLoader);
         Object instance = cls.newInstance();
-        Method method = cls.getDeclaredMethod("solution", int[].class);
+        System.out.println();
+        Method method = cls.getDeclaredMethod("twoSums", int[].class, int.class);
         method.setAccessible(true);
-        int result = (int) method.invoke(instance, new int[]{1, 2, 3});
-        System.out.println(result);
+        int[] result = (int[]) method.invoke(instance, new int[]{1,2, 3}, 4);
+        System.out.println(result[1] + " AAA");
     }
 
     public static void main(String args[]) throws Exception {
-        String path = "C:/Users/tianyu3/UserCodes/test";
+        String path = "C:\\Users\\tianyu3\\UserCodes\\1f9d8ef79924475caa8f19c124d707e9123@qq.com";
         JavaCompilers.doCompile(path + "/Solution.java");
         // File file = new File(path + "\\Solutions.class");
 ////        URI uri = file.toURI();
@@ -57,5 +58,7 @@ public class JavaExecutor
 //
         JavaExecutor.doExecute(url, "Solution");
 //        Class.forName("Solutions", true, new MyClassLoad());
+        int[] a = new int[]{1,2, 3};
+        System.out.println("file:///" + path + "/");
     }
 }

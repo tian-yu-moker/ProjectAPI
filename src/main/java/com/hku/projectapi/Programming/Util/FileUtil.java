@@ -32,13 +32,13 @@ public class FileUtil {
     // Save contents into the target path, if no, create one
     public static void writeFile(String uuid, String content)
     {
-        String filePath = System.getProperty("user.home") + "/UserCodes/" + uuid + "/Solution.java";
+        String filePath = System.getProperty("user.home") + "/UserCodes/" + uuid + "/";
         File file = new File(filePath);
         if (!file.exists()) {
             // 创建对应的目录
             file.mkdirs();
         }
-        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath + "Solution.java")) {
             // 进行写文件操作
             fileOutputStream.write(content.getBytes());
         } catch (IOException e) {

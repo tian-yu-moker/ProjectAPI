@@ -6,7 +6,7 @@ package com.hku.projectapi.Programming.Util;
 
 public class AddPreCodes
 {
-    private static final String JavaPrefix = "import java.util.*; import java.math.*; import com.hku.projectapi.Programming.Dependencies.*;";
+    private static final String JavaPrefix = "import java.util.*;\nimport java.math.*;\nimport com.hku.projectapi.Programming.Dependencies.*;\n";
 
     public static String addCode(String originCode, String language)
     {
