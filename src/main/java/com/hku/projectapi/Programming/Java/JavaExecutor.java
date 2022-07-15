@@ -42,15 +42,15 @@ public class JavaExecutor
         Class<?> cls = Class.forName(filePath, true, classLoader);
         Object instance = cls.newInstance();
         System.out.println();
-        Method method = cls.getDeclaredMethod("twoSums", int[].class, int.class);
+        Method method = cls.getDeclaredMethod("twoSum", int[].class, int.class);
         method.setAccessible(true);
         int[] result = (int[]) method.invoke(instance, new int[]{1,2, 3}, 4);
         System.out.println(result[1] + " AAA");
     }
 
     public static void main(String args[]) throws Exception {
-        String path = "C:\\Users\\tianyu3\\UserCodes\\1f9d8ef79924475caa8f19c124d707e9123@qq.com";
-        JavaCompilers.doCompile(path + "/Solution.java");
+        String path = "C:\\Users\\tianyu3\\UserCodes\\c6e8d027cfcf4318b021bfd0869a326d123@qq.com";
+//        JavaCompilers.doCompile(path + "/Solution.java");
         // File file = new File(path + "\\Solutions.class");
 ////        URI uri = file.toURI();
         URL url = new URL("file:///" + path + "/");
