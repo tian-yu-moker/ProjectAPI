@@ -4,14 +4,18 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.hku.projectapi.Programming.TestCaseBeans.GeneralBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("programming_questions")
+@TableName(value = "programming_questions", autoResultMap = true)
 public class ProgrammingQuestionBean
 {
     @TableId(type = IdType.AUTO)
@@ -26,8 +30,8 @@ public class ProgrammingQuestionBean
     @TableField("level")
     private String level;
 
-    @TableField("test_cases")
-    private String testCases;
+    @TableField(value = "test_cases", typeHandler = JacksonTypeHandler.class)
+    private List<GeneralBean> testCases;
 
     @TableField("prepare_code")
     private String prepareCode;

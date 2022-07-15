@@ -1,16 +1,24 @@
 package com.hku.projectapi.Service.Programming;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hku.projectapi.Beans.Programming.ProgrammingHistoryBean;
 import com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean;
+import com.hku.projectapi.Beans.Programming.ProgrammingUploadDTO;
+import com.hku.projectapi.Mapper.Programming.ProgrammingHistoryMapper;
 import com.hku.projectapi.Mapper.Programming.ProgrammingQuestionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProgrammingService
 {
     @Autowired
     private ProgrammingQuestionMapper programmingQuestionMapper;
+    @Autowired
+    private ProgrammingHistoryMapper programmingHistoryMapper;
 
     public void create(ProgrammingQuestionBean programmingQuestions)
     {
@@ -26,8 +34,21 @@ public class ProgrammingService
      * 3. Do execution (input test cases, get results and compare difference)
      * 4. Determine the
      */
-    public void upload()
+    public void upload(ProgrammingUploadDTO uploadDTO, String token)
     {
+        int questionId = uploadDTO.getQuestionId();
+        String uploadCode = uploadDTO.getCodes();
+        String language = uploadDTO.getLanguage();
 
+        QueryWrapper<ProgrammingQuestionBean> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("id", questionId);
+        ProgrammingQuestionBean question = programmingQuestionMapper.selectList(queryWrapper).get(0);
+
+        System.out.println(question.getTestCases() + " AAA");
+    }
+
+    public void writeHistory(ProgrammingHistoryBean historyBean)
+    {
+        programmingHistoryMapper.insert(historyBean);
     }
 }

@@ -30,9 +30,9 @@ public class FileUtil {
     }
 
     // Save contents into the target path, if no, create one
-    public static void writeFile(String fileName, String content)
+    public static void writeFile(String uuid, String content)
     {
-        String filePath = System.getProperty("user.home") + "/UserCodes/" + fileName;
+        String filePath = System.getProperty("user.home") + "/UserCodes/" + uuid + "/Solution.java";
         File file = new File(filePath);
         if (!file.exists()) {
             // 创建对应的目录

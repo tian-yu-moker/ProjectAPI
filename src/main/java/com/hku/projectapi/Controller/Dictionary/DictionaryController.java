@@ -40,4 +40,12 @@ public class DictionaryController
             return new Result("98", "Invalid token, please login.", null);
         }
     }
+
+    @GetMapping("test")
+    public void test()
+    {
+        QueryWrapper<CompanyBean> companyQueryWrapper = new QueryWrapper<>();
+        List<CompanyBean> companies = companyMapper.selectAll();
+        System.out.println(companies);
+    }
 }

@@ -1,12 +1,6 @@
 package com.hku.projectapi.Programming.Java;
 
-import com.hku.projectapi.Programming.Util.MyClassLoad;
-
-import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
 

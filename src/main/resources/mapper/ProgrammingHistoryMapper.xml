@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hku.projectapi.Mapper.Programming.ProgrammingHistoryMapper">
+<!--    <select id="selectAll" resultType="com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean">-->
+<!--        select * from company_dictionary-->
+<!--    </select>-->
+    <resultMap id="programQuestions" type="com.hku.projectapi.Beans.Programming.ProgrammingHistoryBean">
+        <result property="failedCases" column="fail_cases" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"></result>
+    </resultMap>
+</mapper>
