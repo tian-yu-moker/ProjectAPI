@@ -49,14 +49,15 @@ public class JavaExecutor
     }
 
     public static void main(String args[]) throws Exception {
+        System.gc();
         String path = "C:\\Users\\tianyu3\\UserCodes\\c6e8d027cfcf4318b021bfd0869a326d123@qq.com";
-//        JavaCompilers.doCompile(path + "/Solution.java");
+        JavaCompilers.doCompile(path + "/Solutions.java");
         // File file = new File(path + "\\Solutions.class");
 ////        URI uri = file.toURI();
         URL url = new URL("file:///" + path + "/");
 //        System.out.println("file:///" + path + "/");
 //
-        JavaExecutor.doExecute(url, "Solution");
+        JavaExecutor.doExecute(url, "Solutions");
 //        Class.forName("Solutions", true, new MyClassLoad());
         int[] a = new int[]{1,2, 3};
         System.out.println("file:///" + path + "/");
