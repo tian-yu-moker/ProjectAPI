@@ -1,5 +1,6 @@
 package com.hku.projectapi.Controller.Programming;
 
+import com.hku.projectapi.Beans.PageRequestDTO;
 import com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean;
 import com.hku.projectapi.Beans.Programming.ProgrammingUploadDTO;
 import com.hku.projectapi.Beans.Result;
@@ -23,15 +24,35 @@ public class ProgrammingController
         programmingService.create(programmingQuestions);
     }
 
+    // Get the question list by page
+    @PostMapping("get_questions")
+    public Result getQuestionList(@RequestHeader String token, @RequestBody PageRequestDTO requestDTO)
+    {
+        String userId = "";
+        String updatedToken = "";
+        try {
+            userId = JwtUtil.getUserId(token);
+            updatedToken = JwtUtil.updateToken(token);
+        }catch (Exception e){
+            return new Result("97", "Invalid token, please login.", null);
+        }
+        try {
+            Result result = programmingService.getQuestionsByPage(requestDTO, userId);
+            result.setToken(updatedToken);
+            return result;
+        }catch (Exception e){
+            return new Result("99", "Internal server error, with error msg <" + e.getMessage() + ">", updatedToken);
+        }
+    }
+
     // Upload a question to be judged
     @PostMapping("uploads")
     public Result upload(@RequestBody ProgrammingUploadDTO uploadDTO, @RequestHeader String token)
     {
-        String userId = "";
         try {
-            userId = JwtUtil.getUserId(token);
+            String userId = JwtUtil.getUserId(token);
             token = JwtUtil.updateToken(token);
-            Result result = programmingService.upload(uploadDTO, userId);
+            Result result = programmingService.judgement(uploadDTO, userId);
             result.setToken(token);
             return result;
         }catch (Exception e){
@@ -42,11 +63,10 @@ public class ProgrammingController
     @PostMapping("judgement")
     public Result doJudgement(@RequestBody ProgrammingUploadDTO uploadDTO, @RequestHeader String token)
     {
-        String userId = "";
-        try {
-            userId = JwtUtil.getUserId(token);
+        try{
+            String userId = JwtUtil.getUserId(token);
             token = JwtUtil.updateToken(token);
-            Result result = programmingService.upload(uploadDTO, userId);
+            Result result = programmingService.judgement(uploadDTO, userId);
             result.setToken(token);
             return result;
         }catch (Exception e) {

@@ -1986,3 +1986,77 @@ Type: GET
     }
 }
 ```
+### 7.4 Load programming questions
+URL: /programming_service/get_questions  
+Type: POST  
+Load by page, please feed the "preCode" tag into your front-end code editor.  
+isPassed: 0: not started yet, 1: pass, 2: tried, but not passed.  
+```
+Request Body:
+{
+    "pageFirst":1,
+    "pageSizeFirst": 50,
+    "pageSecond": 1,
+    "pageSizeSecond": 30,
+    "pageThird": 1,
+    "pageSizeThird": 10,
+    "type": 0,
+    "tag1": 0,
+    "tag2": 0
+}
+```
+```
+Response Body:
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "queryInfo": {
+            "currentPage": 1,
+            "pageSize": 50,
+            "totalRecord": 1
+        },
+        "entities": [
+            {
+                "id": 1,
+                "title": "Two sum",
+                "description": "Given an integer array nums and an integer target value target, please find the two integers with and as the target value target in the array and return their array subscripts. \nYou can assume that each input will correspond to only one answer. However, the same element in the array cannot be repeated in the answer. \nYou can return the answers in any order.",
+                "level": "Easy",
+                "testCases": [
+                    {
+                        "param1": [
+                            2,
+                            7,
+                            11,
+                            15
+                        ],
+                        "param2": 9,
+                        "param3": null,
+                        "param4": null,
+                        "param5": null
+                    },
+                    {
+                        "param1": [
+                            3,
+                            2,
+                            4
+                        ],
+                        "param2": 6,
+                        "param3": null,
+                        "param4": null,
+                        "param5": null
+                    }
+                ],
+                "prepareCode": "class Solution {\npublic int[] twoSum(int[] nums, int target) \n{\n}\n}",
+                "defaultMethodName": "twoSum",
+                "returnType": 1,
+                "paramLen": 2,
+                "paramTypes": "2;1",
+                "testNum": 3,
+                "isPassed": 1
+            }
+        ]
+    }
+}
+```

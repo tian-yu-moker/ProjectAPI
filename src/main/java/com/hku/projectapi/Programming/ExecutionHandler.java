@@ -31,7 +31,6 @@ public class ExecutionHandler
 //                    result.setFailedCases(judgeResult.getFailedCase());
                     result.setFailedCases(cases);
                     result.setMessage(judgeResult.getMsg());
-                    System.out.println(result.getFailedCases() + " CASES");
                     break;
                 case 2:
                     System.out.println(2 + " AAA");

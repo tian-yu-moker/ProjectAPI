@@ -50,4 +50,7 @@ public class ProgrammingQuestionBean
 
     @TableField("test_num")
     private Integer testNum;
+
+    @TableField(exist = false)
+    private int isPassed;
 }
