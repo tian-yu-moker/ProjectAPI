@@ -38,7 +38,7 @@ public class FileUtil {
             // 创建对应的目录
             file.mkdirs();
         }
-        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath + "Solution.java")) {
+        try (FileOutputStream fileOutputStream = new FileOutputStream(filePath + "a" + uuid + ".java")) {
             // 进行写文件操作
             fileOutputStream.write(content.getBytes());
         } catch (IOException e) {

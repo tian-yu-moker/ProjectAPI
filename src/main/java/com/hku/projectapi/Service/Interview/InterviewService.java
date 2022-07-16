@@ -211,7 +211,13 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
 //        }
     }
 
-    // Get user name by user id.
+    //
+    public void loadByPage()
+    {
+
+    }
+
+    // Get username by user id.
     public String getName(String id)
     {
         QueryWrapper<UserBean> query = new QueryWrapper<>();

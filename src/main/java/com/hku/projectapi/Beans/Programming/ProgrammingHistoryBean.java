@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("programming_history")
+@TableName(value = "programming_history", autoResultMap = true)
 public class ProgrammingHistoryBean
 {
     @TableField("uuid")
@@ -28,8 +28,8 @@ public class ProgrammingHistoryBean
     @TableField("questionId")
     private Integer questionId;
 
-    @TableField("upload_content")
-    private String uploadContent;
+    @TableField("upload_code")
+    private String uploadedCode;
 
     @TableField("upload_time")
     private Timestamp uploadTime;
@@ -43,6 +43,9 @@ public class ProgrammingHistoryBean
     @TableField("status")
     private String status;
 
-    @TableField(value = "fail_cases", typeHandler = JacksonTypeHandler.class)
+    @TableField(value = "fail_case", typeHandler = JacksonTypeHandler.class)
     private List<GeneralBean> failedCases;
+
+    @TableField("message")
+    private String message;
 }

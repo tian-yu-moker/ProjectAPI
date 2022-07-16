@@ -45,19 +45,20 @@ public class JavaExecutor
         Method method = cls.getDeclaredMethod("twoSum", int[].class, int.class);
         method.setAccessible(true);
         int[] result = (int[]) method.invoke(instance, new int[]{1,2, 3}, 4);
+
         System.out.println(result[1] + " AAA");
     }
 
     public static void main(String args[]) throws Exception {
         System.gc();
-        String path = "C:\\Users\\tianyu3\\UserCodes\\c6e8d027cfcf4318b021bfd0869a326d123@qq.com";
-        JavaCompilers.doCompile(path + "/Solutions.java");
+        String path = "C:\\Users\\Tian Yu\\UserCodes\\5c1dae37561a4b57b73f8f6a5ed1ea62123@qq.com";
+        JavaCompilers.doCompile(path + "/Solutions2.java");
         // File file = new File(path + "\\Solutions.class");
 ////        URI uri = file.toURI();
         URL url = new URL("file:///" + path + "/");
 //        System.out.println("file:///" + path + "/");
 //
-        JavaExecutor.doExecute(url, "Solutions");
+        JavaExecutor.doExecute(url, "Solutions2");
 //        Class.forName("Solutions", true, new MyClassLoad());
         int[] a = new int[]{1,2, 3};
         System.out.println("file:///" + path + "/");

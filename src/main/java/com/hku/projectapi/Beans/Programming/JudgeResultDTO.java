@@ -15,10 +15,10 @@ public class JudgeResultDTO
     private String questionId;
     // Accept, Reject, Error: 0, 1, 2
     private int status;
-    // Standard output bu user
+    // Standard output by user
     private String stdout;
     // The error message, if any
     private String errorMsg;
     // The error test cases, if any
-    private List<GeneralBean> errorTestCase;
+    private GeneralBean errorTestCase;
 }

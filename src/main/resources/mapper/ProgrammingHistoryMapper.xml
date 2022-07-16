@@ -4,7 +4,7 @@
 <!--    <select id="selectAll" resultType="com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean">-->
 <!--        select * from company_dictionary-->
 <!--    </select>-->
-    <resultMap id="programQuestions" type="com.hku.projectapi.Beans.Programming.ProgrammingHistoryBean">
-        <result property="failedCases" column="fail_cases" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"></result>
+    <resultMap id="programQuestionsHistory" type="com.hku.projectapi.Beans.Programming.ProgrammingHistoryBean">
+        <result property="failedCase" column="fail_case" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"></result>
     </resultMap>
 </mapper>

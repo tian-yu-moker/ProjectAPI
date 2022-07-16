@@ -118,6 +118,12 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
         }
     }
 
+    // 创建questions
+    public void create()
+    {
+
+    }
+
     // Determine whether the question is in the collection
     public int getIsLike(String userId, String knowledgeId)
     {

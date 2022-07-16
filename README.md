@@ -23,6 +23,7 @@ Ty19980611
 |11| Cancel collection successfully. | Collection like.|
 |12| No such record.| Collection like. (add) |
 |13| No such interview, please check.|Interview query.|
+|14| No such record.|Online judgement. (Get history by id)|
 ## 0.3 Token
 Put into request header, name is token, value is the String obtained when login.  
 Error response code.  
@@ -1828,5 +1829,160 @@ Type: GET
         }
     }
 }
+```
+## 8. Online Judgement
+### 7.1 Do judgement
+URL: /programming_service/judgement  
+Type: POST  
+```
+Request Body:
+{
+    "questionId":1,
+    "codes": "public class Solution{\npublic int[] twoSum(int[] nums, int target) {\nMap<Integer, Integer> hashtable = new HashMap<Integer, Integer>();\nfor (int i = 0; i < nums.length; ++i) {\nif (hashtable.containsKey(target - nums[i])) {\nreturn new int[]{hashtable.get(target - nums[i]), i};\n}hashtable.put(nums[i], i+1);}\nreturn new int[0];}\n}",
+    "lang": "Java"
+}
+```
+Response:  
+```
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "uuid": "faa9826167174ad69d115cfdc8270b0f",
+        "waitMinutesToRequest": 2000
+    }
+}
 
+uuid: the history id used for following result query.
+waitMinutesToRequest: wait for how long, in ms.
+```
+### 7.2 Query history by id
+URL: /programming_service/one_history?uuid=2e8ba9ad509345fe9c263479e0dc6488  
+Type: GET  
+```
+{
+    "code": "00",
+    "description": "Success.",
+    "token": null,
+    "data": {
+        "uuid": "2e8ba9ad509345fe9c263479e0dc6488",
+        "userId": "123@qq.com",
+        "questionId": 1,
+        "uploadedCode": "public class Solution{\npublic int[] twoSum(int[] nums, int target) {\nMap<Integer, Integer> hashtable = new HashMap<Integer, Integer>();\nfor (int i = 0; i < nums.length; ++i) {\nif (hashtable.containsKey(target - nums[i])) {\nreturn new int[]{hashtable.get(target - nums[i]), i};\n}hashtable.put(nums[i], i+1);}\nreturn new int[0];}\n}",
+        "uploadTime": "2022-07-16T10:09:29.000+00:00",
+        "stdout": null,
+        "stderr": null,
+        "status": "Reject",
+        "failedCases": [
+            {
+                "param1": [
+                    2,
+                    7,
+                    11,
+                    15
+                ],
+                "param2": 9,
+                "param3": null,
+                "param4": null,
+                "param5": null
+            }
+        ],
+        "message": "Test case not passed."
+    }
+}
+```
+### 7.3 Get all the programming history of the user
+URL: programming_service/all_history?questionId=1  
+programming_service/all_history  
+Question id is optional, if not added, return all the history of questions for the user.  
+Type: GET  
+```
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "userId": "123@qq.com",
+        "userName": "Ace Coder",
+        "questionId": 1,
+        "historyRecord": [
+            {
+                "uuid": "2e8ba9ad509345fe9c263479e0dc6488",
+                "userId": "123@qq.com",
+                "questionId": 1,
+                "uploadedCode": "public class Solution{\npublic int[] twoSum(int[] nums, int target) {\nMap<Integer, Integer> hashtable = new HashMap<Integer, Integer>();\nfor (int i = 0; i < nums.length; ++i) {\nif (hashtable.containsKey(target - nums[i])) {\nreturn new int[]{hashtable.get(target - nums[i]), i};\n}hashtable.put(nums[i], i+1);}\nreturn new int[0];}\n}",
+                "uploadTime": "2022-07-16T10:09:29.000+00:00",
+                "stdout": null,
+                "stderr": null,
+                "status": "Reject",
+                "failedCases": [
+                    {
+                        "param1": [
+                            2,
+                            7,
+                            11,
+                            15
+                        ],
+                        "param2": 9,
+                        "param3": null,
+                        "param4": null,
+                        "param5": null
+                    }
+                ],
+                "message": "Test case not passed."
+            },
+            {
+                "uuid": "c91e81f6e5d64ca59bf044ed29b3635b",
+                "userId": "123@qq.com",
+                "questionId": 1,
+                "uploadedCode": "public class Solution{\npublic int[] twoSum(int[] nums, int target) {\nMap<Integer, Integer> hashtable = new HashMap<Integer, Integer>();\nfor (int i = 0; i < nums.length; ++i) {\nif (hashtable.containsKey(target - nums[i])) {\nreturn new int[]{hashtable.get(target - nums[i]), i};\n}hashtable.put(nums[i], i+1);}\nreturn new int[0];}\n}",
+                "uploadTime": "2022-07-16T10:02:37.000+00:00",
+                "stdout": null,
+                "stderr": null,
+                "status": "Reject",
+                "failedCases": [
+                    {
+                        "param1": [
+                            2,
+                            7,
+                            11,
+                            15
+                        ],
+                        "param2": 9,
+                        "param3": null,
+                        "param4": null,
+                        "param5": null
+                    }
+                ],
+                "message": "Test case not passed."
+            },
+            {
+                "uuid": "faa9826167174ad69d115cfdc8270b0f",
+                "userId": "123@qq.com",
+                "questionId": 1,
+                "uploadedCode": "public class Solution{\npublic int[] twoSum(int[] nums, int target) {\nMap<Integer, Integer> hashtable = new HashMap<Integer, Integer>();\nfor (int i = 0; i < nums.length; ++i) {\nif (hashtable.containsKey(target - nums[i])) {\nreturn new int[]{hashtable.get(target - nums[i]), i};\n}hashtable.put(nums[i], i+1);}\nreturn new int[0];}\n}",
+                "uploadTime": "2022-07-16T10:26:57.000+00:00",
+                "stdout": null,
+                "stderr": null,
+                "status": "Reject",
+                "failedCases": [
+                    {
+                        "param1": [
+                            2,
+                            7,
+                            11,
+                            15
+                        ],
+                        "param2": 9,
+                        "param3": null,
+                        "param4": null,
+                        "param5": null
+                    }
+                ],
+                "message": "Test case not passed."
+            }
+        ]
+    }
+}
 ```
