@@ -6,4 +6,9 @@ public class StringReverseAnswer
     {
         return new StringBuffer(source).reverse().toString();
     }
+
+//    public static void main(String[] args)
+//    {
+//        System.out.println(new StringReverseAnswer().reverseString("Hello"));
+//    }
 }

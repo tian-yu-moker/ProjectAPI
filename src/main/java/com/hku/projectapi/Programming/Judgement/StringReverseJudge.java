@@ -39,10 +39,17 @@ public class StringReverseJudge
 
             for(GeneralBean cases:testCases){
                 String param1 = (String) cases.getParam1();
-
+                String resTruth = reverseStringJudge.reverseString(param1);
+                String resUser = (String) method.invoke(instance, param1);
+                if(!resTruth.equals(resUser)){
+                    GeneralBean failedCase = new GeneralBean();
+                    failedCase.setParam1(cases.getParam1());
+                    return new JudgeResult("Reject", cases, ProgrammingMsg.CASE_NOT_PASS);
+                }
             }
-
-            return new JudgeResult(ProgrammingMsg.RUNTIME_ERROR, null, "");
+            JudgeResult result = new JudgeResult();
+            result.setStatus("Accept");
+            return result;
         } catch (Exception e){
             return new JudgeResult(ProgrammingMsg.RUNTIME_ERROR, null, e.getMessage());
         }

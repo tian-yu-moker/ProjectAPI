@@ -36,11 +36,16 @@ public class ProgrammingService
     @Autowired
     private ProgrammingIsPassedMapper programmingIsPassedMapper;
 
-    public void create(ProgrammingQuestionBean programmingQuestions)
+    public Result create(ProgrammingQuestionBean programmingQuestions)
     {
         //
-        QueryWrapper<ProgrammingQuestionBean> programWrapper = new QueryWrapper<>();
-        programmingQuestionMapper.insert(programmingQuestions);
+//        QueryWrapper<ProgrammingQuestionBean> programWrapper = new QueryWrapper<>();
+        try {
+            programmingQuestionMapper.insert(programmingQuestions);
+            return new Result("00", "Success.", null);
+        }catch (Exception e){
+            return new Result("99", "Internal server error, with error <" + e.getMessage() + ">", null);
+        }
     }
 
     public void test()
@@ -122,6 +127,7 @@ public class ProgrammingService
                 @Override
                 public void run() {
                     ProgrammingHistoryBean history = new ProgrammingHistoryBean();
+                    history.setUuid(uuid);
                     try {
                         Thread.sleep(setWait(questionId));
                         // Write to the database.
@@ -129,47 +135,55 @@ public class ProgrammingService
                         if(curStatus.equals("Not finished.")){
                             history.setStatus(ProgrammingMsg.TIME_EXCEED);
                             history.setUserId(userId);
-                            history.setUuid(uuid);
                             history.setQuestionId(questionId);
                             history.setUploadedCode(uploadCode);
                             history.setUploadTime(uploadTime);
                             // Kill the running thread
                             executeThread.interrupt();
                         }
-                        else
+                        else if(curStatus.equals("Reject"))
                         {
                             history = taskThread.getProgrammingHistoryBean();
+                            List<GeneralBean> failedCases = history.getFailedCases();
+                            List<GeneralBean> actual = new ArrayList<>();
+                            for(Object cases:failedCases){
+                                String obj = JSON.toJSONString(cases);
+                                GeneralBean one = JSONObject.parseObject(obj, GeneralBean.class);
+                                actual.add(one);
+                            }
+                            history.setFailedCases(actual);
                         }
-//                    System.out.println();
+                        else{
+                            history = taskThread.getProgrammingHistoryBean();
+                        }
                         history.setUuid(uuid);
-                        List<GeneralBean> failedCases = history.getFailedCases();
-                        List<GeneralBean> actual = new ArrayList<>();
-                        for(Object cases:failedCases){
-                            String obj = JSON.toJSONString(cases);
-                            GeneralBean one = JSONObject.parseObject(obj, GeneralBean.class);
-                            actual.add(one);
-                        }
-                        history.setFailedCases(actual);
+                        // Set history
                         ProgramIsPassed isPassed = new ProgramIsPassed();
                         isPassed.setUserId(userId);
                         isPassed.setQuestionId(questionId);
                         QueryWrapper<ProgramIsPassed> isPassedQueryWrapper = new QueryWrapper<>();
                         isPassedQueryWrapper.eq("userId", userId).eq("questionId", questionId);
                         List<ProgramIsPassed> res = programmingIsPassedMapper.selectList(isPassedQueryWrapper);
+                        System.out.println(res);
                         if(res.size() == 0){
                             if(history.getStatus().equals("Accept")){
                                 isPassed.setIsPassed(1);
                             }else {
                                 isPassed.setIsPassed(2);
                             }
+                            System.out.println("RERERE");
                             programmingIsPassedMapper.insert(isPassed);
                         }else {
+                            System.out.println("!!!");
                             if(res.get(0).getIsPassed() != 1 && history.getStatus().equals("Accept")){
                                 isPassed.setIsPassed(1);
                                 programmingIsPassedMapper.update(isPassed, isPassedQueryWrapper);
+                            }else{
+                                isPassed.setIsPassed(2);
+                                programmingIsPassedMapper.update(isPassed, isPassedQueryWrapper);
                             }
-                        }
 
+                        }
                         programmingHistoryMapper.insert(history);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -197,6 +211,9 @@ public class ProgrammingService
         if(id == 1){
             return 2000;
         }
+        else if(id == 2){
+            return 1500;
+    }
         return time;
     }
 

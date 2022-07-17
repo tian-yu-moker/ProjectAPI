@@ -3,6 +3,7 @@ package com.hku.projectapi.Programming;
 import com.hku.projectapi.Beans.Programming.JudgeResult;
 import com.hku.projectapi.Beans.Programming.ProgrammingHistoryBean;
 import com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean;
+import com.hku.projectapi.Programming.Judgement.StringReverseJudge;
 import com.hku.projectapi.Programming.Judgement.TwoSumJudge;
 import com.hku.projectapi.Programming.TestCaseBeans.GeneralBean;
 import lombok.extern.slf4j.Slf4j;
@@ -23,17 +24,26 @@ public class ExecutionHandler
         {
             switch (questionId){
                 case 1:
-                    TwoSumJudge judge = new TwoSumJudge(programInfo, filePath, "a" + uuid);
-                    JudgeResult judgeResult = judge.doJudge();
-                    result.setStatus(judgeResult.getStatus());
+                    TwoSumJudge judge1 = new TwoSumJudge(programInfo, filePath, "a" + uuid);
+                    JudgeResult judgeResult1 = judge1.doJudge();
+                    result.setStatus(judgeResult1.getStatus());
                     result.setQuestionId(1);
-                    cases.add(judgeResult.getFailedCase());
+                    cases.add(judgeResult1.getFailedCase());
 //                    result.setFailedCases(judgeResult.getFailedCase());
                     result.setFailedCases(cases);
-                    result.setMessage(judgeResult.getMsg());
+                    result.setMessage(judgeResult1.getMsg());
                     break;
                 case 2:
+                    StringReverseJudge judge2 = new StringReverseJudge(programInfo, filePath, "a" + uuid);
+                    JudgeResult judgeResult2 = judge2.doJudge();
+                    result.setStatus(judgeResult2.getStatus());
+                    result.setQuestionId(1);
+                    cases.add(judgeResult2.getFailedCase());
+//                    result.setFailedCases(judgeResult.getFailedCase());
+                    result.setFailedCases(cases);
+                    result.setMessage(judgeResult2.getMsg());
                     System.out.println(2 + " AAA");
+                    break;
                 case 3:
                     System.out.println(3 + " AAA");
                     break;

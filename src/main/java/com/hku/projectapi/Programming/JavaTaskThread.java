@@ -73,6 +73,7 @@ public class JavaTaskThread implements Runnable
         try{
             // Compile the file
             CompileResult compileResult = JavaCompilers.doCompile(this.codeSavedPath);
+//            System.out.println(compileResult.isSuccess() + "Compile...");
             if(compileResult.isSuccess()){
                 // Do execution
                 this.programmingHistoryBean = ExecutionHandler.doExecution(this.programInfo, "Java", this.purePath, this.uuid);
@@ -80,6 +81,7 @@ public class JavaTaskThread implements Runnable
                 this.programmingHistoryBean.setUploadTime(uploadTime);
                 this.programmingHistoryBean.setUserId(this.userId);
             }else {
+//                System.out.println("AAAAAAAAAAAAAAAAAAAAAAA");
                 this.programmingHistoryBean = this.compileFailedHandler(compileResult);
             }
             return;
@@ -99,6 +101,7 @@ public class JavaTaskThread implements Runnable
         history.setUploadedCode(this.pureCode);
         history.setUuid(this.uuid);
         history.setUploadTime(this.uploadTime);
+        history.setMessage(ProgrammingMsg.COMPILE_ERROR);
         return history;
     }
 

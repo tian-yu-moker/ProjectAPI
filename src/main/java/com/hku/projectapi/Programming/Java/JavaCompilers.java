@@ -62,6 +62,6 @@ public class JavaCompilers
     // Test compile
     public static void main(String[] args)
     {
-        JavaCompilers.compileJava("C:\\Users\\tianyu3\\UserCodes\\22f1eec7c61a4cf69a48d4aec508366b\\Solution.java");
+        JavaCompilers.compileJava("C:\\Users\\Tian Yu\\UserCodes\\33bed5eab0414800b3fd18ddb7290ab7\\33bed5eab0414800b3fd18ddb7290ab7.java");
     }
 }

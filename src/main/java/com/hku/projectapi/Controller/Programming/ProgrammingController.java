@@ -18,10 +18,15 @@ public class ProgrammingController
     private ProgrammingService programmingService;
 
     @PostMapping("create")
-    public void create(@RequestBody ProgrammingQuestionBean programmingQuestions)
+    public Result create(@RequestHeader String token, @RequestBody ProgrammingQuestionBean programmingQuestions)
     {
-        System.out.println("12133");
-        programmingService.create(programmingQuestions);
+        try {
+            Result res = programmingService.create(programmingQuestions);
+            res.setToken(JwtUtil.updateToken(token));
+            return res;
+        }catch (Exception e){
+            return new Result("97", "Invalid token, please login.", null);
+        }
     }
 
     // Get the question list by page
