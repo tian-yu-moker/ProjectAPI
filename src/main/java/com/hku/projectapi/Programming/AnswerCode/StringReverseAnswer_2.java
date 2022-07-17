@@ -1,6 +1,6 @@
 package com.hku.projectapi.Programming.AnswerCode;
 
-public class StringReverseAnswer
+public class StringReverseAnswer_2
 {
     public String reverseString(String source)
     {

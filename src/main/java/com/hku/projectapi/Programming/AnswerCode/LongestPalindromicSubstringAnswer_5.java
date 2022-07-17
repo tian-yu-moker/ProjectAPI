@@ -1,6 +1,6 @@
 package com.hku.projectapi.Programming.AnswerCode;
 
-public class LongestPalindromicSubstringAnswer
+public class LongestPalindromicSubstringAnswer_5
 {
     public String longestPalindrome(String s) {
         int len = s.length();

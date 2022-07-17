@@ -3,10 +3,8 @@ package com.hku.projectapi.Programming;
 import com.hku.projectapi.Beans.Programming.JudgeResult;
 import com.hku.projectapi.Beans.Programming.ProgrammingHistoryBean;
 import com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean;
-import com.hku.projectapi.Programming.AnswerCode.MedianOfTwoSortedArraysAnswer;
 import com.hku.projectapi.Programming.Judgement.*;
 import com.hku.projectapi.Programming.TestCaseBeans.GeneralBean;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +23,7 @@ public class ExecutionHandler
         {
             switch (questionId){
                 case 1:
-                    TwoSumJudge judge1 = new TwoSumJudge(programInfo, filePath, "a" + uuid);
+                    TwoSumJudge_1 judge1 = new TwoSumJudge_1(programInfo, filePath, "a" + uuid);
                     JudgeResult judgeResult1 = judge1.doJudge();
                     result.setStatus(judgeResult1.getStatus());
                     result.setQuestionId(1);
@@ -34,7 +32,7 @@ public class ExecutionHandler
                     result.setMessage(judgeResult1.getMsg());
                     break;
                 case 2:
-                    StringReverseJudge judge2 = new StringReverseJudge(programInfo, filePath, "a" + uuid);
+                    StringReverseJudge_2 judge2 = new StringReverseJudge_2(programInfo, filePath, "a" + uuid);
                     JudgeResult judgeResult2 = judge2.doJudge();
                     result.setStatus(judgeResult2.getStatus());
                     result.setQuestionId(questionId);
@@ -43,7 +41,7 @@ public class ExecutionHandler
                     result.setMessage(judgeResult2.getMsg());
                     break;
                 case 3:
-                    LengthOfNoRepeatSubstringJudge judge3 = new LengthOfNoRepeatSubstringJudge(programInfo, filePath, className);
+                    LengthOfNoRepeatSubstringJudge_3 judge3 = new LengthOfNoRepeatSubstringJudge_3(programInfo, filePath, className);
                     JudgeResult judgeResult3 = judge3.doJudge();
                     result.setStatus(judgeResult3.getStatus());
                     result.setQuestionId(questionId);
@@ -52,7 +50,7 @@ public class ExecutionHandler
                     result.setMessage(judgeResult3.getMsg());
                     break;
                 case 4:
-                    MedianOfTwoSortedArrayJudge judge4 = new MedianOfTwoSortedArrayJudge(programInfo, filePath, className);
+                    MedianOfTwoSortedArrayJudge_4 judge4 = new MedianOfTwoSortedArrayJudge_4(programInfo, filePath, className);
                     JudgeResult judgeResult4 = judge4.doJudge();
                     result.setStatus(judgeResult4.getStatus());
                     result.setQuestionId(questionId);
@@ -61,13 +59,22 @@ public class ExecutionHandler
                     result.setMessage(judgeResult4.getMsg());
                     break;
                 case 5:
-                    LongestPalindromicSubstringJudge judge5 = new LongestPalindromicSubstringJudge(programInfo, filePath, className);
+                    LongestPalindromicSubstringJudge_5 judge5 = new LongestPalindromicSubstringJudge_5(programInfo, filePath, className);
                     JudgeResult judgeResult5 = judge5.doJudge();
                     result.setStatus(judgeResult5.getStatus());
                     result.setQuestionId(questionId);
                     cases.add(judgeResult5.getFailedCase());
                     result.setFailedCases(cases);
                     result.setMessage(judgeResult5.getMsg());
+                    break;
+                case 6:
+                    Judgement_6 judge6 = new Judgement_6(programInfo, filePath, className);
+                    JudgeResult judgeResult6 = judge6.doJudge();
+                    result.setStatus(judgeResult6.getStatus());
+                    result.setQuestionId(questionId);
+                    cases.add(judgeResult6.getFailedCase());
+                    result.setFailedCases(cases);
+                    result.setMessage(judgeResult6.getMsg());
                     break;
             }
         }

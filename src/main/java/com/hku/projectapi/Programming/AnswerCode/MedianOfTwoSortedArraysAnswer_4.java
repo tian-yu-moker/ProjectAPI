@@ -1,6 +1,6 @@
 package com.hku.projectapi.Programming.AnswerCode;
 
-public class MedianOfTwoSortedArraysAnswer
+public class MedianOfTwoSortedArraysAnswer_4
 {
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int n = nums1.length;

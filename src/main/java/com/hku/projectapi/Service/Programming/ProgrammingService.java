@@ -65,12 +65,11 @@ public class ProgrammingService
             questionWrapper.orderByAsc("id");
             Page<ProgrammingQuestionBean> resPage = programmingQuestionMapper.selectPage(new Page<>(curPage, pageSize), questionWrapper);
             List<ProgrammingQuestionBean> records = resPage.getRecords();
-            QueryWrapper<ProgramIsPassed> isPassedQueryWrapper = new QueryWrapper<>();
             for(ProgrammingQuestionBean beans:records){
-                isPassedQueryWrapper.eq("userId", userId);
-                isPassedQueryWrapper.eq("questionId", beans.getId());
+                QueryWrapper<ProgramIsPassed> isPassedQueryWrapper = new QueryWrapper<>();
+                isPassedQueryWrapper.eq("userId", userId).eq("questionId", beans.getId());
                 List<ProgramIsPassed> res = programmingIsPassedMapper.selectList(isPassedQueryWrapper);
-                if(res.size() != 0){
+                if(res.size() == 1){
                     beans.setIsPassed(res.get(0).getIsPassed());
                 }else {
                     beans.setIsPassed(0);
@@ -174,7 +173,6 @@ public class ProgrammingService
                             System.out.println("RERERE");
                             programmingIsPassedMapper.insert(isPassed);
                         }else {
-                            System.out.println("!!!");
                             if(res.get(0).getIsPassed() != 1 && history.getStatus().equals("Accept")){
                                 isPassed.setIsPassed(1);
                                 programmingIsPassedMapper.update(isPassed, isPassedQueryWrapper);
@@ -219,6 +217,8 @@ public class ProgrammingService
         }else if(id == 4){
             return 2000;
         }else if(id == 5){
+            return 2000;
+        }else if(id == 6){
             return 2000;
         }
         return time;
