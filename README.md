@@ -2060,3 +2060,34 @@ Response Body:
     }
 }
 ```
+### 7.5 Create a programming question
+URL: /programming_service/create  
+Type: POST  
+```
+Request Body:
+{
+    "description": "Given a string s, find the length of the longest substring without repeating characters. \nExample 1:\n Input: s = \"abcabcbb\"\nOutput: 3\nExplanation: The answer is \"abc\", with the length of 3.\nExample 2:\nInput: s = \"bbbbb\"\nOutput: 1\nExplanation: The answer is \"b\", with the length of 1.",
+    "level": "Medium",
+    "title": "Longest Substring Without Repeating Characters",
+    "prepareCode": "public class Solution{public int lengthOfLongestSubstring(String s) {}}",
+    "testCases": [
+        {
+            "param1": "abcabcbb"
+        },
+        {
+            "param1": "bbbbb"
+        },
+        {
+            "param1": "pwwkew"
+        },
+        {
+            "param1": "abcde"
+        },
+        {
+            "param1": "aaqqweas"
+        }
+    ]
+}
+param could be param1~param5
+preCode: the prepared code that is shown on the front-end.
+```
