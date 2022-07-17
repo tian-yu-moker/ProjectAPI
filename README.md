@@ -1,21 +1,19 @@
 # ProjectAPI
 ## 0.1 Overview
-URL: http://ty19980611
-Ty19980611
-:8080  
+URL: http://120.77.98.16:8080  
 ## 0.2 Status Code
 |   Code   |      Description      |      API      |
 |----------|:-------------:|:-------------:|
-| 99 | Update Internal server error. |All|
+|99| Update Internal server error. |All|
 |98| No token, need to login first. |All|
 |97| Token invalid, permission denied. |All|
-| 00 |  Success. |All|
-| 01 |    Incorrect password.   |Login|
-| 02 | No such account, need to register one first. |Login|
-| 03 | Account already exists. |Register|
-| 04 | Something wrong, please check the email address. (send email fail) |Email Verification|
-| 05 | No such knowledge question. |Delete knowledge question with ID|
-| 06 | Update knowledge field error. |Update knowledge question with ID, field, value and type|
+|00|  Success. |All|
+|01|    Incorrect password.   |Login|
+|02| No such account, need to register one first. |Login|
+|03| Account already exists. |Register|
+|04| Something wrong, please check the email address. (send email fail) |Email Verification|
+|05| No such knowledge question. |Delete knowledge question with ID|
+|06| Update knowledge field error. |Update knowledge question with ID, field, value and type|
 |07| Two email verification codes do not match. |Email Verification|
 |08| No verification code generated. Please send one first. |Email Verification|
 |09| Delete error| All delete functions|
@@ -2091,3 +2089,7 @@ Request Body:
 param could be param1~param5
 preCode: the prepared code that is shown on the front-end.
 ```
+## 8. Job opportunities
+### 8.1 Create job opportunity
+URL: /job_service/create  
+Type: POST  
