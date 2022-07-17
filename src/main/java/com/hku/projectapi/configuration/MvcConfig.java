@@ -26,7 +26,9 @@ public class MvcConfig implements WebMvcConfigurer
         registry.addInterceptor(jwtInterceptor())
                 .addPathPatterns("/author/**")
                 .addPathPatterns("/knowledge_service")
-                .addPathPatterns("/users_like");
+                .addPathPatterns("/users_like")
+                .addPathPatterns("/interview_service")
+                .addPathPatterns("/programming_service");
     }
 
     @Bean
