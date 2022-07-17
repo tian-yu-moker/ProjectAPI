@@ -213,7 +213,14 @@ public class ProgrammingService
         }
         else if(id == 2){
             return 1500;
-    }
+        }
+        else if(id == 3){
+            return 1500;
+        }else if(id == 4){
+            return 2000;
+        }else if(id == 5){
+            return 2000;
+        }
         return time;
     }
 
