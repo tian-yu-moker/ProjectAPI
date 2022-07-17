@@ -3,6 +3,7 @@ package com.hku.projectapi.Programming;
 import com.hku.projectapi.Beans.Programming.JudgeResult;
 import com.hku.projectapi.Beans.Programming.ProgrammingHistoryBean;
 import com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean;
+import com.hku.projectapi.Programming.Judgement.LengthOfNoRepeatSubstringJudge;
 import com.hku.projectapi.Programming.Judgement.StringReverseJudge;
 import com.hku.projectapi.Programming.Judgement.TwoSumJudge;
 import com.hku.projectapi.Programming.TestCaseBeans.GeneralBean;
@@ -20,6 +21,7 @@ public class ExecutionHandler
         int questionId = programInfo.getId();
         ProgrammingHistoryBean result = new ProgrammingHistoryBean();
         List<GeneralBean> cases = new ArrayList<>();
+        String className = "a" + uuid;
         if(language.equals("Java"))
         {
             switch (questionId){
@@ -37,15 +39,22 @@ public class ExecutionHandler
                     StringReverseJudge judge2 = new StringReverseJudge(programInfo, filePath, "a" + uuid);
                     JudgeResult judgeResult2 = judge2.doJudge();
                     result.setStatus(judgeResult2.getStatus());
-                    result.setQuestionId(1);
+                    result.setQuestionId(questionId);
                     cases.add(judgeResult2.getFailedCase());
 //                    result.setFailedCases(judgeResult.getFailedCase());
                     result.setFailedCases(cases);
                     result.setMessage(judgeResult2.getMsg());
-                    System.out.println(2 + " AAA");
+//                    System.out.println(2 + " AAA");
                     break;
                 case 3:
-                    System.out.println(3 + " AAA");
+                    LengthOfNoRepeatSubstringJudge judge3 = new LengthOfNoRepeatSubstringJudge(programInfo, filePath, className);
+                    JudgeResult judgeResult3 = judge3.doJudge();
+                    result.setStatus(judgeResult3.getStatus());
+                    result.setQuestionId(questionId);
+                    cases.add(judgeResult3.getFailedCase());
+                    result.setFailedCases(cases);
+                    result.setMessage(judgeResult3.getMsg());
+//                    System.out.println(3 + " AAA");
                     break;
             }
         }

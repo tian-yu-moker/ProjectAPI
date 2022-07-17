@@ -2,7 +2,7 @@ package com.hku.projectapi.Programming.AnswerCode;
 
 import java.util.HashMap;
 
-public class NoRepeatSubstringAnswer
+public class LengthOfNoRepeatSubstringAnswer
 {
     public int lengthOfLongestSubstring(String s) {
         if (s.length()==0) return 0;
@@ -17,6 +17,5 @@ public class NoRepeatSubstringAnswer
             max = Math.max(max,i-left+1);
         }
         return max;
-
     }
 }
