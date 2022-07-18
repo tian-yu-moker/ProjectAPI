@@ -31,7 +31,7 @@ public class JobOpportunityController
     }
 
     // Load by page
-    @GetMapping("load")
+    @PostMapping("load")
     public Result load(@RequestBody String token, @RequestBody PageRequestDTO pageRequestDTO)
     {
         String updatedToken = "";
