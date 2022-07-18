@@ -189,7 +189,7 @@ public class ProgrammingService
             }).start();
             // After three
             waitDTO.setUuid(uuid);
-            waitDTO.setWaitMinutesToRequest(this.setWait(questionId));
+            waitDTO.setWaitMinutesToRequest(this.setWait(questionId) + 500);
             return new Result("00", "Success.", null, waitDTO);
         } catch (Exception e){
             return new Result("99", "Internal server error.", null);
@@ -218,6 +218,8 @@ public class ProgrammingService
         }else if(id == 5){
             return 2000;
         }else if(id == 6){
+            return 2000;
+        }else if(id == 7){
             return 2000;
         }
         return time;

@@ -76,6 +76,15 @@ public class ExecutionHandler
                     result.setFailedCases(cases);
                     result.setMessage(judgeResult6.getMsg());
                     break;
+                case 7:
+                    Judgement_7 judge7 = new Judgement_7(programInfo, filePath, className);
+                    JudgeResult judgeResult7 = judge7.doJudge();
+                    result.setStatus(judgeResult7.getStatus());
+                    result.setQuestionId(questionId);
+                    cases.add(judgeResult7.getFailedCase());
+                    result.setFailedCases(cases);
+                    result.setMessage(judgeResult7.getMsg());
+                    break;
             }
         }
         return result;

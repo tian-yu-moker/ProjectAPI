@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.hku.projectapi.Beans.Programming.JudgeResult;
 import com.hku.projectapi.Beans.Programming.ProgrammingMsg;
 import com.hku.projectapi.Beans.Programming.ProgrammingQuestionBean;
-import com.hku.projectapi.Programming.AnswerCode.ZigTagConversionAnswer_6;
+import com.hku.projectapi.Programming.AnswerCode.Answer_7;
 import com.hku.projectapi.Programming.TestCaseBeans.GeneralBean;
 
 import java.lang.reflect.Method;
@@ -13,14 +13,14 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.List;
 
-public class Judgement_6 extends BaseJudgement
+public class Judgement_7 extends BaseJudgement
 {
-    private ZigTagConversionAnswer_6 zigTagConversionAnswer_6;
+    private Answer_7 answer_7;
 
-    public Judgement_6(ProgrammingQuestionBean programInfo, String filePath, String uuid)
+    public Judgement_7(ProgrammingQuestionBean programInfo, String filePath, String uuid)
     {
         super(programInfo, filePath, uuid);
-        this.zigTagConversionAnswer_6 = new ZigTagConversionAnswer_6();
+        this.answer_7 = new Answer_7();
     }
 
     public JudgeResult doJudge() {
@@ -29,21 +29,18 @@ public class Judgement_6 extends BaseJudgement
             URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{url});
             Class<?> cls = Class.forName(this.uuid, true, classLoader);
             Object instance = cls.newInstance();
-
-            Method method = cls.getDeclaredMethod("convert", String.class, int.class);
+            Method method = cls.getDeclaredMethod("reverse", String.class, int.class);
             method.setAccessible(true);
             List<GeneralBean> testCases = this.programInfo.getTestCases();
 
             for (GeneralBean cases : testCases) {
-                String param1 = (String) cases.getParam1();
-                String param2Obj = JSON.toJSONString(cases.getParam2());
-                int param2 = JSONObject.parseObject(param2Obj, int.class);
-                String resTruth = this.zigTagConversionAnswer_6.convert(param1, param2);
-                String resUser = (String) method.invoke(instance, param1, param2);
-                if (!resTruth.equals(resUser)) {
+                String param1Obj = JSON.toJSONString(cases.getParam1());
+                int param1 = JSONObject.parseObject(param1Obj, int.class);
+                int resTruth = this.answer_7.reverse(param1);
+                int resUser = (int) method.invoke(instance, param1);
+                if (resTruth != resUser) {
                     GeneralBean failedCase = new GeneralBean();
                     failedCase.setParam1(cases.getParam1());
-                    failedCase.setParam2(cases.getParam2());
                     return new JudgeResult(ProgrammingMsg.REJECT, cases, ProgrammingMsg.CASE_NOT_PASS);
                 }
             }
