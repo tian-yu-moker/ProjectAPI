@@ -1890,6 +1890,8 @@ Type: GET
     }
 }
 ```
+Status code:  
+"Accepted", "Rejected", "Error", "Time out", "Compile error"  
 ### 7.3 Get all the programming history of the user
 URL: programming_service/all_history?questionId=1  
 programming_service/all_history  

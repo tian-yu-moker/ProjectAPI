@@ -140,7 +140,7 @@ public class ProgrammingService
                             // Kill the running thread
                             executeThread.interrupt();
                         }
-                        else if(curStatus.equals("Reject"))
+                        else if(curStatus.equals(ProgrammingMsg.REJECT))
                         {
                             history = taskThread.getProgrammingHistoryBean();
                             List<GeneralBean> failedCases = history.getFailedCases();
@@ -154,6 +154,7 @@ public class ProgrammingService
                         }
                         else{
                             history = taskThread.getProgrammingHistoryBean();
+                            history.setFailedCases(null);
                         }
                         history.setUuid(uuid);
                         // Set history
@@ -163,14 +164,12 @@ public class ProgrammingService
                         QueryWrapper<ProgramIsPassed> isPassedQueryWrapper = new QueryWrapper<>();
                         isPassedQueryWrapper.eq("userId", userId).eq("questionId", questionId);
                         List<ProgramIsPassed> res = programmingIsPassedMapper.selectList(isPassedQueryWrapper);
-                        System.out.println(res);
                         if(res.size() == 0){
-                            if(history.getStatus().equals("Accept")){
+                            if(history.getStatus().equals(ProgrammingMsg.ACCEPT)){
                                 isPassed.setIsPassed(1);
                             }else {
                                 isPassed.setIsPassed(2);
                             }
-                            System.out.println("RERERE");
                             programmingIsPassedMapper.insert(isPassed);
                         }else {
                             if(res.get(0).getIsPassed() != 1 && history.getStatus().equals("Accept")){

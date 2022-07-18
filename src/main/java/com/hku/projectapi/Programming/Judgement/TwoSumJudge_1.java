@@ -57,12 +57,12 @@ public class TwoSumJudge_1
                     GeneralBean failedCase = new GeneralBean();
                     failedCase.setParam1(cases.getParam1());
                     failedCase.setParam2(cases.getParam2());
-                    return new JudgeResult("Reject", cases, ProgrammingMsg.CASE_NOT_PASS);
+                    return new JudgeResult(ProgrammingMsg.REJECT, cases, ProgrammingMsg.CASE_NOT_PASS);
                 }
             }
             // If all test cases have been passed, then return true
             JudgeResult result = new JudgeResult();
-            result.setStatus("Accept");
+            result.setStatus(ProgrammingMsg.ACCEPT);
             return result;
         }catch (Exception e){
             return new JudgeResult(ProgrammingMsg.RUNTIME_ERROR, null, e.getMessage());
