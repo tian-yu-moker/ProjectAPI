@@ -1,6 +1,7 @@
 package com.hku.projectapi.Controller.JobOpportunity;
 
 import com.hku.projectapi.Beans.JobOpportunity.JobOpportunityBean;
+import com.hku.projectapi.Beans.PageRequestDTO;
 import com.hku.projectapi.Beans.QueryByPageDTO;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Service.JobOpportunity.JobOpportunityService;
@@ -31,12 +32,14 @@ public class JobOpportunityController
 
     // Load by page
     @GetMapping("load")
-    public Result load(@RequestBody String token, @RequestBody QueryByPageDTO queryByPageDTO)
+    public Result load(@RequestBody String token, @RequestBody PageRequestDTO pageRequestDTO)
     {
         String updatedToken = "";
         try {
             updatedToken = JwtUtil.updateToken(token);
-            return new Result("00", "Success.", updatedToken);
+            Result result = jobOpportunityService.searchByPage(pageRequestDTO);
+            result.setToken(updatedToken);
+            return result;
         }catch (Exception e){
             return new Result("97", "Invalid token, please login.", null);
         }

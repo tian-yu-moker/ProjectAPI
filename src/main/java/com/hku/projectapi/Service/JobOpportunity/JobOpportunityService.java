@@ -30,7 +30,7 @@ public class JobOpportunityService extends ServiceImpl<JobOpportunityMapper, Job
         jobOpportunityMapper.insert(jobOpportunityDTO);
     }
 
-    public Result searchByPage(PageRequestDTO pageRequestDTO, String token)
+    public Result searchByPage(PageRequestDTO pageRequestDTO)
     {
         int curPage= pageRequestDTO.getPageFirst();
         int pageSize = pageRequestDTO.getPageSizeFirst();
