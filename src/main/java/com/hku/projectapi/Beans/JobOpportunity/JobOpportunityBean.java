@@ -41,8 +41,8 @@ public class JobOpportunityBean
     @TableField("upload_time")
     private Timestamp uploadTime;
 
-    @TableField("expiry_time")
-    private Timestamp expiryTime;
+    @TableField("expiry_date")
+    private Timestamp expiryDate;
 
     // need to disable the card (not allowed to be clicked)
     @TableField(exist = false)

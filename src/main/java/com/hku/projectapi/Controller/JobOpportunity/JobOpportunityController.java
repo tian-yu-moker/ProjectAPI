@@ -32,11 +32,12 @@ public class JobOpportunityController
 
     // Load by page
     @PostMapping("load")
-    public Result load(@RequestBody String token, @RequestBody PageRequestDTO pageRequestDTO)
+    public Result load(@RequestHeader String token, @RequestBody PageRequestDTO pageRequestDTO)
     {
         String updatedToken = "";
         try {
             updatedToken = JwtUtil.updateToken(token);
+            System.out.println(updatedToken);
             Result result = jobOpportunityService.searchByPage(pageRequestDTO);
             result.setToken(updatedToken);
             return result;

@@ -2095,3 +2095,45 @@ preCode: the prepared code that is shown on the front-end.
 ### 8.1 Create job opportunity
 URL: /job_service/create  
 Type: POST  
+### 8.2 Get all job information
+URL: /job_service/load  
+Type: POST  
+By page  
+```
+{
+    "pageFirst": 1,
+    "pageSizeFirst": 22   
+}
+```
+```
+Response body:
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": {
+        "queryInfo": {
+            "currentPage": 1,
+            "pageSize": 22,
+            "totalRecord": 1
+        },
+        "entities": [
+            {
+                "uuid": "80213b4c329444a3b5ed9c9cbf8d45d4",
+                "company": "Tencent",
+                "jobPosition": "Project Intern",
+                "jobLocation": "Hong Kong",
+                "descriptionShort": "Tencent AI lab job, mainly require candidates who are good at Machine learning experiences, especially those has paper released in publications or conferences.",
+                "descriptionFull": "### AI Algorithm engineer in Tencent AI lab\r\n\r\n##### Company: \r\n\r\nTencent\r\n\r\n##### Job position: \r\n\r\nAlgorithm engineer\r\n\r\n##### Job location: \r\n\r\nShenzhen\r\n\r\n##### Job description:\r\n\r\n**Responsibilities**\r\n• Assist in handling client's enquiry in standard manners and liaise with internal departments to fulfill client's requirements\r\n• Prepare account opening document and follow client onboarding procedure\r\n• Assist in updating and maintaining client profiles\r\n• Perform ad hoc tasks assigned from time to time\r\n\r\n**Requirements**\r\nSkills and Abilities\r\n• Well organized and detail oriented\r\n• Good interpersonal and communication skills with positive attitude\r\n• Proficient in MS office, especially in Excel\r\n• Strong self-starter and able to work in a fast-paced environment\r\n• Good command of English and Chinese, fluency in Mandarin is preferred\r\n\r\n**Qualifications**\r\n• Finance and Economics related majors preferred\r\n\r\n**Salary**\r\n\r\n25~40k per month\r\n\r\n**Expiry Date**\r\n\r\n2022/08/30\r\n\r\n**Contact:**\r\n\r\ntianyu98@connect.hku.hk",
+                "salary": "Discuss later",
+                "hrContract": "tianyu@connect.hku.hk",
+                "uploadTime": "2022-07-17T16:00:00.000+00:00",
+                "expiryDate": "2022-09-14T16:00:00.000+00:00",
+                "expired": false
+            }
+        ]
+    }
+}
+
+expired: this job is closed and invalid, cannot be clicked.
+```

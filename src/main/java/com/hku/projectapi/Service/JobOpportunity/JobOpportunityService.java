@@ -40,7 +40,7 @@ public class JobOpportunityService extends ServiceImpl<JobOpportunityMapper, Job
         List<JobOpportunityBean> records = resPage.getRecords();
 
         for(JobOpportunityBean beans:records){
-            Timestamp expiry = beans.getExpiryTime();
+            Timestamp expiry = beans.getExpiryDate();
             Timestamp curTime = new Timestamp(new Date().getTime());
             if(expiry.before(curTime)){
                 beans.setExpired(true);
