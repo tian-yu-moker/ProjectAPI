@@ -59,8 +59,15 @@ public class JobOpportunityService extends ServiceImpl<JobOpportunityMapper, Job
         return new Result("00", "Success.", null, result);
     }
 
-    public void searchById()
+    public Result searchById(String uuid)
     {
-
+        QueryWrapper<JobOpportunityBean> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("uuid", uuid);
+        List<JobOpportunityBean> resList = jobOpportunityMapper.selectList(queryWrapper);
+        if(resList.size() == 1){
+            return new Result("00", "Success.", null, resList.get(0));
+        }else{
+            return new Result("15", "No such record.", null);
+        }
     }
 }

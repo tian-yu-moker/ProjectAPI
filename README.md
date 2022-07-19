@@ -22,6 +22,7 @@ URL: http://120.77.98.16:8080
 |12| No such record.| Collection like. (add) |
 |13| No such interview, please check.|Interview query.|
 |14| No such record.|Online judgement. (Get history by id)|
+|15| No such record. |Get job by id|
 ## 0.3 Token
 Put into request header, name is token, value is the String obtained when login.  
 Error response code.  
@@ -2137,3 +2138,6 @@ Response body:
 
 expired: this job is closed and invalid, cannot be clicked.
 ```
+
+### 8.3 Get job by id
+URL: /job_service/query_by_id@uuid=

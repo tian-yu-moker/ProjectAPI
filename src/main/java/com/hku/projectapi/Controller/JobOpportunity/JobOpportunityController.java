@@ -46,13 +46,15 @@ public class JobOpportunityController
         }
     }
 
-    @GetMapping("query_by_id")
+    @GetMapping("query")
     public Result searchById(@RequestHeader String token, @RequestParam String uuid)
     {
         String updatedToken = "";
         try {
             updatedToken = JwtUtil.updateToken(token);
-            return new Result("00", "Success.", updatedToken);
+            Result res = jobOpportunityService.searchById(uuid);
+            res.setToken(updatedToken);
+            return res;
         }catch (Exception e){
             return new Result("97", "Invalid token, please login.", null);
         }
