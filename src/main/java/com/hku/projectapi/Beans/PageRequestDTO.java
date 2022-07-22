@@ -15,7 +15,7 @@ public class PageRequestDTO
     private int pageThird;
     private int pageSizeThird;
     private int type;
-    // Two tags
-    private int tag1;
-    private int tag2;
+    // Two tags, tag1 is the company, tag2 is the type
+    private String tag1;
+    private String tag2;
 }

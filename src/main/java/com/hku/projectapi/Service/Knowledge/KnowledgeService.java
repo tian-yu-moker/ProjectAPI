@@ -67,7 +67,7 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
             return new Result("98", "Invalid token, please login.", null);
         }
         try{
-            if(pageRequestDTO.getType() == 0 && pageRequestDTO.getTag1() == 0 || pageRequestDTO.getTag2() == 0)
+            if(pageRequestDTO.getType() == 0 && pageRequestDTO.getTag1().equals(null) || pageRequestDTO.getTag2().equals(null))
             {
                 QueryWrapper<KnowledgeQuestionBean> queryWrapper = new QueryWrapper<>();
                 queryWrapper.select().orderByDesc("upload_time");
@@ -103,18 +103,44 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
                 result.setData(queryDTO);
                 return result;
             }
-            else if(pageRequestDTO.getType() == 0 && pageRequestDTO.getTag1() == 1)
-            {
-                return new Result();
-            }
             else
             {
-                return new Result();
+                String tag1 = pageRequestDTO.getTag1();
+                String tag2 = pageRequestDTO.getTag2();
+                // If two select requirements
+                List<KnowledgeQuestionBean> res = knowledgeQuestionMapper.selectByTags(tag1, tag2);
+                for(KnowledgeQuestionBean beans:res){
+                    String id = beans.getKnowledgeId();
+                    QueryWrapper<UserBean> query = new QueryWrapper<>();
+                    query.eq("email", beans.getUserid());
+                    UserBean oneUser = userMapper.selectOne(query);
+                    beans.setUserName(oneUser.getName());
+                    QueryByPageDTO answers = knowledgeAnswerService.searchByKnowledge(beans.getKnowledgeId(),
+                            pageRequestDTO.getPageSecond(), pageRequestDTO.getPageSizeSecond());
+                    beans.setAnswers(answers);
+                    QueryByPageDTO comments = knowledgeCommentService.searchByKnowledge(beans.getKnowledgeId(),
+                            pageRequestDTO.getPageThird(), pageRequestDTO.getPageSizeThird());
+                    beans.setComments(comments);
+                    int isLiked = this.getIsLike(userId, beans.getKnowledgeId());
+                    beans.setIsLiked(isLiked);
+                }
+                QueryByPageDTO queryDTO = new QueryByPageDTO();
+                QueryInfo queryInfo = new QueryInfo();
+                queryInfo.setPageSize(pageRequestDTO.getPageSizeFirst());
+                queryInfo.setCurrentPage(pageRequestDTO.getPageFirst());
+                queryInfo.setTotalRecord(res.size());
+                queryDTO.setQueryInfo(queryInfo);
+                queryDTO.setEntities(res);
+                Result result = new Result();
+                result.setCode("00");
+                result.setDescription("Success.");
+                result.setData(queryDTO);
+                return result;
             }
         } catch (Exception e)
         {
             log.error(e.getMessage());
-            return new Result("99", "Internal error.", null);
+            return new Result("99", "Internal error, with the error <" + e.getMessage() + ">", null);
         }
     }
 
