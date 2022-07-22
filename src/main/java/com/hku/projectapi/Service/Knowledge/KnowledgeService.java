@@ -105,10 +105,12 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
             }
             else
             {
+                System.out.println("AAA");
                 String tag1 = pageRequestDTO.getTag1();
                 String tag2 = pageRequestDTO.getTag2();
                 // If two select requirements
                 List<KnowledgeQuestionBean> res = knowledgeQuestionMapper.selectByTags(tag1, tag2);
+                System.out.println(res.size());
                 for(KnowledgeQuestionBean beans:res){
                     String id = beans.getKnowledgeId();
                     QueryWrapper<UserBean> query = new QueryWrapper<>();
