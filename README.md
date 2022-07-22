@@ -23,6 +23,7 @@ URL: http://120.77.98.16:8080
 |13| No such interview, please check.|Interview query.|
 |14| No such record.|Online judgement. (Get history by id)|
 |15| No such record. |Get job by id|
+|16| Sorry, no alumni found.|Query alumni|
 ## 0.3 Token
 Put into request header, name is token, value is the String obtained when login.  
 Error response code.  
@@ -2141,3 +2142,94 @@ expired: this job is closed and invalid, cannot be clicked.
 
 ### 8.3 Get job by id
 URL: /job_service/query_by_id@uuid=
+
+## 9. Alumni
+###9.1 Get Alumni
+Type: GET  
+URL: /get_alumni
+```
+{
+    "code": "00",
+    "description": "Success.",
+    "token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMjNAcXEuY29tIiwiZXhwIjoxNjU4NDY4MTA2LCJpbmZvIjp7ImFkbWluIjowLCJ1c2VybmFtZSI6IjEyMyJ9fQ.ZNpIvYGf8PHyJcS-vJUZtKOdYnWnIaWIwdn1uHziBis",
+    "data": [
+        {
+            "email": "123@qq.com",
+            "name": "Ace Coder",
+            "password": "",
+            "isAdmin": null,
+            "school": "The University of Hong Kong",
+            "graduateDate": null,
+            "type": null,
+            "company": null,
+            "yoe": null
+        },
+        {
+            "email": "12345@qq.com",
+            "name": "Wang Zhao",
+            "password": "",
+            "isAdmin": null,
+            "school": "The University of Hong Kong",
+            "graduateDate": null,
+            "type": null,
+            "company": null,
+            "yoe": null
+        },
+        {
+            "email": "123456@qq.com",
+            "name": "123",
+            "password": "",
+            "isAdmin": null,
+            "school": "The University of Hong Kong",
+            "graduateDate": null,
+            "type": null,
+            "company": null,
+            "yoe": null
+        },
+        {
+            "email": "12345ty6@qq.com",
+            "name": "123",
+            "password": "",
+            "isAdmin": null,
+            "school": "The University of Hong Kong",
+            "graduateDate": null,
+            "type": null,
+            "company": null,
+            "yoe": null
+        },
+        {
+            "email": "1258264684",
+            "name": "gaoshiji",
+            "password": "",
+            "isAdmin": null,
+            "school": "The University of Hong Kong",
+            "graduateDate": null,
+            "type": null,
+            "company": null,
+            "yoe": null
+        },
+        {
+            "email": "gaoshiwei@qq.com",
+            "name": "123",
+            "password": "",
+            "isAdmin": null,
+            "school": "The University of Hong Kong",
+            "graduateDate": null,
+            "type": null,
+            "company": null,
+            "yoe": null
+        },
+        {
+            "email": "tianyu98@connect.hku.hk",
+            "name": "Tian Yu",
+            "password": "",
+            "isAdmin": null,
+            "school": "The University of Hong Kong",
+            "graduateDate": null,
+            "type": null,
+            "company": null,
+            "yoe": null
+        }
+    ]
+}
+```
