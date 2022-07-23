@@ -143,6 +143,9 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                     // Set is liked and user name
                     beans.setIsLiked(knowledgeService.getIsLike(userId, beans.getKnowledgeId()));
                     beans.setUserName(this.getName(userId));
+
+
+
                     beans.setAnswers(answers);
                     beans.setComments(comments);
                 }
@@ -150,6 +153,12 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                 //
                 one.setProviderName(this.getName(userId));
                 one.setIsLiked(this.getIsLiked(userId, interviewId));
+
+                QueryByPageDTO resultPage = new QueryByPageDTO();
+                QueryInfo queryInfoQues = new QueryInfo();
+                queryInfoQues.setTotalRecord(questions.size());
+                resultPage.setEntities(queryInfoQues);
+
                 result.setInterview(one);
                 result.setQuestions(questions);
                 return new Result("00", "Success.", null, result);

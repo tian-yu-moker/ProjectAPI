@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.hku.projectapi.Mapper.Knowledge.KnowledgeQuestionMapper">
-    <select id="selectByTags" resultMap="com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean">
+    <resultMap id="knowledge_questions" type="com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean">
+
+    </resultMap>
+    <select id="selectByTags" resultMap="knowledge_questions">
         select * from knowledge_questions where
         <if test="company != null and company != ''">
             comany = #{company}
