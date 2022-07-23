@@ -4,6 +4,9 @@
     <resultMap id="knowledge_questions" type="com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean">
         <result column="company" property="company"></result>
         <result column="tag" property="tag"></result>
+        <result column="knowledge_id" property="knowledgeId"></result>
+        <result column="interview_id" property="interviewId"></result>
+        <result column="upload_time" property="uploadTime"></result>
     </resultMap>
     <select id="selectByTags" resultMap="knowledge_questions">
         select * from knowledge_questions where
