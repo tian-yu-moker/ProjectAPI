@@ -144,23 +144,34 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                     beans.setIsLiked(knowledgeService.getIsLike(userId, beans.getKnowledgeId()));
                     beans.setUserName(this.getName(userId));
 
-
-
-                    beans.setAnswers(answers);
-                    beans.setComments(comments);
+                    QueryByPageDTO answerPage = new QueryByPageDTO();
+                    QueryByPageDTO commentPage = new QueryByPageDTO();
+                    QueryInfo answerInfo = new QueryInfo();
+                    QueryInfo commentsInfo = new QueryInfo();
+                    answerInfo.setTotalRecord(answers.size());
+                    commentsInfo.setTotalRecord(comments.size());
+                    // Set answers
+                    answerPage.setQueryInfo(answerInfo);
+                    answerPage.setEntities(answers);
+                    // Set comments
+                    commentPage.setQueryInfo(commentsInfo);
+                    commentPage.setEntities(comments);
+                    // Set all
+                    beans.setAnswers(answerPage);
+                    beans.setComments(commentPage);
                 }
                 InterviewQueryDTO result = new InterviewQueryDTO();
-                //
                 one.setProviderName(this.getName(userId));
                 one.setIsLiked(this.getIsLiked(userId, interviewId));
 
                 QueryByPageDTO resultPage = new QueryByPageDTO();
                 QueryInfo queryInfoQues = new QueryInfo();
                 queryInfoQues.setTotalRecord(questions.size());
-                resultPage.setEntities(queryInfoQues);
+                resultPage.setQueryInfo(queryInfoQues);
+                resultPage.setEntities(questions);
 
                 result.setInterview(one);
-                result.setQuestions(questions);
+                result.setQuestions(resultPage);
                 return new Result("00", "Success.", null, result);
             }else {
                 return new Result("13", "No such interview, please check.", null);

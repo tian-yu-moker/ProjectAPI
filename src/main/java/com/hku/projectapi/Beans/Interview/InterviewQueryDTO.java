@@ -10,8 +10,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InterviewQueryDTO
+public class InterviewQueryDTO<T>
 {
     private InterviewBean interview;
-    private List<KnowledgeQuestionBean> questions;
+    private T questions;
 }
