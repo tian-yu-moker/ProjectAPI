@@ -28,7 +28,8 @@ public class MvcConfig implements WebMvcConfigurer
                 .addPathPatterns("/knowledge_service")
                 .addPathPatterns("/users_like")
                 .addPathPatterns("/interview_service")
-                .addPathPatterns("/programming_service");
+                .addPathPatterns("/programming_service")
+                .addPathPatterns("/my_posts");
     }
 
     @Bean
