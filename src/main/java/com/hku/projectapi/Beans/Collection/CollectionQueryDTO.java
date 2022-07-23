@@ -11,8 +11,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CollectionQueryDTO
+public class CollectionQueryDTO<T>
 {
-    List<InterviewBean> interviews;
-    List<KnowledgeQuestionBean> knowledge;
+    private T interviews;
+    private T knowledge;
 }

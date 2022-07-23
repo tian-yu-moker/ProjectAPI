@@ -12,6 +12,7 @@ import com.hku.projectapi.Beans.Collection.InterviewLike;
 import com.hku.projectapi.Beans.Interview.InterviewBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import com.hku.projectapi.Beans.QueryByPageDTO;
+import com.hku.projectapi.Beans.QueryInfo;
 import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Mapper.Collection.InterviewCollectionMapper;
 import com.hku.projectapi.Mapper.Collection.KnowledgeCollectionMapper;
@@ -92,9 +93,21 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
                     resInter.add(rec.get(0));
                 }
             }
-            res.setInterviews(resInter);
-            res.setKnowledge(resKnow);
             QueryByPageDTO result = new QueryByPageDTO();
+            QueryInfo quesInfo = new QueryInfo();
+            QueryInfo interInfo = new QueryInfo();
+            quesInfo.setTotalRecord(resKnow.size());
+            interInfo.setTotalRecord(resInter.size());
+            QueryByPageDTO quesDTO = new QueryByPageDTO();
+            QueryByPageDTO interDTO = new QueryByPageDTO();
+            quesDTO.setQueryInfo(quesInfo);
+            quesDTO.setEntities(resKnow);
+            interDTO.setEntities(resInter);
+            interDTO.setQueryInfo(interInfo);
+
+            res.setInterviews(interDTO);
+            res.setKnowledge(quesDTO);
+
             result.setEntities(res);
             return new Result("00", "Success.", null, result);
         } catch (Exception e){
