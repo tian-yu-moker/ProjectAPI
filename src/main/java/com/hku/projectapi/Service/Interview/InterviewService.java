@@ -95,7 +95,7 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                 interview.setCompany(company);
                 interview.setTitle(title);
                 interview.setDescription(description);
-                interview.setProviderId(userId);
+                interview.setUserId(userId);
                 interview.setUploadTime(uploadTime);
                 // Newly added
                 interview.setLevel(interviewDTO.getLevel());
@@ -161,7 +161,7 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
                     beans.setComments(commentPage);
                 }
                 InterviewQueryDTO result = new InterviewQueryDTO();
-                one.setProviderName(this.getName(userId));
+                one.setUserName(this.getName(userId));
                 one.setIsLiked(this.getIsLiked(userId, interviewId));
 
                 QueryByPageDTO resultPage = new QueryByPageDTO();
@@ -201,7 +201,7 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
 
         for(InterviewBean beans:records){
             beans.setIsLiked(this.getIsLiked(userId, beans.getInterviewId()));
-            beans.setProviderName(this.getName(userId));
+            beans.setUserName(this.getName(userId));
             QueryWrapper<KnowledgeQuestionBean> knowWrapper = new QueryWrapper<>();
             knowWrapper.eq("interview_id", beans.getInterviewId());
             List<KnowledgeQuestionBean> questions = knowledgeQuestionMapper.selectList(knowWrapper);

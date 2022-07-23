@@ -21,10 +21,10 @@ public class InterviewBean
     private String interviewId;
 
     @TableField("providerId")
-    private String providerId;
+    private String userId;
 
     @TableField(exist = false)
-    private String providerName;
+    private String userName;
 
     @TableField("title")
     private String title;

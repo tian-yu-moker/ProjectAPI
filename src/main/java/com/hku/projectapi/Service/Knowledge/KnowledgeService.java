@@ -67,8 +67,10 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
             return new Result("98", "Invalid token, please login.", null);
         }
         try{
-            if(pageRequestDTO.getType() == 0 && pageRequestDTO.getTag1().equals(null) || pageRequestDTO.getTag2().equals(null))
+            if(pageRequestDTO.getType() == 0 &&
+                    (pageRequestDTO.getTag1().equals(null) && pageRequestDTO.getTag2().equals(null) || pageRequestDTO.getTag1().equals("") && pageRequestDTO.getTag2().equals("")))
             {
+                System.out.println("123");
                 QueryWrapper<KnowledgeQuestionBean> queryWrapper = new QueryWrapper<>();
                 queryWrapper.select().orderByDesc("upload_time");
                 Page<KnowledgeQuestionBean> resPage = knowledgeQuestionMapper.selectPage(new Page<>(pageRequestDTO.getPageFirst(),
@@ -110,9 +112,9 @@ public class KnowledgeService extends ServiceImpl<KnowledgeQuestionMapper, Knowl
                 String tag2 = pageRequestDTO.getTag2();
                 // If two select requirements
                 List<KnowledgeQuestionBean> res = knowledgeQuestionMapper.selectByTags(tag1, tag2);
-                System.out.println(res.size());
                 for(KnowledgeQuestionBean beans:res){
                     String id = beans.getKnowledgeId();
+                    System.out.println(id + " AAA");
                     QueryWrapper<UserBean> query = new QueryWrapper<>();
                     query.eq("email", beans.getUserid());
                     UserBean oneUser = userMapper.selectOne(query);

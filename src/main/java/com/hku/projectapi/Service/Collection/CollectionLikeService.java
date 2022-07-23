@@ -88,7 +88,7 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
                 List<InterviewBean> rec = interviewMapper.selectList(query);
                 if(rec.size() == 1){
                     rec.get(0).setIsLiked(1);
-                    rec.get(0).setProviderName(interviewService.getName(rec.get(0).getProviderId()));
+                    rec.get(0).setUserName(interviewService.getName(rec.get(0).getUserId()));
                     resInter.add(rec.get(0));
                 }
             }

@@ -12,5 +12,5 @@ import java.util.List;
 @Mapper
 public interface KnowledgeQuestionMapper extends BaseMapper<KnowledgeQuestionBean>
 {
-    List<KnowledgeQuestionBean> selectByTags(@Param("company") String company, @Param("type") String type);
+    List<KnowledgeQuestionBean> selectByTags(@Param("company") String company, @Param("tag") String tag);
 }

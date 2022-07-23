@@ -1,7 +1,6 @@
 package com.hku.projectapi.Service.MyPost;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.hku.projectapi.Beans.Collection.CollectionQueryDTO;
 import com.hku.projectapi.Beans.Interview.InterviewBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import com.hku.projectapi.Beans.MyPost.MyPostDTO;
@@ -17,7 +16,6 @@ import com.hku.projectapi.Tools.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -50,7 +48,7 @@ public class MyPostService
             interWrapper.orderByDesc("upload_time");
             List<InterviewBean> interviews = interviewMapper.selectList(interWrapper);
             for(InterviewBean beans:interviews){
-                beans.setProviderName(interviewService.getName(userId));
+                beans.setUserName(interviewService.getName(userId));
             }
             knowWrapper.eq("userid", userId);
             knowWrapper.orderByDesc("upload_time");
