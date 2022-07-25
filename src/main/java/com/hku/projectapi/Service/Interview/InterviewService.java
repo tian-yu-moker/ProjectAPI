@@ -210,7 +210,7 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
             knowledgeInfo.setTotalRecord(questions.size());
             for(KnowledgeQuestionBean beansQuestion:questions){
 //                beansQuestion.setIsLiked(knowledgeService.getIsLike(userId, beansQuestion.getKnowledgeId()));
-                beansQuestion.setUserid(this.getName(userId));
+                beansQuestion.setUserName(this.getName(userId));
             }
             knowledgeQuestions.setQueryInfo(knowledgeInfo);
             knowledgeQuestions.setEntities(questions);
