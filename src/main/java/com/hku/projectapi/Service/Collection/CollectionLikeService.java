@@ -10,6 +10,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hku.projectapi.Beans.Collection.CollectionQueryDTO;
 import com.hku.projectapi.Beans.Collection.InterviewLike;
 import com.hku.projectapi.Beans.Interview.InterviewBean;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeAnswerBean;
+import com.hku.projectapi.Beans.Knowledge.KnowledgeCommentsBean;
 import com.hku.projectapi.Beans.Knowledge.KnowledgeQuestionBean;
 import com.hku.projectapi.Beans.QueryByPageDTO;
 import com.hku.projectapi.Beans.QueryInfo;
@@ -17,8 +19,11 @@ import com.hku.projectapi.Beans.Result;
 import com.hku.projectapi.Mapper.Collection.InterviewCollectionMapper;
 import com.hku.projectapi.Mapper.Collection.KnowledgeCollectionMapper;
 import com.hku.projectapi.Mapper.Interview.InterviewMapper;
+import com.hku.projectapi.Mapper.Knowledge.KnowledgeAnswerMapper;
+import com.hku.projectapi.Mapper.Knowledge.KnowledgeCommentMapper;
 import com.hku.projectapi.Mapper.Knowledge.KnowledgeQuestionMapper;
 import com.hku.projectapi.Service.Interview.InterviewService;
+import com.hku.projectapi.Service.Knowledge.KnowledgeService;
 import com.hku.projectapi.Tools.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -41,6 +46,12 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
     private InterviewMapper interviewMapper;
     @Autowired
     private InterviewService interviewService;
+    @Autowired
+    private KnowledgeService knowledgeService;
+    @Autowired
+    private KnowledgeAnswerMapper knowledgeAnswerMapper;
+    @Autowired
+    private KnowledgeCommentMapper knowledgeCommentMapper;
 
 
 
@@ -77,10 +88,44 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
 
                 List<KnowledgeQuestionBean> rec = knowledgeQuestionMapper.selectList(query);
                 if(rec.size() == 1){
+                    String knowledgeId = rec.get(0).getKnowledgeId();
+
+                    QueryWrapper<KnowledgeAnswerBean> answersQuery = new QueryWrapper<>();
+                    QueryWrapper<KnowledgeCommentsBean> commentsQuery = new QueryWrapper<>();
+                    answersQuery.eq("knowledge_id", knowledgeId);
+                    commentsQuery.eq("knowledge_id", knowledgeId);
+                    List<KnowledgeAnswerBean> answers = knowledgeAnswerMapper.selectList(answersQuery);
+                    List<KnowledgeCommentsBean> comments = knowledgeCommentMapper.selectList(commentsQuery);
+                    for(KnowledgeAnswerBean a:answers){
+                        String email = a.getProviderId();
+                        a.setUserName(knowledgeService.getName(email));
+                    }
+                    for(KnowledgeCommentsBean c:comments){
+                        String email = c.getProviderId();
+                        c.setUserName(knowledgeService.getName(email));
+                    }
+                    QueryByPageDTO answerDTO = new QueryByPageDTO();
+                    answerDTO.setEntities(answers);
+                    QueryInfo ansInfo = new QueryInfo();
+                    ansInfo.setTotalRecord(answers.size());
+                    answerDTO.setQueryInfo(ansInfo);
+                    QueryByPageDTO commentsDTO = new QueryByPageDTO();
+                    QueryInfo commentInfo = new QueryInfo();
+                    commentInfo.setTotalRecord(comments.size());
+                    commentsDTO.setQueryInfo(commentInfo);
+                    commentsDTO.setEntities(comments);
+//                String name = this.getName(res.get(0).getUserid());
+                    rec.get(0).setUserName(interviewService.getName(userId));
+                    rec.get(0).setAnswers(answerDTO);
+                    rec.get(0).setComments(commentsDTO);
+
+
                     rec.get(0).setUserName(interviewService.getName(userId));
                     rec.get(0).setIsLiked(1);
                     resKnow.add(rec.get(0));
                 }
+
+
             }
             for(InterviewLike inter:interList){
                 String id = inter.getInterviewId();
@@ -93,7 +138,7 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
                     resInter.add(rec.get(0));
                 }
             }
-            QueryByPageDTO result = new QueryByPageDTO();
+//            QueryByPageDTO result = new QueryByPageDTO();
             QueryInfo quesInfo = new QueryInfo();
             QueryInfo interInfo = new QueryInfo();
             quesInfo.setTotalRecord(resKnow.size());
@@ -108,8 +153,8 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
             res.setInterviews(interDTO);
             res.setKnowledge(quesDTO);
 
-            result.setEntities(res);
-            return new Result("00", "Success.", null, result);
+//            result.setEntities(res);
+            return new Result("00", "Success.", null, res);
         } catch (Exception e){
             log.error(e.getMessage());
             return new Result("99", "Internal service error.", null);
