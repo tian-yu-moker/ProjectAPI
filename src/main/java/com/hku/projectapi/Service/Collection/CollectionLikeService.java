@@ -151,7 +151,7 @@ public class CollectionLikeService extends ServiceImpl<KnowledgeCollectionMapper
             interDTO.setQueryInfo(interInfo);
 
             res.setInterviews(interDTO);
-            res.setKnowledge(quesDTO);
+            res.setQuestions(quesDTO);
 
 //            result.setEntities(res);
             return new Result("00", "Success.", null, res);
