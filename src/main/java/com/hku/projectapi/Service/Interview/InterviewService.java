@@ -261,7 +261,7 @@ public class InterviewService extends ServiceImpl<InterviewMapper, InterviewBean
         }
         else
         {
-            return 10;
+            return 0;
         }
     }
 }
