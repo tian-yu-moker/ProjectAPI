@@ -14,5 +14,5 @@ import java.util.List;
 public class CollectionQueryDTO<T>
 {
     private T interviews;
-    private T knowledge;
+    private T questions;
 }
